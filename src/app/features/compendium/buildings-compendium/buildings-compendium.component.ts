@@ -4,11 +4,14 @@ import {BuildingEntitiesSelectors} from '../../../domain/store/compendium/buildi
 import {AppState} from '../../../domain/store/app.state';
 import {Store} from '@ngrx/store';
 import {Building} from '../../../domain/model/building.type';
+import {BuildingDisplayComponent} from '../../../components/building-display/building-display.component';
 
 @Component({
   standalone: true,
   selector: 'app-buildings-compendium',
-  imports: [],
+  imports: [
+    BuildingDisplayComponent
+  ],
   templateUrl: './buildings-compendium.component.html',
   styleUrl: './buildings-compendium.component.scss'
 })

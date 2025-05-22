@@ -1,12 +1,12 @@
 import {Component, DestroyRef, inject} from '@angular/core';
 import {PanelComponent} from '../../../components/panel/panel.component';
 import {DropdownSelectComponent} from '../../../components/dropdown-select/dropdown-select.component';
-import {TileType} from '../../../domain/data/tile.type';
+import {TileType} from '../../../domain/model/tile.type';
 import {ButtonComponent} from '../../../components/button/button.component';
 import {RandomGeneratorService} from '../../../services/random-generator/random-generator.service';
 import {TileGeneratorConfig} from './tile-generator.config';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../../domain/state/app.state';
+import {AppState} from '../../../domain/store/app.state';
 import {GeneratorsSelectors} from '../state/generators.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 

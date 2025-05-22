@@ -5,7 +5,7 @@ import {routes} from './app.routes';
 import {provideStore} from '@ngrx/store';
 import {provideEffects} from '@ngrx/effects';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
-import {reducers} from './domain/state/reducers';
+import {reducers} from './domain/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -1,4 +1,4 @@
-import {TileType} from '../data/tile.type';
+import {TileType} from './tile.type';
 
 export type TilePrompt = {
   //If type is empty, its available for all tiles

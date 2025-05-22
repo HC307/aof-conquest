@@ -1,4 +1,4 @@
-import {AppState} from '../../../domain/state/app.state';
+import {AppState} from '../../../domain/store/app.state';
 import {createSelector} from '@ngrx/store';
 
 export class GeneratorsSelectors {

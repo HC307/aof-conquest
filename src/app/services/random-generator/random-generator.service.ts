@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {TileType} from '../../domain/data/tile.type';
-import {TileLocationPrompts} from '../../domain/data/tile-location.prompts';
+import {TileType} from '../../domain/model/tile.type';
+import {TileLocationPrompts} from '../../domain/data/tiles/tile-location.prompts';
 import _ from 'lodash';
-import {TileBuildingPrompts} from '../../domain/data/tile-building.prompts';
-import {TilePrompts} from '../../domain/data/tile.prompts';
+import {TileBuildingPrompts} from '../../domain/data/tiles/tile-building.prompts';
+import {TilePrompts} from '../../domain/data/tiles/tile.prompts';
 import {TileGeneratorConfig} from '../../features/generators/tile-generator/tile-generator.config';
 
 @Injectable({

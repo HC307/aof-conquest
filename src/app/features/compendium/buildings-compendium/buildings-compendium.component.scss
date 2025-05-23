@@ -1,0 +1,26 @@
+@use '../../../styles' as *;
+
+.content-wrapper {
+  display: grid;
+  grid-template-areas:
+    "nav content";
+  grid-template-rows: 100%;
+  grid-template-columns: 10rem 1fr;
+  padding: $size-xxs;
+  gap: $size-xxs;
+
+  .selection-button {
+    width: 100%;
+    display: flex;
+  }
+
+  .building-selection {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .building-display {
+    grid-area: content;
+  }
+}

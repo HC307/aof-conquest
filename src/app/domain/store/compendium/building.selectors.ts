@@ -28,4 +28,11 @@ export class BuildingEntitiesSelectors {
       return building.name === buildingName;
     }),
   );
+
+  public static filtered = (filter: string) => createSelector(
+    this.all,
+    filteredList => filteredList.filter(value => {
+      return value.name.toLowerCase().includes(filter.toLowerCase());
+    })
+  );
 }

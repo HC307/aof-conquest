@@ -1,1 +1,8 @@
-<textarea [(ngModel)]="textValue" (ngModelChange)="onTextChange($event)"></textarea>
+<div
+  class="input-wrapper"
+>
+  <input
+    class="input-field"
+    [(ngModel)]="textValue"
+    (ngModelChange)="onTextChange($event)"/>
+</div>

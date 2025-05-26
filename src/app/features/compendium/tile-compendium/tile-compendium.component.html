@@ -1,1 +1,30 @@
-<p>tile-compendium works!</p>
+<div class="content-wrapper">
+  <div class="tile-selection">
+    <app-text-field
+      class="searchfield"
+      (textChanged)="setFilter($event)"
+    ></app-text-field>
+    <div
+      class="buttons-wrapper"
+    >
+      @for (tile of tiles; track tile.id) {
+        <app-button
+          class="selection-button"
+          (click)="this.selectedtile = tile"
+          [disabled]="this.selectedtile == tile"
+        >
+          {{ tile.name }}
+        </app-button>
+      }
+    </div>
+  </div>
+  <div class="tile-display">
+    @if (selectedtile) {
+      <app-tile-display
+        [data]="selectedtile"
+      ></app-tile-display>
+    } @else {
+      Select a tile.
+    }
+  </div>
+</div>

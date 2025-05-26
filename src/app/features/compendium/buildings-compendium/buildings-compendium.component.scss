@@ -18,6 +18,16 @@
     grid-area: nav;
     display: flex;
     flex-direction: column;
+
+    .searchfield{
+      margin-bottom: $size-m;
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      gap: $size-xxs;
+      flex-direction: column;
+    }
   }
 
   .building-display {

@@ -1,5 +1,5 @@
 import {TilePrompt} from '../../model/tile-prompt.type';
-import {TileType} from '../../model/tile.type';
+import {TileType} from '../../model/tileType';
 
 export const TileBuildingPrompts: TilePrompt[] = [
   {

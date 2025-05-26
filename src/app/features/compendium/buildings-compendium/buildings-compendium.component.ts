@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {BuildingEntitiesSelectors} from '../../../domain/store/compendium/building.selectors';
+import {BuildingEntitiesSelectors} from '../../../domain/store/compendium/buildings/building.selectors';
 import {AppState} from '../../../domain/store/app.state';
 import {Store} from '@ngrx/store';
 import {Building} from '../../../domain/model/building.type';

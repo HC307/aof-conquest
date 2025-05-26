@@ -1,0 +1,36 @@
+@use '../../../styles' as *;
+
+.content-wrapper {
+  display: grid;
+  grid-template-areas:
+    "nav content";
+  grid-template-rows: 100%;
+  grid-template-columns: 10rem 1fr;
+  padding: $size-xxs;
+  gap: $size-xxs;
+
+  .selection-button {
+    width: 100%;
+    display: flex;
+  }
+
+  .tile-selection {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+
+    .searchfield{
+      margin-bottom: $size-m;
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      gap: $size-xxs;
+      flex-direction: column;
+    }
+  }
+
+  .tile-display {
+    grid-area: content;
+  }
+}

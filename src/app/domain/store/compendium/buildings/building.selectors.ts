@@ -1,5 +1,5 @@
 import {buildingAdapter} from './buildingAdapter';
-import {AppState} from '../app.state';
+import {AppState} from '../../app.state';
 import {createSelector} from '@ngrx/store';
 
 export class BuildingEntitiesSelectors {

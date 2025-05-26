@@ -1,17 +1,22 @@
 <div class="content-wrapper">
   <div class="building-selection">
     <app-text-field
+      class="searchfield"
       (textChanged)="setFilter($event)"
     ></app-text-field>
-    @for (building of buildings; track building.id) {
-      <app-button
-        class="selection-button"
-        (click)="this.selectedBuilding = building"
-        [disabled]="this.selectedBuilding == building"
-      >
-        {{ building.name }}
-      </app-button>
-    }
+    <div
+      class="buttons-wrapper"
+    >
+      @for (building of buildings; track building.id) {
+        <app-button
+          class="selection-button"
+          (click)="this.selectedBuilding = building"
+          [disabled]="this.selectedBuilding == building"
+        >
+          {{ building.name }}
+        </app-button>
+      }
+    </div>
   </div>
   <div class="building-display">
     @if (selectedBuilding) {

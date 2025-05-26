@@ -1,4 +1,4 @@
-import {BuildingEntityState} from '../../store/compendium/building.state';
+import {BuildingEntityState} from '../../store/compendium/buildings/building.state';
 import {Currency} from '../../model/currency';
 
 export const BuildingCollection: BuildingEntityState = {

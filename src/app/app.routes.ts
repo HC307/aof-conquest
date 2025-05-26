@@ -3,9 +3,9 @@ import {HomeComponent} from './features/home/home.component';
 import {RulesComponent} from './features/rules/rules.component';
 import {GeneratorsComponent} from './features/generators/generators.component';
 import {CompendiumComponent} from './features/compendium/compendium.component';
-import {TileCompendiumComponent} from './features/compendium/tile-compendium/tile-compendium.component';
 import {BuildingsCompendiumComponent} from './features/compendium/buildings-compendium/buildings-compendium.component';
 import {TrophiesCompendiumComponent} from './features/compendium/trophies-compendium/trophies-compendium.component';
+import {TileCompendiumComponent} from './features/compendium/tile-compendium/tile-compendium.component';
 
 export const routes: Routes = [
   {

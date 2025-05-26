@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TileType} from '../../domain/model/tile.type';
+import {TileType} from '../../domain/model/tileType';
 import {TileLocationPrompts} from '../../domain/data/tiles/tile-location.prompts';
 import _ from 'lodash';
 import {TileBuildingPrompts} from '../../domain/data/tiles/tile-building.prompts';

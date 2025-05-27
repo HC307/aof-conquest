@@ -3,16 +3,20 @@
 .content-wrapper {
   border: 1px solid black;
   border-radius: $size-xxs;
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: $size-s;
+  padding: 0;
   box-sizing: border-box;
 
-  div {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
+  h3 {
+    padding: $size-xxs;
+    margin: 0;
+    background-color: grey;
+  }
+
+  .content {
+    padding: $size-s;
   }
 }

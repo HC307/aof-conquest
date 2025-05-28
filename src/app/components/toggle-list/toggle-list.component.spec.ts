@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {TextFieldComponent} from './text-field.component';
+import {ToggleListComponent} from './toggle-list.component';
 
-describe('TextFieldComponent', () => {
-  let component: TextFieldComponent;
-  let fixture: ComponentFixture<TextFieldComponent>;
+describe('ToggleListComponent', () => {
+  let component: ToggleListComponent;
+  let fixture: ComponentFixture<ToggleListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextFieldComponent]
+      imports: [ToggleListComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(TextFieldComponent);
+    fixture = TestBed.createComponent(ToggleListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,7 +3,6 @@ import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-text-field',
-  standalone: true,
   imports: [
     FormsModule
   ],

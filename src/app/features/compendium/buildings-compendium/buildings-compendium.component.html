@@ -1,27 +1,15 @@
 <div class="content-wrapper">
   <div class="building-selection">
-    <app-text-field
-      class="searchfield"
-      (textChanged)="setFilter($event)"
-    ></app-text-field>
-    <div
-      class="buttons-wrapper"
-    >
-      @for (building of buildings; track building.id) {
-        <app-button
-          class="selection-button"
-          (click)="this.selectedBuilding = building"
-          [disabled]="this.selectedBuilding == building"
-        >
-          {{ building.name }}
-        </app-button>
-      }
-    </div>
+    <app-toggle-list
+      (filters)="setFilter($event)"
+      [items]="filteredBuildings()"
+      (selectedItem)="selectionId = $event"
+    ></app-toggle-list>
   </div>
   <div class="building-display">
-    @if (selectedBuilding) {
+    @if (selectionId) {
       <app-building-display
-        [data]="selectedBuilding"
+        [data]="selectedBuilding()"
       ></app-building-display>
     } @else {
       Select a building.

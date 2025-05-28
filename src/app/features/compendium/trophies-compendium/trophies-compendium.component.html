@@ -1,1 +1,18 @@
-<p>trophies-compendium works!</p>
+<div class="content-wrapper">
+  <div class="trophy-selection">
+    <app-toggle-list
+      (filters)="setFilter($event)"
+      [items]="filteredTrophies()"
+      (selectedItem)="selectionId = $event"
+    ></app-toggle-list>
+  </div>
+  <div class="content-display">
+    @if (selectionId) {
+      <app-trophy-display
+        [data]="selectedItem()"
+      ></app-trophy-display>
+    } @else {
+      Select a tile.
+    }
+  </div>
+</div>

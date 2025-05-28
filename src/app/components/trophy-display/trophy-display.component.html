@@ -1,0 +1,13 @@
+@if (data) {
+  <app-panel
+    [title]="data.name"
+  >
+    <div
+      class="content-wrapper"
+    >
+      <p>
+        {{ data.description }}
+      </p>
+    </div>
+  </app-panel>
+}

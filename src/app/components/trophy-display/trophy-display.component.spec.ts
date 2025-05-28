@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {TextFieldComponent} from './text-field.component';
+import {TrophyDisplayComponent} from './trophy-display.component';
 
-describe('TextFieldComponent', () => {
-  let component: TextFieldComponent;
-  let fixture: ComponentFixture<TextFieldComponent>;
+describe('TrophyDisplayComponent', () => {
+  let component: TrophyDisplayComponent;
+  let fixture: ComponentFixture<TrophyDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextFieldComponent]
+      imports: [TrophyDisplayComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(TextFieldComponent);
+    fixture = TestBed.createComponent(TrophyDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

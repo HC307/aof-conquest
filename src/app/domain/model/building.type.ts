@@ -1,8 +1,6 @@
-import {Price} from './price.type';
+import {Price} from './price.interface';
+import {BaseEntity} from './base-entity.type';
 
-export type Building = {
-  id: string,
-  name: string,
-  description: string,
+export interface Building extends BaseEntity {
   buildingPrice: Price,
-};
+}

@@ -6,20 +6,20 @@
 
     <div class="controls">
       <div class="config">
-      <div class="control-pairing">
-        Type 1
-        <app-dropdown-select
-          [options]="options"
-          (selectedOption)="option1 = $event"
-        ></app-dropdown-select>
-      </div>
-      <div class="control-pairing">
-        Type 2
-        <app-dropdown-select
-          [options]="options"
-          (selectedOption)="option2 = $event"
-        ></app-dropdown-select>
-      </div>
+        <div class="control-pairing">
+          Type 1
+          <app-dropdown-select
+            [options]="options"
+            (selectedOption)="option1 = $event"
+          ></app-dropdown-select>
+        </div>
+        <div class="control-pairing">
+          Type 2
+          <app-dropdown-select
+            [options]="options"
+            (selectedOption)="option2 = $event"
+          ></app-dropdown-select>
+        </div>
       </div>
 
       <app-button

@@ -1,27 +1,15 @@
 <div class="content-wrapper">
   <div class="tile-selection">
-    <app-text-field
-      class="searchfield"
-      (textChanged)="setFilter($event)"
-    ></app-text-field>
-    <div
-      class="buttons-wrapper"
-    >
-      @for (tile of tiles; track tile.id) {
-        <app-button
-          class="selection-button"
-          (click)="this.selectedtile = tile"
-          [disabled]="this.selectedtile == tile"
-        >
-          {{ tile.name }}
-        </app-button>
-      }
-    </div>
+    <app-toggle-list
+      (filters)="setFilter($event)"
+      [items]="filteredTiles()"
+      (selectedItem)="selectionId = $event"
+    ></app-toggle-list>
   </div>
   <div class="tile-display">
-    @if (selectedtile) {
+    @if (selectionId) {
       <app-tile-display
-        [data]="selectedtile"
+        [data]="selectedTile()"
       ></app-tile-display>
     } @else {
       Select a tile.

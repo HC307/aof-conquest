@@ -1,0 +1,19 @@
+<div class="content-wrapper">
+  <app-text-field
+    class="filterfield"
+    (textChanged)="filters.emit($event)"
+  ></app-text-field>
+  <div
+    class="buttons-wrapper"
+  >
+    @for (item of items; track item.id) {
+      <app-button
+        class="selection-button"
+        (click)="this.selection = item.id"
+        [disabled]="this.selection == item.id"
+      >
+        {{ item.display }}
+      </app-button>
+    }
+  </div>
+</div>

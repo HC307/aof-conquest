@@ -2,35 +2,93 @@ import { ConstructionEntityState } from '../../store/compendium/constructions/co
 import { CurrencyEnum } from '../../model/currency.enum';
 
 export const ConstructionCollection: ConstructionEntityState = {
-  ids: ['smithy', 'smithy+', 'smithy++'],
+  ids: [
+    'fortress',
+    'smithy',
+    'smithy+',
+    'smithy++',
+    'magic',
+    'magic+',
+    'magic++',
+    'aerie',
+  ],
   entities: {
+    fortress: {
+      id: 'fortress',
+      name: 'Fortress',
+      description:
+        'Enables the recruitment of one Hero. Units defending a fortress gain +1 on any Roll to Block.',
+      constructionCost: {
+        currency: CurrencyEnum.Actions,
+        value: 9,
+      },
+    },
     smithy: {
       id: 'smithy',
       name: 'Smithy',
-      description: 'Enables the production of 5 pts. Melee-Weapon Upgrades.',
+      description: 'Enables the production of 5 pts. Weapon Upgrades.',
       constructionCost: {
-        currency: CurrencyEnum.Points,
-        value: 15,
+        currency: CurrencyEnum.Actions,
+        value: 2,
       },
     },
     'smithy+': {
       id: 'smithy+',
       name: 'Advanced Smithy',
-      description: 'Enables the production of 10 pts. Melee Upgrades.',
+      description: 'Enables the production of up to 10 pts. Weapon Upgrades.',
       constructionCost: {
-        currency: CurrencyEnum.Points,
-        value: 20,
+        currency: CurrencyEnum.Actions,
+        value: 2,
       },
     },
     'smithy++': {
       id: 'smithy++',
-      name: 'Master Smithy',
-      description:
-        'Enables the production of 15 pts. and higher Melee Upgrades.',
+      name: 'Expert Smithy',
+      description: 'Enables the production of any Weapon Upgrade.',
       constructionCost: {
-        currency: CurrencyEnum.Points,
-        value: 40,
+        currency: CurrencyEnum.Actions,
+        value: 2,
       },
+    },
+    magic: {
+      id: 'magic',
+      name: 'Magic Academy',
+      constructionCost: {
+        currency: CurrencyEnum.Actions,
+        value: 4,
+      },
+      description:
+        'Enables the Recruitment if Units with and Upgrades granting Sorcerer(1).',
+    },
+    'magic+': {
+      id: 'magic+',
+      name: 'Advanced Magic Academy',
+      constructionCost: {
+        currency: CurrencyEnum.Actions,
+        value: 4,
+      },
+      description:
+        'Enables the Recruitment if Units with and Upgrades granting up to Sorcerer(2).',
+    },
+    'magic++': {
+      id: 'magic++',
+      name: 'Expert Magic Academy',
+      constructionCost: {
+        currency: CurrencyEnum.Actions,
+        value: 4,
+      },
+      description:
+        'Enables the Recruitment if Units with and Upgrades granting up to Sorcerer(3).',
+    },
+    aerie: {
+      id: 'aerie',
+      name: 'Aerie',
+      constructionCost: {
+        currency: CurrencyEnum.Actions,
+        value: 3,
+      },
+      description:
+        'Allows the recruitment of Flying Units and the purchase of flying mounts.',
     },
   },
 };

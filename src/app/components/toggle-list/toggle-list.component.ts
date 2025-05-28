@@ -1,19 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ButtonComponent} from '../button/button.component';
-import {TextFieldComponent} from '../text-field/text-field.component';
-import {ToggleListInput} from './toggle-list.input';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ButtonComponent } from '../button/button.component';
+import { TextFieldComponent } from '../text-field/text-field.component';
+import { ToggleListInput } from './toggle-list.input';
 
 @Component({
   selector: 'app-toggle-list',
-  imports: [
-    ButtonComponent,
-    TextFieldComponent
-  ],
+  imports: [ButtonComponent, TextFieldComponent],
   templateUrl: './toggle-list.component.html',
-  styleUrl: './toggle-list.component.scss'
+  styleUrl: './toggle-list.component.scss',
 })
 export class ToggleListComponent {
-
   private _items?: ToggleListInput[];
 
   @Input()
@@ -24,8 +20,12 @@ export class ToggleListComponent {
   set items(value: ToggleListInput[] | undefined) {
     this._items = value;
 
-    //Remove active building if its not in the filtered list
-    if (this.selection && this.items && !this.items.map(value => value.id).includes(this.selection)) {
+    //Remove active option if its not in the filtered list
+    if (
+      this.selection &&
+      this.items &&
+      !this.items.map((value) => value.id).includes(this.selection)
+    ) {
       this.selection = undefined;
     }
 
@@ -36,7 +36,7 @@ export class ToggleListComponent {
   }
 
   @Output()
-  selectedItem = new EventEmitter<string>;
+  selectedItem = new EventEmitter<string>();
 
   @Output()
   filters = new EventEmitter<string>();
@@ -51,6 +51,4 @@ export class ToggleListComponent {
     this._selection = value;
     this.selectedItem.emit(this._selection);
   }
-
-
 }

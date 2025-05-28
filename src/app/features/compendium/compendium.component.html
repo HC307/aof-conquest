@@ -1,14 +1,17 @@
 <div class="content-wrapper">
-  <h2>Compendium</h2>
+  <h2 class="title">Compendium</h2>
   <div class="categories">
     @for (link of childRoutes; track link.path) {
-      <button
-        class="category-button"
-        [routerLink]="link.path"
-        [routerLinkActive]="'active'"
-      >{{ link.title }}
-      </button>
+    <button
+      class="category-button"
+      [routerLink]="link.path"
+      [routerLinkActive]="'active'"
+    >
+      {{ link.title }}
+    </button>
     }
   </div>
-  <router-outlet></router-outlet>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

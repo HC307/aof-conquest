@@ -1,14 +1,22 @@
 @use "../../styles" as *;
+:host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 
-.content-wrapper {
-  display: grid;
-  grid-template-areas: "nav content";
-  grid-template-rows: 100%;
-  grid-template-columns: 10rem 1fr;
-  padding: $size-xxs;
-  gap: $size-xxs;
+  .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: $size-xxs;
+    gap: $size-xxs;
 
-  .rule-display {
-    grid-area: content;
+    .option-selection {
+    }
+
+    .option-display {
+      width: 100%;
+      height: fit-content;
+    }
   }
 }

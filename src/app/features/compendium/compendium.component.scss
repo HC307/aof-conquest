@@ -1,15 +1,25 @@
-@use '../../styles' as *;
+@use "../../styles" as *;
 
 :host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
   .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: $size-m;
 
     .categories {
+      grid-area: nav;
       display: flex;
       flex-direction: row;
+      width: 100%;
       gap: 0;
       border: 1px solid black;
       padding: 0;
-      margin-bottom: $size-s;
+      height: 100%;
 
       .category-button {
         border: none;
@@ -22,6 +32,14 @@
         background-color: #333333;
         color: white;
       }
+    }
+
+    .content {
+      width: 100%;
+    }
+
+    .selec {
+      grid-area: select;
     }
   }
 }

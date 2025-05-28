@@ -1,18 +1,14 @@
 <div class="content-wrapper">
-  <div class="tile-selection">
+  <div class="option-selection">
     <app-toggle-list
       (filters)="setFilter($event)"
       [items]="filteredTiles()"
       (selectedItem)="selectionId = $event"
     ></app-toggle-list>
   </div>
-  <div class="tile-display">
+  <div class="option-display">
     @if (selectionId) {
-      <app-tile-display
-        [data]="selectedTile()"
-      ></app-tile-display>
-    } @else {
-      Select a tile.
-    }
+    <app-tile-display [data]="selectedTile()"></app-tile-display>
+    } @else { Select a tile. }
   </div>
 </div>

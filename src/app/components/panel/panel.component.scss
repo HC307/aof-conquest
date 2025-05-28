@@ -1,14 +1,14 @@
-@use '../../styles' as *;
+@use "../../styles" as *;
 
 .content-wrapper {
   border: 1px solid black;
   border-radius: $size-xxs;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
+  width: 100%;
   padding: 0;
-  box-sizing: border-box;
 
   h3 {
     padding: $size-xxs;

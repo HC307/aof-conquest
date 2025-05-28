@@ -1,12 +1,12 @@
 <div class="content-wrapper">
-  <div class="trophy-selection">
+  <div class="option-selection">
     <app-toggle-list
       (filters)="setFilter($event)"
       [items]="filteredTrophies()"
       (selectedItem)="selectionId = $event"
     ></app-toggle-list>
   </div>
-  <div class="content-display">
+  <div class="option-display">
     @if (selectionId) {
     <app-trophy-display [data]="selectedItem()"></app-trophy-display>
     } @else { Select a trophy. }

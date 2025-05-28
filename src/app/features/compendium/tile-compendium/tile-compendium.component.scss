@@ -1,15 +1,16 @@
-@use '../../../styles' as *;
+@use "../../../styles" as *;
 
 .content-wrapper {
-  display: grid;
-  grid-template-areas:
-    "nav content";
-  grid-template-rows: 100%;
-  grid-template-columns: 10rem 1fr;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   padding: $size-xxs;
   gap: $size-xxs;
 
-  .tile-display {
-    grid-area: content;
+  .option-selection {
+  }
+  .option-display {
+    width: 100%;
+    height: fit-content;
   }
 }

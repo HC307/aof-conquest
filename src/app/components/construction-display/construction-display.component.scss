@@ -1,4 +1,31 @@
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
+@use "../../styles" as *;
+
+:host {
+  .content-wrapper {
+    display: grid;
+    padding: $size-xxs;
+    grid-template-areas:
+      "lore lore"
+      "data description";
+    grid-template-columns: 20% 1fr;
+
+    //for future
+    .lore {
+      grid-area: lore;
+      display: none;
+    }
+
+    .data {
+      grid-area: data;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid black;
+      width: fit-content;
+      padding-right: $size-xxs;
+    }
+
+    .description {
+      grid-area: description;
+    }
+  }
 }

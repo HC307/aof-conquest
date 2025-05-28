@@ -1,9 +1,13 @@
 @if (data) {
 <app-panel [title]="data.name">
   <div class="content-wrapper">
-    <p>
+    <div class="lore"></div>
+    <div class="data">
+      Construction: {{ data.constructionCost.value }} Turns
+    </div>
+    <div class="description">
       {{ data.description }}
-    </p>
+    </div>
   </div>
 </app-panel>
 }

@@ -1,11 +1,13 @@
-import {GeneratorsState} from '../../features/generators/state/generators.state';
-import {BuildingState} from './compendium/buildings/building.state';
-import {TileState} from './compendium/tiles/tile.state';
-import {TrophyState} from './compendium/trophies/trophy.state';
+import { GeneratorsState } from '../../features/generators/state/generators.state';
+import { ConstructionState as ConstructionState } from './compendium/constructions/construction.state';
+import { TileState } from './compendium/tiles/tile.state';
+import { TrophyState } from './compendium/trophies/trophy.state';
+import { RuleState } from './rules/rules.state';
 
 export interface AppState {
-  generators: GeneratorsState,
-  buildings: BuildingState,
-  tiles: TileState,
-  trophies: TrophyState,
+  generators: GeneratorsState;
+  constructions: ConstructionState;
+  tiles: TileState;
+  trophies: TrophyState;
+  rules: RuleState;
 }

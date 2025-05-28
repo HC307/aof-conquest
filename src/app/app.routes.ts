@@ -1,22 +1,22 @@
-import {Routes} from '@angular/router';
-import {HomeComponent} from './features/home/home.component';
-import {RulesComponent} from './features/rules/rules.component';
-import {GeneratorsComponent} from './features/generators/generators.component';
-import {CompendiumComponent} from './features/compendium/compendium.component';
-import {BuildingsCompendiumComponent} from './features/compendium/buildings-compendium/buildings-compendium.component';
-import {TrophiesCompendiumComponent} from './features/compendium/trophies-compendium/trophies-compendium.component';
-import {TileCompendiumComponent} from './features/compendium/tile-compendium/tile-compendium.component';
+import { Routes } from '@angular/router';
+import { HomeComponent } from './features/home/home.component';
+import { RulesComponent } from './features/rules/rules.component';
+import { GeneratorsComponent } from './features/generators/generators.component';
+import { CompendiumComponent } from './features/compendium/compendium.component';
+import { ConstructionCompendiumComponent } from './features/compendium/construction-compendium/construction-compendium.component';
+import { TrophyCompendiumComponent } from './features/compendium/trophy-compendium/trophy-compendium.component';
+import { TileCompendiumComponent } from './features/compendium/tile-compendium/tile-compendium.component';
 
 export const routes: Routes = [
   {
     title: 'Home',
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     title: 'Rules',
     path: 'rules',
-    component: RulesComponent
+    component: RulesComponent,
   },
   {
     title: 'Compendium',
@@ -29,16 +29,16 @@ export const routes: Routes = [
         component: TileCompendiumComponent,
       },
       {
-        path: 'buildings',
-        title: 'Buildings',
-        component: BuildingsCompendiumComponent,
+        path: 'construction',
+        title: 'Constructions',
+        component: ConstructionCompendiumComponent,
       },
       {
         path: 'trophies',
         title: 'Trophies',
-        component: TrophiesCompendiumComponent,
-      }
-    ]
+        component: TrophyCompendiumComponent,
+      },
+    ],
   },
   {
     title: 'Generators',
@@ -48,6 +48,6 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];

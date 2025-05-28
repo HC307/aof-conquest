@@ -1,0 +1,14 @@
+@use "../../styles" as *;
+
+.content-wrapper {
+  display: grid;
+  grid-template-areas: "nav content";
+  grid-template-rows: 100%;
+  grid-template-columns: 10rem 1fr;
+  padding: $size-xxs;
+  gap: $size-xxs;
+
+  .rule-display {
+    grid-area: content;
+  }
+}

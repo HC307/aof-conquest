@@ -1,9 +1,8 @@
-import {KeywordEnum} from './keyword.enum';
+import { KeywordEnum } from './keyword.enum';
 
-export type BaseEntity = {
+export interface BaseEntity {
   id: string;
   name: string;
   description?: string;
   keywords?: KeywordEnum[];
 }
-

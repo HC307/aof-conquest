@@ -8,11 +8,7 @@
   </div>
   <div class="content-display">
     @if (selectionId) {
-      <app-trophy-display
-        [data]="selectedItem()"
-      ></app-trophy-display>
-    } @else {
-      Select a tile.
-    }
+    <app-trophy-display [data]="selectedItem()"></app-trophy-display>
+    } @else { Select a trophy. }
   </div>
 </div>

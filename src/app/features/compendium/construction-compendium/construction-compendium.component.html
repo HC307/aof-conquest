@@ -1,14 +1,16 @@
 <div class="content-wrapper">
-  <div class="rule-selection">
+  <div class="option-selection">
     <app-toggle-list
       (filters)="setFilter($event)"
       [items]="filteredOptions()"
       (selectedItem)="selectionId = $event"
     ></app-toggle-list>
   </div>
-  <div class="rule-display">
+  <div class="option-display">
     @if (selectionId) {
-    <app-rule-display [data]="selectedOption()"></app-rule-display>
-    } @else { Select a rule. }
+    <app-construction-display
+      [data]="selectedOption()"
+    ></app-construction-display>
+    } @else { Select a construct. }
   </div>
 </div>

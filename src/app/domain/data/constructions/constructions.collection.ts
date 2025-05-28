@@ -1,18 +1,14 @@
-import {BuildingEntityState} from '../../store/compendium/buildings/building.state';
-import {CurrencyEnum} from '../../model/currency.enum';
+import { ConstructionEntityState } from '../../store/compendium/constructions/construction.state';
+import { CurrencyEnum } from '../../model/currency.enum';
 
-export const BuildingCollection: BuildingEntityState = {
-  ids: [
-    'smithy',
-    'smithy+',
-    'smithy++',
-  ],
+export const ConstructionCollection: ConstructionEntityState = {
+  ids: ['smithy', 'smithy+', 'smithy++'],
   entities: {
-    'smithy': {
+    smithy: {
       id: 'smithy',
       name: 'Smithy',
       description: 'Enables the production of 5 pts. Melee-Weapon Upgrades.',
-      buildingPrice: {
+      constructionCost: {
         currency: CurrencyEnum.Points,
         value: 15,
       },
@@ -21,7 +17,7 @@ export const BuildingCollection: BuildingEntityState = {
       id: 'smithy+',
       name: 'Advanced Smithy',
       description: 'Enables the production of 10 pts. Melee Upgrades.',
-      buildingPrice: {
+      constructionCost: {
         currency: CurrencyEnum.Points,
         value: 20,
       },
@@ -29,8 +25,9 @@ export const BuildingCollection: BuildingEntityState = {
     'smithy++': {
       id: 'smithy++',
       name: 'Master Smithy',
-      description: 'Enables the production of 15 pts. and higher Melee Upgrades.',
-      buildingPrice: {
+      description:
+        'Enables the production of 15 pts. and higher Melee Upgrades.',
+      constructionCost: {
         currency: CurrencyEnum.Points,
         value: 40,
       },

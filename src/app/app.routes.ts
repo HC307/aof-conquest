@@ -6,6 +6,8 @@ import { CompendiumComponent } from './features/compendium/compendium.component'
 import { ConstructionCompendiumComponent } from './features/compendium/construction-compendium/construction-compendium.component';
 import { TrophyCompendiumComponent } from './features/compendium/trophy-compendium/trophy-compendium.component';
 import { TileCompendiumComponent } from './features/compendium/tile-compendium/tile-compendium.component';
+import { RandomEncounterCompendiumComponent } from './features/compendium/random-encounter-compendium/random-encounter-compendium.component';
+import { LocationCompendiumComponent } from './features/compendium/location-compendium/location-compendium.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +39,16 @@ export const routes: Routes = [
         path: 'trophies',
         title: 'Trophies',
         component: TrophyCompendiumComponent,
+      },
+      {
+        path: 'random-encounters',
+        title: 'Random Encounters',
+        component: RandomEncounterCompendiumComponent,
+      },
+      {
+        path: 'location',
+        title: 'Locations',
+        component: LocationCompendiumComponent,
       },
     ],
   },

@@ -3,29 +3,29 @@
 :host {
   .content-wrapper {
     display: grid;
-    padding: $size-xxs;
     grid-template-areas:
       "lore lore"
       "data description";
     grid-template-columns: 20% 1fr;
+    gap: $size-xs;
 
     //for future
     .lore {
       grid-area: lore;
-      display: none;
+      font-style: italic;
     }
 
     .data {
       grid-area: data;
       display: flex;
       flex-direction: column;
-      border-right: 1px solid black;
-      width: fit-content;
-      padding-right: $size-xxs;
+      width: 100%;
+      font-size: $font-sm;
     }
 
     .description {
       grid-area: description;
+      text-align: left;
     }
   }
 }

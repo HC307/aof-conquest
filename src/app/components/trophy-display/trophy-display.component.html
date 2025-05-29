@@ -1,13 +1,12 @@
 @if (data) {
-  <app-panel
-    [title]="data.name"
-  >
-    <div
-      class="content-wrapper"
-    >
-      <p>
-        {{ data.description }}
-      </p>
-    </div>
-  </app-panel>
+<app-panel [title]="data.name">
+  <div class="content-wrapper">
+    {{ data.rarity.toString() }} @if(data.flavour){
+    <div class="lore">"{{ data.flavour }}"</div>
+    }
+    <p>
+      {{ data.description }}
+    </p>
+  </div>
+</app-panel>
 }

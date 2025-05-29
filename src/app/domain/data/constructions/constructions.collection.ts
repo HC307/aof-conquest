@@ -1,5 +1,6 @@
 import { ConstructionEntityState } from '../../store/compendium/constructions/construction.state';
 import { CurrencyEnum } from '../../model/currency.enum';
+import { TileType } from '../../model/tileType';
 
 export const ConstructionCollection: ConstructionEntityState = {
   ids: [
@@ -22,6 +23,8 @@ export const ConstructionCollection: ConstructionEntityState = {
         currency: CurrencyEnum.Actions,
         value: 9,
       },
+      flavour: 'Only cool folks have fortresses.',
+      tiles: [TileType.ANY],
     },
     smithy: {
       id: 'smithy',
@@ -31,6 +34,7 @@ export const ConstructionCollection: ConstructionEntityState = {
         currency: CurrencyEnum.Actions,
         value: 2,
       },
+      tiles: [TileType.ANY],
     },
     'smithy+': {
       id: 'smithy+',
@@ -40,6 +44,7 @@ export const ConstructionCollection: ConstructionEntityState = {
         currency: CurrencyEnum.Actions,
         value: 2,
       },
+      tiles: [TileType.ANY],
     },
     'smithy++': {
       id: 'smithy++',
@@ -49,6 +54,7 @@ export const ConstructionCollection: ConstructionEntityState = {
         currency: CurrencyEnum.Actions,
         value: 2,
       },
+      tiles: [TileType.ANY],
     },
     magic: {
       id: 'magic',
@@ -59,6 +65,7 @@ export const ConstructionCollection: ConstructionEntityState = {
       },
       description:
         'Enables the Recruitment if Units with and Upgrades granting Sorcerer(1).',
+      tiles: [TileType.ANY],
     },
     'magic+': {
       id: 'magic+',
@@ -69,6 +76,7 @@ export const ConstructionCollection: ConstructionEntityState = {
       },
       description:
         'Enables the Recruitment if Units with and Upgrades granting up to Sorcerer(2).',
+      tiles: [TileType.ANY],
     },
     'magic++': {
       id: 'magic++',
@@ -79,6 +87,7 @@ export const ConstructionCollection: ConstructionEntityState = {
       },
       description:
         'Enables the Recruitment if Units with and Upgrades granting up to Sorcerer(3).',
+      tiles: [TileType.ANY],
     },
     aerie: {
       id: 'aerie',
@@ -89,6 +98,7 @@ export const ConstructionCollection: ConstructionEntityState = {
       },
       description:
         'Allows the recruitment of Flying Units and the purchase of flying mounts.',
+      tiles: [TileType.ANY],
     },
   },
 };

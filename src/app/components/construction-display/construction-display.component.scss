@@ -9,7 +9,6 @@
     grid-template-columns: 20% 1fr;
     gap: $size-xs;
 
-    //for future
     .lore {
       grid-area: lore;
       font-style: italic;
@@ -18,9 +17,14 @@
     .data {
       grid-area: data;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       width: 100%;
       font-size: $font-sm;
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
     }
 
     .description {

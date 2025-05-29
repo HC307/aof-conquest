@@ -1,9 +1,18 @@
 @if (data) {
 <app-panel [title]="data.name">
   <div class="content-wrapper">
-    <div class="lore">"Lorem ipsum dolor sit amet"</div>
+    @if(data.flavour){
+    <div class="lore">"{{ data.flavour }}"</div>
+    }
     <div class="data">
-      Construction: {{ data.constructionCost.value }} Turns
+      <ul>
+        <li>Construction: {{ data.constructionCost.value }} <br /></li>
+        <li>
+          Turns Buildable on: @for(tile of data.tiles; track data.id){
+          {{ tile.toString() }}
+          }
+        </li>
+      </ul>
     </div>
     <div class="description">
       {{ data.description }}

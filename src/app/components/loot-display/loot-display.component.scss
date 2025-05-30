@@ -1,0 +1,8 @@
+@use "../../styles" as *;
+
+:host {
+  .content-wrapper {
+    font-size: $font-sm;
+    display: inline;
+  }
+}

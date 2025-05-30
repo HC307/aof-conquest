@@ -1,1 +1,16 @@
-<p>random-encounter-compendium works!</p>
+<div class="content-wrapper">
+  <div class="option-selection">
+    <app-toggle-list
+      (filters)="setFilter($event)"
+      [items]="filteredOptions()"
+      (selectedItem)="selectionId = $event"
+    ></app-toggle-list>
+  </div>
+  <div class="option-display">
+    @if (selectionId) {
+      <app-random-encounter-display
+        [data]="selectedOption()"
+      ></app-random-encounter-display>
+    } @else { Select a construct. }
+  </div>
+</div>

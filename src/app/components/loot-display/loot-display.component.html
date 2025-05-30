@@ -1,0 +1,10 @@
+@if (data) {
+  <span class="content-wrapper">
+    @if (data.points) {
+      {{ data.points }} pts.<br>
+    }
+    @if (data.item) {
+      A <app-rarity-display [data]="data.item"></app-rarity-display> item<br>
+    }
+  </span>
+}

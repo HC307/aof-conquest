@@ -1,29 +1,15 @@
-import { AppState } from './app.state';
-import { ActionReducerMap } from '@ngrx/store';
+import {AppState} from './app.state';
+import {ActionReducerMap} from '@ngrx/store';
+import {generatorsReducer, initialGeneratorsState,} from '../../features/generators/state/generators.reducers';
+import {constructionEntitiesReducer, initialConstructionState,} from './constructions/construction-entities.reducers';
+import {initialTileState, tileEntitiesReducer,} from './tiles/tile-entities.reducers';
+import {initialTrophyState, trophyEntitiesReducer,} from './trophies/trophy-entities.reducers';
+import {initialRuleState, ruleEntitiesReducer,} from './rules/rules-entities.reducers';
+import {initialTileFeatureState, tileFeatureEntitiesReducer,} from './tile-features/tile-feature-entities.reducers';
 import {
-  generatorsReducer,
-  initialGeneratorsState,
-} from '../../features/generators/state/generators.reducers';
-import {
-  constructionEntitiesReducer,
-  initialConstructionState,
-} from './constructions/construction-entities.reducers';
-import {
-  initialTileState,
-  tileEntitiesReducer,
-} from './tiles/tile-entities.reducers';
-import {
-  initialTrophyState,
-  trophyEntitiesReducer,
-} from './trophies/trophy-entities.reducers';
-import {
-  initialRuleState,
-  ruleEntitiesReducer,
-} from './rules/rules-entities.reducers';
-import {
-  initialTileFeatureState,
-  tileFeatureEntitiesReducer,
-} from './tile-features/tile-feature-entities.reducers';
+  initialRandomEncounterState,
+  randomEncounterEntitiesReducer
+} from './random-encounter/random-encounter-entities.reducers';
 
 export const initialAppState: AppState = {
   generators: initialGeneratorsState,
@@ -32,6 +18,7 @@ export const initialAppState: AppState = {
   trophies: initialTrophyState,
   rules: initialRuleState,
   tileFeatures: initialTileFeatureState,
+  randomEncounters: initialRandomEncounterState,
 };
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -41,4 +28,5 @@ export const reducers: ActionReducerMap<AppState> = {
   trophies: trophyEntitiesReducer,
   rules: ruleEntitiesReducer,
   tileFeatures: tileFeatureEntitiesReducer,
+  randomEncounters: randomEncounterEntitiesReducer,
 };

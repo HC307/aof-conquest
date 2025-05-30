@@ -1,0 +1,32 @@
+@if (data) {
+  <app-panel [title]="data.name">
+    <div class="content-wrapper">
+      <!-- Flavour -->
+      @if (data.flavour) {
+        <div class="lore">"{{ data.flavour }}"</div>
+      }
+      <!-- Description -->
+      <div class="description">
+        {{ data.description }}
+      </div>
+      <!-- Reward -->
+      @if (data.reward) {
+        <div class="reward">
+          <h3>Victory Reward</h3>
+          <app-loot-display
+            [data]="data.reward"
+          ></app-loot-display>
+        </div>
+      }
+      <!-- Roster -->
+      <div class="roster">
+        <h3>{{ data.faction }} - {{ data.points }} pts.</h3>
+        <ul>
+          @for (entry of data.roster; track entry) {
+            <li>{{ entry }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </app-panel>
+}

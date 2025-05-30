@@ -1,13 +1,14 @@
-import {constructionAdapter} from './constructionAdapter';
+
 import {AppState} from '../app.state';
 import {createSelector} from '@ngrx/store';
+import {randomEncounterAdapter} from './randomEncounterAdapter';
 
 
-export class ConstructionEntitiesSelectors {
-  private static adapterSelectors = constructionAdapter.getSelectors();
+export class RandomEncounterEntitiesSelectors {
+  private static adapterSelectors = randomEncounterAdapter.getSelectors();
 
   private static select = {
-    entities: (state: AppState) => state.constructions,
+    entities: (state: AppState) => state.randomEncounters,
   };
 
   public static all = createSelector(

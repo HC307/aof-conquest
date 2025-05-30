@@ -1,22 +1,22 @@
 @if (data) {
-<app-panel [title]="data.name">
-  <div class="content-wrapper">
-    @if(data.flavour){
-    <div class="lore">"{{ data.flavour }}"</div>
-    }
-    <div class="data">
-      <ul>
-        <li>Construction: {{ data.constructionCost.value }} <br /></li>
-        <li>
-          Turns Buildable on: @for(tile of data.tiles; track data.id){
-          {{ tile.toString() }}
+  <app-panel [title]="data.name">
+    <div class="content-wrapper">
+      @if (data.flavour) {
+        <div class="lore">"{{ data.flavour }}"</div>
+      }
+      <div class="data">
+        <ul>
+          <li>Construction: {{ data.constructionCost.value }} <br/></li>
+          <li>
+            Turns Buildable on: @for (tile of data.tiles; track data.id) {
+            {{ tile.toString() }}
           }
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="description">
+        {{ data.description }}
+      </div>
     </div>
-    <div class="description">
-      {{ data.description }}
-    </div>
-  </div>
-</app-panel>
+  </app-panel>
 }

@@ -1,3 +1,3 @@
-import { BaseEntity } from './base-entity.type';
+import { BaseEntity } from './base-entity.interface';
 
 export interface Rule extends BaseEntity {}

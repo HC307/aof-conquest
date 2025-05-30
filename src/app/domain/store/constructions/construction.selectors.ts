@@ -1,5 +1,5 @@
 import { constructionAdapter } from './constructionAdapter';
-import { AppState } from '../../app.state';
+import { AppState } from '../app.state';
 import { createSelector } from '@ngrx/store';
 
 export class ConstructionEntitiesSelectors {

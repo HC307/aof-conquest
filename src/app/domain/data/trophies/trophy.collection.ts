@@ -1,5 +1,5 @@
 import { Rarity } from '../../model/rarity.enum';
-import { TrophyEntityState } from '../../store/compendium/trophies/trophy.state';
+import { TrophyEntityState } from '../../store/trophies/trophy.state';
 
 export const TrophyCollection: TrophyEntityState = {
   ids: ['arcane', 'mount+++'],

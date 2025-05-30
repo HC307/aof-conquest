@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationCompendiumComponent } from './location-compendium.component';
+import { TileFeatureCompendiumComponent } from './tile-features-compendium.component';
 
 describe('LocationCompendiumComponent', () => {
-  let component: LocationCompendiumComponent;
-  let fixture: ComponentFixture<LocationCompendiumComponent>;
+  let component: TileFeatureCompendiumComponent;
+  let fixture: ComponentFixture<TileFeatureCompendiumComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocationCompendiumComponent],
+      imports: [TileFeatureCompendiumComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LocationCompendiumComponent);
+    fixture = TestBed.createComponent(TileFeatureCompendiumComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,8 +1,7 @@
-import {CurrencyEnum} from './currency.enum';
-import {BaseEntity} from './base-entity.type';
+import { CurrencyEnum } from './currency.enum';
+import { BaseEntity } from './base-entity.interface';
 
 export interface Price {
-  value: Number,
-  currency: CurrencyEnum,
+  value: Number;
+  currency: CurrencyEnum;
 }
-

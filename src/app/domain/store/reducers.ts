@@ -7,19 +7,23 @@ import {
 import {
   constructionEntitiesReducer,
   initialConstructionState,
-} from './compendium/constructions/construction-entities.reducers';
+} from './constructions/construction-entities.reducers';
 import {
   initialTileState,
   tileEntitiesReducer,
-} from './compendium/tiles/tile-entities.reducers';
+} from './tiles/tile-entities.reducers';
 import {
   initialTrophyState,
   trophyEntitiesReducer,
-} from './compendium/trophies/trophy-entities.reducers';
+} from './trophies/trophy-entities.reducers';
 import {
   initialRuleState,
   ruleEntitiesReducer,
 } from './rules/rules-entities.reducers';
+import {
+  initialTileFeatureState,
+  tileFeatureEntitiesReducer,
+} from './tile-features/tile-feature-entities.reducers';
 
 export const initialAppState: AppState = {
   generators: initialGeneratorsState,
@@ -27,6 +31,7 @@ export const initialAppState: AppState = {
   tiles: initialTileState,
   trophies: initialTrophyState,
   rules: initialRuleState,
+  tileFeatures: initialTileFeatureState,
 };
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -35,4 +40,5 @@ export const reducers: ActionReducerMap<AppState> = {
   tiles: tileEntitiesReducer,
   trophies: trophyEntitiesReducer,
   rules: ruleEntitiesReducer,
+  tileFeatures: tileFeatureEntitiesReducer,
 };

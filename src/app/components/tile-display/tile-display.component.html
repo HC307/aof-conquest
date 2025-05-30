@@ -1,15 +1,11 @@
 @if (data) {
-  <app-panel
-    [title]="data.name"
-  >
-    <div
-      class="content-wrapper"
-    >
-      @if (data) {
-        <p>
-          {{ data.description }}
-        </p>
-      }
-    </div>
-  </app-panel>
+<app-panel [title]="data.name">
+  <div class="content-wrapper">
+    @if (data) {
+    <p>
+      {{ data.description }}
+    </p>
+    }
+  </div>
+</app-panel>
 }

@@ -5,7 +5,7 @@ import { BehaviorSubject, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../domain/store/app.state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TrophyEntitiesSelectors } from '../../../domain/store/compendium/trophies/trophy.selectors';
+import { TrophyEntitiesSelectors } from '../../../domain/store/trophies/trophy.selectors';
 import { Trophy } from '../../../domain/model/trophy.interface';
 
 @Component({

@@ -3,11 +3,14 @@
   <div class="content-wrapper">
     <app-rarity-display [data]="data.rarity"></app-rarity-display>
     @if(data.flavour){
-    <div class="lore">"{{ data.flavour }}"</div>
+    <div class="flavour">"{{ data.flavour }}"</div>
     }
     <p>
       {{ data.description }}
     </p>
+    Appears on: @for(t of data.tiles; track t){
+    {{ t }}
+    }
   </div>
 </app-panel>
 }

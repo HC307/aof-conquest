@@ -8,7 +8,9 @@
   </div>
   <div class="option-display">
     @if (selectionId) {
-    <app-tile-display [data]="selectedItem()"></app-tile-display>
+    <app-tile-feature-display
+      [data]="selectedItem()"
+    ></app-tile-feature-display>
     } @else { Select a tile. }
   </div>
 </div>

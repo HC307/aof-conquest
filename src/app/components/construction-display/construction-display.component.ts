@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Construction } from '../../domain/model/construction.type';
+import { Construction } from '../../domain/model/construction.interface';
 import { PanelComponent } from '../panel/panel.component';
 
 @Component({

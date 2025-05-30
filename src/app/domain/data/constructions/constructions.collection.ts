@@ -1,4 +1,4 @@
-import { ConstructionEntityState } from '../../store/compendium/constructions/construction.state';
+import { ConstructionEntityState } from '../../store/constructions/construction.state';
 import { CurrencyEnum } from '../../model/currency.enum';
 import { TileType } from '../../model/tileType';
 

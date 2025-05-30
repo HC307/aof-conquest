@@ -1,9 +1,9 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ConstructionEntitiesSelectors } from '../../../domain/store/compendium/constructions/construction.selectors';
+import { ConstructionEntitiesSelectors } from '../../../domain/store/constructions/construction.selectors';
 import { AppState } from '../../../domain/store/app.state';
 import { Store } from '@ngrx/store';
-import { Construction } from '../../../domain/model/construction.type';
+import { Construction } from '../../../domain/model/construction.interface';
 import { ConstructionDisplayComponent } from '../../../components/construction-display/construction-display.component';
 import { BehaviorSubject, switchMap } from 'rxjs';
 import { ToggleListComponent } from '../../../components/toggle-list/toggle-list.component';

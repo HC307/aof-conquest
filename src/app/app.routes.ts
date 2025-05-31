@@ -8,6 +8,7 @@ import { TrophyCompendiumComponent } from './features/compendium/trophy-compendi
 import { TileCompendiumComponent } from './features/compendium/tile-compendium/tile-compendium.component';
 import { RandomEncounterCompendiumComponent } from './features/compendium/random-encounter-compendium/random-encounter-compendium.component';
 import { TileFeatureCompendiumComponent } from './features/compendium/tile-features-compendium/tile-features-compendium.component';
+import { ChroniclerComponent } from './features/chronicler/chronicler.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,11 @@ export const routes: Routes = [
     title: 'Rules',
     path: 'rules',
     component: RulesComponent,
+  },
+  {
+    title: 'Chronicler',
+    path: 'chronicler',
+    component: ChroniclerComponent,
   },
   {
     title: 'Compendium',

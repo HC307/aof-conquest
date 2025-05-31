@@ -27,8 +27,8 @@ export class CompendiumComponent implements OnInit {
 
     if (currentRoute && currentRoute.children) {
       this.childRoutes = currentRoute.children.map((child: Route) => ({
-        path: child.path!,
-        title: child.title ? child.path : 'missing route title', // fallback to path if title missing
+        path: child.path ? child.path : 'error',
+        title: child.title ? child.title.toString() : child.path, // fallback to path if title missing
       }));
     }
   }

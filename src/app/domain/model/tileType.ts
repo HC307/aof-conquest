@@ -5,7 +5,7 @@ export enum TileType {
   BROKEN_LANDS = 'Broken Lands',
   DEAD_FOREST = 'Dead Forest',
   DESERT = 'Desert',
-  DESERT_CACTUS = 'Desert Cactus',
+  DESERT_CACTUS = 'Cactus Desert',
   FARMLAND = 'Farmland',
   FOREST = 'Forest',
   FUNGAL_FOREST = 'Fungal Forest',
@@ -17,7 +17,7 @@ export enum TileType {
   OCEAN = 'Ocean',
   SAVANNAH = 'Savannah',
   SEA = 'Sea',
-  SHOALD = 'Shoals',
+  SHOAL = 'Shoals',
   SNOW = 'Snow',
   SWAMP = 'Swamp',
 }

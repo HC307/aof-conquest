@@ -1,11 +1,10 @@
-@use '../../../../../styles' as *;
-
+@use "../../../../../styles" as *;
 
 :host {
   .button {
     width: 100%;
     text-align: center;
-    padding: 10px;
+    padding: $size-xs;
     cursor: pointer;
   }
 
@@ -16,6 +15,6 @@
     pointer-events: none;
     cursor: default;
     background-color: unset;
-    border: none;
+    border: 1px solid transparent;
   }
 }

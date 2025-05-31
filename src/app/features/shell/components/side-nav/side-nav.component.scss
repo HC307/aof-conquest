@@ -2,6 +2,17 @@
 
 :host {
   ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $size-m;
+
+    li {
+      box-sizing: border-box;
+    }
+
     //Mobile
     @media (max-width: $mobile-layout) {
       display: flex;
@@ -9,9 +20,5 @@
         display: inline-block;
       }
     }
-
-    list-style: none;
-    padding: 0;
-    margin: 0;
   }
 }

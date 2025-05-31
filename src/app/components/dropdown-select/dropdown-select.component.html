@@ -1,8 +1,8 @@
 <div class="dropdown">
-  <button class="dropbtn">{{ selected || "Select a Tile" }}</button>
+  <app-button>{{ selected || "Select a Tile" }}</app-button>
   <div class="dropdown-content">
     @for (option of options; track option) {
-      <a (click)="this.OnSelect(option)">{{ option }}</a>
+    <a (click)="this.OnSelect(option)">{{ option }}</a>
     }
   </div>
 </div>

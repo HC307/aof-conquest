@@ -122,8 +122,8 @@ export const TileCollection: TileEntityState = {
     },
     shoals: {
       id: 'shoals',
-      name: TileType.SHOALD,
-      type: TileType.SHOALD,
+      name: TileType.SHOAL,
+      type: TileType.SHOAL,
       description: 'Shallow waters with hidden sandbanks, treacherous for large vessels but rich in shellfish.',
     },
     snow: {

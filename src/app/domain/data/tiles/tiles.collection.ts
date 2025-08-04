@@ -28,6 +28,7 @@ export const TileCollection: TileEntityState = {
       name: 'Beach',
       description: 'Sandy coastlines where land meets water, offering unique resources from both environments.',
       features: ['herd', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     'broken-lands': {
@@ -35,6 +36,7 @@ export const TileCollection: TileEntityState = {
       name: 'Broken Lands',
       description: 'Shattered terrain of jagged rocks and deep crevasses, difficult to traverse but rich in minerals.',
       features: ['ore', 'ore+', 'ore++', 'herd', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     'dead-forest': {
@@ -42,6 +44,7 @@ export const TileCollection: TileEntityState = {
       name: 'Dead Forest',
       description: 'A haunting landscape of lifeless trees and ashen ground, where death has claimed all vegetation.',
       features: ['herd', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     desert: {
@@ -49,6 +52,7 @@ export const TileCollection: TileEntityState = {
       name: 'Desert',
       description: 'Vast expanses of sand and scorching heat, where water is scarce and survival is challenging.',
       features: ['herd', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     'desert-cactus': {
@@ -56,6 +60,7 @@ export const TileCollection: TileEntityState = {
       name: 'Cactus Desert',
       description: 'Desert regions dotted with hardy cacti, providing minimal shelter and resources.',
       features: ['herd', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     farmland: {
@@ -63,6 +68,7 @@ export const TileCollection: TileEntityState = {
       name: 'Farmland',
       description: 'Cultivated fields and pastures, ideal for agriculture and supporting settlements.',
       features: ['herd', 'herd+', 'herd++', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     forest: {
@@ -70,6 +76,7 @@ export const TileCollection: TileEntityState = {
       name: 'Forest',
       description: 'Dense woodlands teeming with life, offering timber and game but limiting visibility.',
       features: ['flounts', 'flounts+', 'flounts++', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     'fungal-forest': {
@@ -77,6 +84,7 @@ export const TileCollection: TileEntityState = {
       name: 'Fungal Forest',
       description: 'An alien forest of giant mushrooms and spores, where strange fungi dominate the ecosystem.',
       features: ['flounts', 'flounts+', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     grasslands: {
@@ -84,6 +92,7 @@ export const TileCollection: TileEntityState = {
       name: 'Grasslands',
       description: 'Rolling plains of grass perfect for grazing, offering clear sightlines and easy travel.',
       features: ['herd', 'herd+', 'herd++', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     hills: {
@@ -91,6 +100,7 @@ export const TileCollection: TileEntityState = {
       name: 'Hills',
       description: 'Elevated terrain providing defensive advantages and panoramic views of surrounding areas.',
       features: ['ore', 'ore+', 'herd', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     jungle: {
@@ -98,6 +108,7 @@ export const TileCollection: TileEntityState = {
       name: 'Jungle',
       description: 'Thick tropical rainforest with dense canopy, abundant life, and hidden dangers.',
       features: ['flounts', 'flounts+', 'flounts++', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     mountain: {
@@ -105,6 +116,7 @@ export const TileCollection: TileEntityState = {
       name: 'Mountain',
       description: 'Towering peaks and rocky slopes, impassable to most but rich in precious minerals.',
       features: ['ore', 'ore+', 'ore++', 'herd', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     'needle-forest': {
@@ -112,6 +124,7 @@ export const TileCollection: TileEntityState = {
       name: 'Needle Forest',
       description: 'Coniferous forests of pine and fir, thriving in colder climates with acidic soil.',
       features: ['flounts', 'flounts+', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     ocean: {
@@ -119,6 +132,7 @@ export const TileCollection: TileEntityState = {
       name: 'Ocean',
       description: 'Deep open waters far from land, navigable only by ship and full of marine mysteries.',
       features: ['flounts', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     savannah: {
@@ -126,6 +140,7 @@ export const TileCollection: TileEntityState = {
       name: 'Savannah',
       description: 'Tropical grasslands with scattered trees, supporting large herds and predators.',
       features: ['herd', 'herd+', 'herd++', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     sea: {
@@ -133,6 +148,7 @@ export const TileCollection: TileEntityState = {
       name: 'Sea',
       description: 'Coastal waters and inland seas, providing fishing opportunities and naval routes.',
       features: ['flounts', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     shoals: {
@@ -140,6 +156,7 @@ export const TileCollection: TileEntityState = {
       name: 'Shoals',
       description: 'Shallow waters with hidden sandbanks, treacherous for large vessels but rich in shellfish.',
       features: ['flounts', 'herd', 'ore'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     snow: {
@@ -147,6 +164,7 @@ export const TileCollection: TileEntityState = {
       name: 'Snow',
       description: 'Frozen wastelands covered in perpetual snow, where cold is the eternal enemy.',
       features: ['herd', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
     swamp: {
@@ -154,6 +172,7 @@ export const TileCollection: TileEntityState = {
       name: 'Swamp',
       description: 'Wetlands of stagnant water and thick vegetation, difficult to navigate and full of disease.',
       features: ['herd', 'ore', 'flounts'],
+      randomEncounters: ['beastmen50', 'beastmen75', 'beastmen100', 'orcs50', 'highelves50', 'goblins75', 'volcanodwarfs75'],
       isCustom: false
     },
   },

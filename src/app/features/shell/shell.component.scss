@@ -39,6 +39,8 @@
 
     .grid-area-content {
       grid-area: content;
+      overflow: hidden;
+      min-height: 0;
     }
 
     .grid-area-footer {

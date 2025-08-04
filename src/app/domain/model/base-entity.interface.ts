@@ -6,4 +6,5 @@ export interface BaseEntity {
   description?: string;
   keywords?: KeywordEnum[];
   flavour?: string;
+  isUserCreated?: boolean;
 }

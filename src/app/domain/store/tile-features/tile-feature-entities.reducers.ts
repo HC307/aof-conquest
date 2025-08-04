@@ -1,7 +1,8 @@
-import { createReducer } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { TileFeatureState } from './tile-feature.state';
 import { tileFeatureAdapter } from './tile-featureAdapter';
 import { TileFeatureCollection } from '../../data/tile-features/tile-feature.collection';
+import { tileFeatureActions } from './tile-feature.actions';
 
 export const initialTileFeatureState: TileFeatureState =
   tileFeatureAdapter.getInitialState({
@@ -11,5 +12,14 @@ export const initialTileFeatureState: TileFeatureState =
   });
 
 export const tileFeatureEntitiesReducer = createReducer(
-  initialTileFeatureState
+  initialTileFeatureState,
+  on(tileFeatureActions.add, (state, { tileFeature }) => 
+    tileFeatureAdapter.addOne(tileFeature, state)
+  ),
+  on(tileFeatureActions.update, (state, { tileFeature }) => 
+    tileFeatureAdapter.updateOne({ id: tileFeature.id!, changes: tileFeature }, state)
+  ),
+  on(tileFeatureActions.remove, (state, { id }) => 
+    tileFeatureAdapter.removeOne(id, state)
+  )
 );

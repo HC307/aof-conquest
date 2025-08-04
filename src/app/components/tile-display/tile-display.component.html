@@ -1,10 +1,36 @@
 @if (data) {
-<app-panel [title]="data.name">
+<app-panel>
+  <h3 title>
+    {{ data.name }}
+    <app-user-created-indicator 
+      [isUserCreated]="data.isUserCreated ?? false"
+      tooltip="User-created">
+    </app-user-created-indicator>
+  </h3>
   <div class="content-wrapper">
-    @if (data) {
-    <p>
-      {{ data.description }}
-    </p>
+    @if (!isEditing) {
+      <p>
+        {{ data.description }}
+      </p>
+      @if (data.isUserCreated) {
+        <div class="actions">
+          <app-button 
+            (click)="startEdit()">
+            Edit
+          </app-button>
+          <app-button 
+            (click)="deleteTile()">
+            Delete
+          </app-button>
+        </div>
+      }
+    } @else {
+      <app-entity-form
+        [entityName]="'Tile'"
+        [initialData]="editData"
+        (save)="saveEdit($event)"
+        (cancel)="cancelEdit()">
+      </app-entity-form>
     }
   </div>
 </app-panel>

@@ -1,62 +1,38 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {ToggleListComponent} from '../../../components/toggle-list/toggle-list.component';
-import {
-  RandomEncounterDisplayComponent
-} from '../../../components/random-encounter-display/random-encounter-display.component';
-import {BehaviorSubject, switchMap} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../domain/store/app.state';
-import {ToggleListInput} from '../../../components/toggle-list/toggle-list.input';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {RandomEncounter} from '../../../domain/model/random-encounter.interface';
-import {RandomEncounterEntitiesSelectors} from '../../../domain/store/random-encounter/random-encounter.selectors';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../domain/store/app.state';
+import { RandomEncounter } from '../../../domain/model/random-encounter.interface';
+import { RandomEncounterEntitiesSelectors } from '../../../domain/store/random-encounter/random-encounter.selectors';
+import { RandomEncounterDisplayComponent } from '../../../components/random-encounter-display/random-encounter-display.component';
+import { GenericCompendiumComponent } from '../../../components/generic-compendium/generic-compendium.component';
+import { CompendiumConfig } from '../../../components/generic-compendium/generic-compendium.config';
+import { randomEncounterActions } from '../../../domain/store/random-encounter/random-encounter.actions';
 
 @Component({
   selector: 'app-random-encounter-compendium',
-  imports: [
-    ToggleListComponent,
-    RandomEncounterDisplayComponent
-  ],
-  templateUrl: './random-encounter-compendium.component.html',
+  standalone: true,
+  imports: [GenericCompendiumComponent],
+  template: `
+    <app-generic-compendium [config]="compendiumConfig"></app-generic-compendium>
+  `,
   styleUrl: './random-encounter-compendium.component.scss'
 })
-export class RandomEncounterCompendiumComponent implements OnInit {
-  private readonly destroyRef = inject(DestroyRef);
+export class RandomEncounterCompendiumComponent {
+  private readonly store = inject(Store<AppState>);
 
-  protected options?: RandomEncounter[];
-  protected selectionId?: string;
-  filter$ = new BehaviorSubject<string>('');
-
-  constructor(private store: Store<AppState>) {
-  }
-
-  filteredOptions(): ToggleListInput[] | undefined {
-    if (!this.options) return undefined;
-
-    return this.options.map((option) => ({
-      id: option.id,
-      display: option.name,
-    }));
-  }
-
-  ngOnInit(): void {
-    this.filter$
-      .pipe(
-        switchMap((filter) =>
-          this.store.select(RandomEncounterEntitiesSelectors.filtered(filter))
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((entities) => {
-        this.options = entities;
-      });
-  }
-
-  setFilter(newFilter: string): void {
-    this.filter$.next(newFilter);
-  }
-
-  selectedOption() {
-    return this.options?.find((option) => option.id === this.selectionId);
-  }
+  compendiumConfig: CompendiumConfig<RandomEncounter> = {
+    title: 'Random Encounters',
+    entityName: 'random encounter',
+    displayComponent: RandomEncounterDisplayComponent,
+    selector: (filter: string) => this.store.select(RandomEncounterEntitiesSelectors.filtered(filter)),
+    emptyMessage: 'Select a random encounter.',
+    canAdd: true,
+    createNew: () => ({
+      name: '',
+      description: ''
+    }),
+    onAdd: (randomEncounter: RandomEncounter) => {
+      this.store.dispatch(randomEncounterActions.add({ randomEncounter }));
+    }
+  };
 }

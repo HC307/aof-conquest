@@ -1,6 +1,7 @@
 <div class="content-wrapper">
   <app-text-field
     class="filterfield"
+    [placeholder]="'Search...'"
     (textChanged)="filters.emit($event)"
   ></app-text-field>
   <div

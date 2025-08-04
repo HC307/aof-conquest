@@ -1,56 +1,42 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ConstructionEntitiesSelectors } from '../../../domain/store/constructions/construction.selectors';
 import { AppState } from '../../../domain/store/app.state';
-import { Store } from '@ngrx/store';
 import { Construction } from '../../../domain/model/construction.interface';
 import { ConstructionDisplayComponent } from '../../../components/construction-display/construction-display.component';
-import { BehaviorSubject, switchMap } from 'rxjs';
-import { ToggleListComponent } from '../../../components/toggle-list/toggle-list.component';
-import { ToggleListInput } from '../../../components/toggle-list/toggle-list.input';
+import { GenericCompendiumComponent } from '../../../components/generic-compendium/generic-compendium.component';
+import { CompendiumConfig } from '../../../components/generic-compendium/generic-compendium.config';
+import { constructionActions } from '../../../domain/store/constructions/construction.actions';
+import { TileType } from '../../../domain/model/tileType';
+import { CurrencyEnum } from '../../../domain/model/currency.enum';
 
 @Component({
   selector: 'app-construction-compendium',
-  imports: [ToggleListComponent, ConstructionDisplayComponent],
-  templateUrl: './construction-compendium.component.html',
+  standalone: true,
+  imports: [GenericCompendiumComponent],
+  template: `
+    <app-generic-compendium [config]="compendiumConfig"></app-generic-compendium>
+  `,
   styleUrl: './construction-compendium.component.scss',
 })
-export class ConstructionCompendiumComponent implements OnInit {
-  private readonly destroyRef = inject(DestroyRef);
+export class ConstructionCompendiumComponent {
+  private readonly store = inject(Store<AppState>);
 
-  protected options?: Construction[];
-  protected selectionId?: string;
-  filter$ = new BehaviorSubject<string>('');
-
-  constructor(private store: Store<AppState>) {}
-
-  filteredOptions(): ToggleListInput[] | undefined {
-    if (!this.options) return undefined;
-
-    return this.options.map((option) => ({
-      id: option.id,
-      display: option.name,
-    }));
-  }
-
-  ngOnInit(): void {
-    this.filter$
-      .pipe(
-        switchMap((filter) =>
-          this.store.select(ConstructionEntitiesSelectors.filtered(filter))
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((entities) => {
-        this.options = entities;
-      });
-  }
-
-  setFilter(newFilter: string): void {
-    this.filter$.next(newFilter);
-  }
-
-  selectedOption() {
-    return this.options?.find((option) => option.id === this.selectionId);
-  }
+  compendiumConfig: CompendiumConfig<Construction> = {
+    title: 'Constructions',
+    entityName: 'construction',
+    displayComponent: ConstructionDisplayComponent,
+    selector: (filter: string) => this.store.select(ConstructionEntitiesSelectors.filtered(filter)),
+    emptyMessage: 'Select a construct.',
+    canAdd: true,
+    createNew: () => ({
+      name: '',
+      description: '',
+      constructionCost: { value: 1, currency: CurrencyEnum.Points },
+      tiles: [TileType.GRASSLANDS]
+    }),
+    onAdd: (construction: Construction) => {
+      this.store.dispatch(constructionActions.add({ construction }));
+    }
+  };
 }

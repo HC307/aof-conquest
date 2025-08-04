@@ -1,0 +1,31 @@
+<div class="content-wrapper">
+  <div class="option-selection">
+    @if (config.canAdd) {
+      <div class="add-button-container">
+        <app-button (click)="showAddForm()">
+          Add New {{ config.entityName }}
+        </app-button>
+      </div>
+    }
+    <app-toggle-list
+      (filters)="setFilter($event)"
+      [items]="filteredItems()"
+      [selectedId]="selectionId"
+      (selectedItem)="onSelectionChange($event)"
+    ></app-toggle-list>
+  </div>
+  <div class="option-display" [class.empty-state]="!selectedItem() && !isAddingNew">
+    @if (isAddingNew) {
+      <app-entity-form
+        [entityName]="config.entityName"
+        [initialData]="newEntity"
+        (save)="onSaveNewEntity($event)"
+        (cancel)="cancelAddForm()"
+      ></app-entity-form>
+    } @else if (selectedItem()) {
+      <ng-container #displayContainer></ng-container>
+    } @else {
+      <div class="empty-message">{{ config.emptyMessage }}</div>
+    }
+  </div>
+</div>

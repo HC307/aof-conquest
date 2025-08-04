@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { TextFieldComponent } from '../text-field/text-field.component';
 import { ToggleListInput } from './toggle-list.input';
@@ -9,7 +9,7 @@ import { ToggleListInput } from './toggle-list.input';
   templateUrl: './toggle-list.component.html',
   styleUrl: './toggle-list.component.scss',
 })
-export class ToggleListComponent {
+export class ToggleListComponent implements OnChanges {
   private _items?: ToggleListInput[];
 
   @Input()
@@ -35,6 +35,9 @@ export class ToggleListComponent {
     }
   }
 
+  @Input()
+  selectedId?: string;
+
   @Output()
   selectedItem = new EventEmitter<string>();
 
@@ -50,5 +53,11 @@ export class ToggleListComponent {
   set selection(value: string | undefined) {
     this._selection = value;
     this.selectedItem.emit(this._selection);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedId'] && this.selectedId !== undefined) {
+      this.selection = this.selectedId;
+    }
   }
 }

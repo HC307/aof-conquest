@@ -1,5 +1,12 @@
 @if (data) {
-  <app-panel [title]="data.name">
+  <app-panel>
+    <h3 title>
+      {{ data.name }}
+      <app-user-created-indicator 
+        [isUserCreated]="data.isUserCreated ?? false"
+        tooltip="User-created">
+      </app-user-created-indicator>
+    </h3>
     <div class="content-wrapper">
       @if (data.flavour) {
         <div class="lore">"{{ data.flavour }}"</div>

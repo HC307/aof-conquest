@@ -1,8 +1,18 @@
-<div
-  class="input-wrapper"
->
+<div class="input-wrapper">
+  @if (label) {
+    <label class="input-label">
+      {{ label }}
+      @if (required) {
+        <span class="required">*</span>
+      }
+    </label>
+  }
   <input
     class="input-field"
+    type="text"
     [(ngModel)]="textValue"
-    (ngModelChange)="onTextChange($event)"/>
+    (ngModelChange)="onTextChange($event)"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [required]="required"/>
 </div>

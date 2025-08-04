@@ -1,14 +1,1 @@
-<div class="content-wrapper">
-  <div class="option-selection">
-    <app-toggle-list
-      (filters)="setFilter($event)"
-      [items]="filteredItems()"
-      (selectedItem)="selectionId = $event"
-    ></app-toggle-list>
-  </div>
-  <div class="option-display">
-    @if (selectionId) {
-    <app-tile-display [data]="selectedItem()"></app-tile-display>
-    } @else { Select a tile. }
-  </div>
-</div>
+<!-- This file is no longer used. The component uses an inline template. -->

@@ -1,55 +1,40 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { ToggleListComponent } from '../../../components/toggle-list/toggle-list.component';
-import { TrophyDisplayComponent } from '../../../components/trophy-display/trophy-display.component';
-import { BehaviorSubject, switchMap } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../domain/store/app.state';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TrophyEntitiesSelectors } from '../../../domain/store/trophies/trophy.selectors';
 import { Trophy } from '../../../domain/model/trophy.interface';
+import { TrophyDisplayComponent } from '../../../components/trophy-display/trophy-display.component';
+import { GenericCompendiumComponent } from '../../../components/generic-compendium/generic-compendium.component';
+import { CompendiumConfig } from '../../../components/generic-compendium/generic-compendium.config';
+import { trophyActions } from '../../../domain/store/trophies/trophy.actions';
+import { Rarity } from '../../../domain/model/rarity.enum';
 
 @Component({
   selector: 'app-trophy-compendium',
-  imports: [ToggleListComponent, TrophyDisplayComponent],
-  templateUrl: './trophy-compendium.component.html',
+  standalone: true,
+  imports: [GenericCompendiumComponent],
+  template: `
+    <app-generic-compendium [config]="compendiumConfig"></app-generic-compendium>
+  `,
   styleUrl: './trophy-compendium.component.scss',
 })
 export class TrophyCompendiumComponent {
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly store = inject(Store<AppState>);
 
-  protected trophies?: Trophy[];
-  protected selectionId?: string;
-  filter$ = new BehaviorSubject<string>('');
-
-  constructor(private store: Store<AppState>) {}
-
-  filteredTrophies(): { id: string; display: string }[] | undefined {
-    if (!this.trophies) return undefined;
-
-    return this.trophies.map((obj) => ({
-      id: obj.id,
-      display: obj.name,
-    }));
-  }
-
-  ngOnInit(): void {
-    this.filter$
-      .pipe(
-        switchMap((filter) =>
-          this.store.select(TrophyEntitiesSelectors.filtered(filter))
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((entities) => {
-        this.trophies = entities;
-      });
-  }
-
-  setFilter(newFilter: string): void {
-    this.filter$.next(newFilter);
-  }
-
-  selectedItem(): Trophy | undefined {
-    return this.trophies?.find((tile) => tile.id === this.selectionId);
-  }
+  compendiumConfig: CompendiumConfig<Trophy> = {
+    title: 'Trophies',
+    entityName: 'trophy',
+    displayComponent: TrophyDisplayComponent,
+    selector: (filter: string) => this.store.select(TrophyEntitiesSelectors.filtered(filter)),
+    emptyMessage: 'Select a trophy.',
+    canAdd: true,
+    createNew: () => ({
+      name: '',
+      description: '',
+      rarity: Rarity.Common
+    }),
+    onAdd: (trophy: Trophy) => {
+      this.store.dispatch(trophyActions.add({ trophy }));
+    }
+  };
 }

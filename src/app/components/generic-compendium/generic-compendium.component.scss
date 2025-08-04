@@ -1,0 +1,93 @@
+@use '../../styles/config' as *;
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: $size-m;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.option-selection {
+  flex: 0 0 10%;
+  min-width: 200px;
+  max-width: 300px;
+  height: 100%;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: $size-xs;
+  display: flex;
+  flex-direction: column;
+
+  .add-button-container {
+    padding: $size-m 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    app-button {
+      width: 100%;
+    }
+  }
+
+  // Ensure the toggle list takes remaining height
+  app-toggle-list {
+    display: block;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+.option-display {
+  flex: 1;
+  overflow-y: auto;
+  padding: $size-m;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+
+  // Ensure direct children use full width
+  > * {
+    width: 100%;
+  }
+
+  &.empty-state {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .empty-message {
+    text-align: center;
+    opacity: 0.7;
+    font-style: italic;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .option-selection {
+    flex: 0 0 auto;
+    max-width: 100%;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 0;
+    padding-bottom: $size-xs;
+  }
+
+  .option-display {
+    flex: 1;
+    min-height: 0;
+  }
+}

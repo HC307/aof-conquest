@@ -1,0 +1,62 @@
+@use '../../styles/config' as *;
+
+.entity-form {
+  width: 100%;
+  
+  h2 {
+    margin: 0 0 $size-l 0;
+  }
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: $size-l;
+  margin-bottom: $size-xl;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: $size-xs;
+  
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+.form-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: $size-xs $size-s;
+  background-color: #ffffff;
+  border: 2px solid #cccccc;
+  border-radius: 4px;
+  color: #000000;
+  font-family: inherit;
+  font-size: inherit;
+  resize: vertical;
+  transition: all 0.2s;
+  min-height: 80px;
+  
+  &:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.25);
+  }
+  
+  &:hover:not(:focus) {
+    border-color: #999999;
+  }
+  
+  &::placeholder {
+    color: #666666;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: $size-m;
+  justify-content: flex-end;
+}

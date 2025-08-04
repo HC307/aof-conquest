@@ -1,28 +1,39 @@
 @use '../../styles' as *;
 
 :host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
 
-  .content-wrapper {
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  gap: $size-m;
+  overflow: hidden;
+
+  .filterfield {
     display: flex;
-    width: 100%;
-    height: 100%;
+    gap: $size-l;
+    flex-shrink: 0;
+  }
+
+  .buttons-wrapper {
+    display: flex;
     flex-direction: column;
-    gap: $size-m;
+    gap: $size-xxxs;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    .filterfield {
-      display: flex;
-      gap: $size-l;
-    }
-
-    .buttons-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: $size-xxxs;
-
-      selection-button {
-        display: flex;
-        height: $size-l;
-      }
+    app-button {
+      display: block;
+      height: $size-l;
+      flex-shrink: 0;
     }
   }
 }

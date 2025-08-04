@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  
+  app-panel {
+    height: 100%;
+    display: block;
+    overflow: hidden;
+  }
+}

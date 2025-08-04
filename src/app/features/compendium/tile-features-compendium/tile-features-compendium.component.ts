@@ -1,55 +1,38 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { TileFeature } from '../../../domain/model/tile-feature.interface';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, switchMap } from 'rxjs';
 import { AppState } from '../../../domain/store/app.state';
+import { TileFeature } from '../../../domain/model/tile-feature.interface';
 import { TileFeatureEntitiesSelectors } from '../../../domain/store/tile-features/tile-feature.selectors';
-import { ToggleListComponent } from '../../../components/toggle-list/toggle-list.component';
 import { TileFeatureDisplayComponent } from '../../../components/tile-feature-display/tile-feature-display.component';
+import { GenericCompendiumComponent } from '../../../components/generic-compendium/generic-compendium.component';
+import { CompendiumConfig } from '../../../components/generic-compendium/generic-compendium.config';
+import { tileFeatureActions } from '../../../domain/store/tile-features/tile-feature.actions';
 
 @Component({
   selector: 'app-tile-features-compendium',
-  imports: [ToggleListComponent, TileFeatureDisplayComponent],
-  templateUrl: './tile-features-compendium.component.html',
+  standalone: true,
+  imports: [GenericCompendiumComponent],
+  template: `
+    <app-generic-compendium [config]="compendiumConfig"></app-generic-compendium>
+  `,
   styleUrl: './tile-features-compendium.component.scss',
 })
 export class TileFeatureCompendiumComponent {
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly store = inject(Store<AppState>);
 
-  protected items?: TileFeature[];
-  protected selectionId?: string;
-  filter$ = new BehaviorSubject<string>('');
-
-  constructor(private store: Store<AppState>) {}
-
-  filteredItems(): { id: string; display: string }[] | undefined {
-    if (!this.items) return undefined;
-
-    return this.items.map((item) => ({
-      id: item.id,
-      display: item.name,
-    }));
-  }
-
-  ngOnInit(): void {
-    this.filter$
-      .pipe(
-        switchMap((filter) =>
-          this.store.select(TileFeatureEntitiesSelectors.filtered(filter))
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((entities) => {
-        this.items = entities;
-      });
-  }
-
-  setFilter(newFilter: string): void {
-    this.filter$.next(newFilter);
-  }
-
-  selectedItem(): TileFeature | undefined {
-    return this.items?.find((tile) => tile.id === this.selectionId);
-  }
+  compendiumConfig: CompendiumConfig<TileFeature> = {
+    title: 'Tile Features',
+    entityName: 'tile feature',
+    displayComponent: TileFeatureDisplayComponent,
+    selector: (filter: string) => this.store.select(TileFeatureEntitiesSelectors.filtered(filter)),
+    emptyMessage: 'Select a tile feature.',
+    canAdd: true,
+    createNew: () => ({
+      name: '',
+      description: ''
+    }),
+    onAdd: (tileFeature: TileFeature) => {
+      this.store.dispatch(tileFeatureActions.add({ tileFeature }));
+    }
+  };
 }

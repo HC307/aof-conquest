@@ -1,7 +1,8 @@
 <div class="content-wrapper">
   @if (this.title) {
-  <h3>{{ this.title }}</h3>
+    <h3>{{ this.title }}</h3>
   }
+  <ng-content select="[title]"></ng-content>
   <div class="content">
     <ng-content></ng-content>
   </div>

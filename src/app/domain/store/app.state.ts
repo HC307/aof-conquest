@@ -5,6 +5,7 @@ import { TrophyState } from './trophies/trophy.state';
 import { RuleState } from './rules/rules.state';
 import { TileFeatureState } from './tile-features/tile-feature.state';
 import {RandomEncounterState} from './random-encounter/random-encounter.state';
+import {ChronicleState} from './chronicles/chronicles.state';
 
 export interface AppState {
   generators: GeneratorsState;
@@ -14,4 +15,5 @@ export interface AppState {
   trophies: TrophyState;
   rules: RuleState;
   randomEncounters: RandomEncounterState;
+  chronicles: ChronicleState;
 }

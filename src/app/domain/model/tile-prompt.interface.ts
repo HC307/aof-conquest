@@ -1,7 +1,5 @@
-import {TileType} from './tileType';
-
 export interface TilePrompt {
-  //If type is empty, its available for all tiles
-  tiles?: TileType[],
-  prompt: string,
+  // If tiles array is empty or undefined, prompt is available for all tiles
+  tiles?: string[];
+  prompt: string;
 }

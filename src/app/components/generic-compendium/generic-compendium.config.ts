@@ -11,4 +11,5 @@ export interface CompendiumConfig<T extends BaseEntity> {
   canAdd?: boolean;
   createNew?: () => Partial<T>;
   onAdd?: (entity: T) => void;
+  formComponent?: Type<any>;
 }

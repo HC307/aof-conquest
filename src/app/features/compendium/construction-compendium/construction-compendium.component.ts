@@ -7,7 +7,6 @@ import { ConstructionDisplayComponent } from '../../../components/construction-d
 import { GenericCompendiumComponent } from '../../../components/generic-compendium/generic-compendium.component';
 import { CompendiumConfig } from '../../../components/generic-compendium/generic-compendium.config';
 import { constructionActions } from '../../../domain/store/constructions/construction.actions';
-import { TileType } from '../../../domain/model/tileType';
 import { CurrencyEnum } from '../../../domain/model/currency.enum';
 
 @Component({
@@ -33,7 +32,7 @@ export class ConstructionCompendiumComponent {
       name: '',
       description: '',
       constructionCost: { value: 1, currency: CurrencyEnum.Points },
-      tiles: [TileType.GRASSLANDS]
+      tiles: ['Grasslands']
     }),
     onAdd: (construction: Construction) => {
       this.store.dispatch(constructionActions.add({ construction }));

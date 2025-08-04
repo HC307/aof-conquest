@@ -1,5 +1,4 @@
 import { Rarity } from '../../model/rarity.enum';
-import { TileType } from '../../model/tileType';
 import { TileFeatureEntityState } from '../../store/tile-features/tile-feature.state';
 
 export const TileFeatureCollection: TileFeatureEntityState = {
@@ -20,7 +19,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       name: 'Herd of Mounts',
       flavour: 'The plains tremble beneath a thousand thundering hooves.',
       description: 'Allows the construction of Stables.',
-      tiles: [TileType.ANY],
       rarity: Rarity.Common,
     },
     'herd+': {
@@ -29,7 +27,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       flavour:
         'These steeds are bred for war, swift as wind and fierce as fire.',
       description: 'Allows the construction of Advanced Stables.',
-      tiles: [TileType.ANY],
       rarity: Rarity.Uncommon,
     },
     'herd++': {
@@ -39,7 +36,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
         'Legends speak of riders and mounts so attuned they move as one.',
       description: 'Allows the construction of Advanced Stables.',
       rarity: Rarity.Rare,
-      tiles: [TileType.ANY],
     },
     ore: {
       id: 'ore',
@@ -47,7 +43,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       flavour: 'Veins of raw metal gleam beneath the earth like dragon hoards.',
       description: 'Allows the construction of Smithies.',
       rarity: Rarity.Common,
-      tiles: [TileType.ANY],
     },
     'ore+': {
       id: 'ore+',
@@ -55,7 +50,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       flavour: 'Metal so pure it sings when struck by a hammer.',
       description: 'Allows the construction of Advanced Smithies.',
       rarity: Rarity.Uncommon,
-      tiles: [TileType.ANY],
     },
     'ore++': {
       id: 'ore++',
@@ -63,7 +57,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       flavour: 'A trove of enchanted minerals older than empires.',
       description: 'Allows the construction of Expert Smithies.',
       rarity: Rarity.Rare,
-      tiles: [TileType.ANY],
     },
     flounts: {
       id: 'flounts',
@@ -72,7 +65,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
         'Feathers glint in the sun as the skies fill with graceful wings.',
       description: 'Allows the construction of Aeries.',
       rarity: Rarity.Common,
-      tiles: [TileType.ANY],
     },
     'flounts+': {
       id: 'flounts+',
@@ -80,7 +72,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       flavour: 'Riders whisper to their beasts above the clouds.',
       description: 'Allows the construction of Advanced Aeries.',
       rarity: Rarity.Uncommon,
-      tiles: [TileType.ANY],
     },
     'flounts++': {
       id: 'flounts++',
@@ -88,7 +79,6 @@ export const TileFeatureCollection: TileFeatureEntityState = {
       flavour: 'Born in thunder and tempest, these creatures know no master.',
       description: 'Allows the construction of Expert Aeries.',
       rarity: Rarity.Rare,
-      tiles: [TileType.ANY],
     },
   },
 };

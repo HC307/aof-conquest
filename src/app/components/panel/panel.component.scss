@@ -19,7 +19,7 @@
   .content {
     padding: $size-xs;
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
     min-height: 0;
   }
 }

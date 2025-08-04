@@ -7,7 +7,7 @@ import { GenericCompendiumComponent } from '../../../components/generic-compendi
 import { CompendiumConfig } from '../../../components/generic-compendium/generic-compendium.config';
 import { Tile } from '../../../domain/model/tile.interface';
 import { tileActions } from '../../../domain/store/tiles/tile.actions';
-import { TileType } from '../../../domain/model/tileType';
+import { TileFormComponent } from '../../../components/tile-form/tile-form.component';
 
 @Component({
   selector: 'app-tiles-compendium',
@@ -31,10 +31,12 @@ export class TileCompendiumComponent {
     createNew: () => ({
       name: '',
       description: '',
-      type: TileType.GRASSLANDS // Default type
+      features: [], // Empty by default, user will select
+      isCustom: true
     }),
     onAdd: (tile: Tile) => {
       this.store.dispatch(tileActions.add({ tile }));
-    }
+    },
+    formComponent: TileFormComponent
   };
 }

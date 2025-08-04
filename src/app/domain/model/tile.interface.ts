@@ -1,6 +1,6 @@
-import { TileType } from './tileType';
 import { BaseEntity } from './base-entity.interface';
 
 export interface Tile extends BaseEntity {
-  type: TileType;
+  features?: string[]; // IDs of tile features that can appear on this tile
+  isCustom?: boolean;
 }

@@ -3,14 +3,17 @@ import { Tile } from '../../domain/model/tile.interface';
 import { PanelComponent } from '../panel/panel.component';
 import { UserCreatedIndicatorComponent } from '../user-created-indicator/user-created-indicator.component';
 import { ButtonComponent } from '../button/button.component';
-import { EntityFormComponent } from '../entity-form/entity-form.component';
+import { TileFormComponent } from '../tile-form/tile-form.component';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../domain/store/app.state';
 import { tileActions } from '../../domain/store/tiles/tile.actions';
+import { TileFeatureEntitiesSelectors } from '../../domain/store/tile-features/tile-feature.selectors';
+import { Observable, map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-tile-display',
-  imports: [PanelComponent, UserCreatedIndicatorComponent, ButtonComponent, EntityFormComponent],
+  imports: [PanelComponent, UserCreatedIndicatorComponent, ButtonComponent, TileFormComponent, AsyncPipe],
   templateUrl: './tile-display.component.html',
   styleUrl: './tile-display.component.scss',
 })
@@ -66,5 +69,11 @@ export class TileDisplayComponent implements OnChanges {
     if (this.data && confirm('Are you sure you want to delete this tile?')) {
       this.store.dispatch(tileActions.remove({ id: this.data.id }));
     }
+  }
+  
+  getFeatureName(featureId: string): Observable<string> {
+    return this.store.select(TileFeatureEntitiesSelectors.byId(featureId)).pipe(
+      map(feature => feature?.name || featureId)
+    );
   }
 }

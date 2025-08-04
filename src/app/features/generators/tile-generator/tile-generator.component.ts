@@ -1,13 +1,10 @@
 import {Component, DestroyRef, inject} from '@angular/core';
 import {PanelComponent} from '../../../components/panel/panel.component';
 import {DropdownSelectComponent} from '../../../components/dropdown-select/dropdown-select.component';
-import {TileType} from '../../../domain/model/tileType';
 import {ButtonComponent} from '../../../components/button/button.component';
 import {RandomGeneratorService} from '../../../services/random-generator/random-generator.service';
-import {TileGeneratorConfig} from './tile-generator.config';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../domain/store/app.state';
-import {GeneratorsSelectors} from '../state/generators.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {TileEntitiesSelectors} from '../../../domain/store/tiles/tile.selectors';
 import {Tile} from '../../../domain/model/tile.interface';
@@ -25,8 +22,6 @@ import {Tile} from '../../../domain/model/tile.interface';
 export class TileGeneratorComponent {
 
   //#region Fields
-
-  protected config?: TileGeneratorConfig;
 
   private _destroyedRef = inject(DestroyRef);
 
@@ -70,12 +65,6 @@ export class TileGeneratorComponent {
   }
 
   ngOnInit(): void {
-    this.store.select(GeneratorsSelectors.tileGeneratorConfig).pipe(
-      takeUntilDestroyed(this._destroyedRef),
-    ).subscribe(config => {
-      this.config = config;
-    });
-
     // Fetch all tiles from store to include custom tiles
     this.store.select(TileEntitiesSelectors.all).pipe(
       takeUntilDestroyed(this._destroyedRef),
@@ -89,11 +78,8 @@ export class TileGeneratorComponent {
   //#region Methods
 
   public async generate() {
-    if (!this.config)
-      return;
-
     try {
-      this.output = await this.randomService.generateTilePrompt(this.config, this.option1, this.option2);
+      this.output = await this.randomService.generateTilePrompt(this.option1, this.option2);
     } catch (error) {
       console.error('Error generating tile prompt:', error);
       this.output = 'An error occurred while generating the prompt.';

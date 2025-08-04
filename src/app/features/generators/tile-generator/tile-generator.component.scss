@@ -37,6 +37,17 @@
 
       .header {
         grid-area: header;
+        text-align: center;
+        
+        h3 {
+          margin: 0 0 $size-xxs 0;
+        }
+        
+        .dice-info {
+          font-size: 0.9em;
+          color: #666;
+          margin: 0;
+        }
       }
 
       .controls {

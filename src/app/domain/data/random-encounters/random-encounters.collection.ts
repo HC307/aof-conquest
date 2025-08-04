@@ -1,5 +1,4 @@
 import { RandomEncounterEntityState } from '../../store/random-encounter/random-encounter.state';
-import { TileType } from '../../model/tileType';
 import { Rarity } from '../../model/rarity.enum';
 import { Army } from '../../model/faction.enum';
 
@@ -24,7 +23,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A rough-looking group of bandits stands in the way, brandishing weapons and demanding a toll to let you pass.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.Beastmen,
       points: 50,
       roster: [
@@ -42,7 +41,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A rough-looking group of bandits stands in the way, brandishing weapons and demanding a toll to let you pass.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.Beastmen,
       points: 75,
       roster: [
@@ -60,7 +59,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A rough-looking group of bandits stands in the way, brandishing weapons and demanding a toll to let you pass.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.Beastmen,
       points: 100,
       roster: ['TODO'],
@@ -75,7 +74,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A band of orc raiders blocks your path, their eyes gleaming with the promise of a fight.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.Orcs,
       points: 50,
       roster: [
@@ -93,7 +92,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A group of high elves stands in your way, their eyes scanning the horizon for threats.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.HighElves,
       points: 50,
       roster: [
@@ -111,7 +110,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A group of goblins jumps out from behind the bushes, brandishing their weapons and shouting insults.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.Goblins,
       points: 75,
       roster: [
@@ -129,7 +128,7 @@ export const RandomEncountersCollection: RandomEncounterEntityState = {
       },
       flavour:
         'A group of volcanic dwarfs emerges from the shadows, their eyes glowing with the heat of the volcano.',
-      tiles: [TileType.ANY],
+      tiles: ['Any'],
       faction: Army.VolcanicDwarfs,
       points: 75,
       roster: [

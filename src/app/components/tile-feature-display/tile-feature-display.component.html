@@ -2,7 +2,7 @@
 <app-panel>
   <h3 title>
     {{ data.name }}
-    <app-user-created-indicator 
+    <app-user-created-indicator
       [isUserCreated]="data.isUserCreated ?? false"
       tooltip="User-created">
     </app-user-created-indicator>
@@ -15,9 +15,6 @@
     <p>
       {{ data.description }}
     </p>
-    Appears on: @for(t of data.tiles; track t){
-    {{ t }}
-    }
   </div>
 </app-panel>
 }

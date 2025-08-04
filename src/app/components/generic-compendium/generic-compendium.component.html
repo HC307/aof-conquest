@@ -16,12 +16,16 @@
   </div>
   <div class="option-display" [class.empty-state]="!selectedItem() && !isAddingNew">
     @if (isAddingNew) {
-      <app-entity-form
-        [entityName]="config.entityName"
-        [initialData]="newEntity"
-        (save)="onSaveNewEntity($event)"
-        (cancel)="cancelAddForm()"
-      ></app-entity-form>
+      @if (config.formComponent) {
+        <ng-container #formContainer></ng-container>
+      } @else {
+        <app-entity-form
+          [entityName]="config.entityName"
+          [initialData]="newEntity"
+          (save)="onSaveNewEntity($event)"
+          (cancel)="cancelAddForm()"
+        ></app-entity-form>
+      }
     } @else if (selectedItem()) {
       <ng-container #displayContainer></ng-container>
     } @else {

@@ -12,6 +12,16 @@
       <p>
         {{ data.description }}
       </p>
+      @if (data.features && data.features.length > 0) {
+        <div class="features-section">
+          <h4>Available Features:</h4>
+          <ul class="features-list">
+            @for (featureId of data.features; track featureId) {
+              <li>{{ getFeatureName(featureId) | async }}</li>
+            }
+          </ul>
+        </div>
+      }
       @if (data.isUserCreated) {
         <div class="actions">
           <app-button 
@@ -25,12 +35,12 @@
         </div>
       }
     } @else {
-      <app-entity-form
-        [entityName]="'Tile'"
+      <app-tile-form
         [initialData]="editData"
+        [isEditing]="true"
         (save)="saveEdit($event)"
         (cancel)="cancelEdit()">
-      </app-entity-form>
+      </app-tile-form>
     }
   </div>
 </app-panel>

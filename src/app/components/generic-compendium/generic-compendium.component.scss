@@ -46,7 +46,7 @@
 
 .option-display {
   flex: 1;
-  overflow-y: auto;
+  overflow: visible;
   padding: $size-m;
   display: flex;
   align-items: flex-start;

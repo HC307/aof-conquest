@@ -1,7 +1,10 @@
 <app-panel>
   <div class="wrapper">
     <div class="header">
-      Tile Generator
+      <h3>Tile Generator</h3>
+      @if (!output) {
+        <p class="dice-info">Rolls a d6: 1-2 Nothing | 3-4 Feature | 5 Loot | 6 Encounter</p>
+      }
     </div>
 
     <div class="controls">

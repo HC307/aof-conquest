@@ -20,6 +20,7 @@ import { EntityFormComponent } from '../entity-form/entity-form.component';
 export class GenericCompendiumComponent<T extends BaseEntity> implements OnInit, AfterViewChecked {
   @Input({ required: true }) config!: CompendiumConfig<T>;
   @ViewChild('displayContainer', { read: ViewContainerRef }) displayContainer?: ViewContainerRef;
+  @ViewChild('formContainer', { read: ViewContainerRef }) formContainer?: ViewContainerRef;
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly store = inject(Store<AppState>);
@@ -144,11 +145,48 @@ export class GenericCompendiumComponent<T extends BaseEntity> implements OnInit,
     this.isAddingNew = true;
     this.selectionId = undefined;
     this.needsComponentUpdate = false;
+    
+    // If we have a custom form component, create it after view updates
+    if (this.config.formComponent) {
+      setTimeout(() => {
+        this.createFormComponent();
+      });
+    }
+  }
+  
+  private createFormComponent(): void {
+    if (!this.formContainer || !this.config.formComponent) {
+      return;
+    }
+    
+    this.formContainer.clear();
+    const componentRef = this.formContainer.createComponent(this.config.formComponent);
+    componentRef.instance.initialData = this.newEntity;
+    componentRef.instance.isEditing = false;
+    
+    // Subscribe to save event
+    if (componentRef.instance.save) {
+      componentRef.instance.save.subscribe((entity: Partial<T>) => {
+        this.onSaveNewEntity(entity);
+      });
+    }
+    
+    // Subscribe to cancel event
+    if (componentRef.instance.cancel) {
+      componentRef.instance.cancel.subscribe(() => {
+        this.cancelAddForm();
+      });
+    }
+    
+    componentRef.changeDetectorRef.detectChanges();
   }
 
   cancelAddForm(): void {
     this.isAddingNew = false;
     this.newEntity = {};
+    if (this.formContainer) {
+      this.formContainer.clear();
+    }
   }
 
   onSaveNewEntity(entity: Partial<T>): void {

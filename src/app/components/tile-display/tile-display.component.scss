@@ -16,3 +16,23 @@
   gap: $size-s;
   margin-top: $size-m;
 }
+
+.features-section {
+  margin-top: $size-m;
+  
+  h4 {
+    margin: 0 0 $size-xs 0;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  
+  .features-list {
+    margin: 0;
+    padding-left: $size-m;
+    
+    li {
+      font-size: 0.85em;
+      color: #666;
+    }
+  }
+}

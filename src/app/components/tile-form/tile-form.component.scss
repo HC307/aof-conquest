@@ -1,0 +1,44 @@
+@use '../../styles/config' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: $size-m;
+  margin-bottom: $size-l;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: $size-xs;
+  
+  label {
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+  
+  .form-textarea {
+    padding: $size-s;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    resize: vertical;
+    
+    &:focus {
+      outline: none;
+      border-color: #666;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: $size-s;
+  justify-content: flex-end;
+}

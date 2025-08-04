@@ -5,4 +5,5 @@ export const tileFeatureActions = {
   add: createAction('[TileFeature] Add Tile Feature', props<{ tileFeature: TileFeature }>()),
   update: createAction('[TileFeature] Update Tile Feature', props<{ tileFeature: Partial<TileFeature> & { id: string } }>()),
   remove: createAction('[TileFeature] Remove Tile Feature', props<{ id: string }>()),
+  removeAllCustom: createAction('[TileFeature] Remove All Custom Tile Features'),
 };

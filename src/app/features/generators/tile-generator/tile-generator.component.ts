@@ -9,6 +9,8 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../domain/store/app.state';
 import {GeneratorsSelectors} from '../state/generators.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {TileEntitiesSelectors} from '../../../domain/store/tiles/tile.selectors';
+import {Tile} from '../../../domain/model/tile.interface';
 
 @Component({
   selector: 'app-tile-generator',
@@ -28,7 +30,7 @@ export class TileGeneratorComponent {
 
   private _destroyedRef = inject(DestroyRef);
 
-  public options = Object.values(TileType);
+  public options: string[] = [];
   protected _option1? = '';
   protected _option2? = '';
   private _output = '';
@@ -73,17 +75,29 @@ export class TileGeneratorComponent {
     ).subscribe(config => {
       this.config = config;
     });
+
+    // Fetch all tiles from store to include custom tiles
+    this.store.select(TileEntitiesSelectors.all).pipe(
+      takeUntilDestroyed(this._destroyedRef),
+    ).subscribe(tiles => {
+      this.options = tiles.map(tile => tile.name);
+    });
   }
 
   //#endregion Lifecycle
 
   //#region Methods
 
-  public generate() {
+  public async generate() {
     if (!this.config)
       return;
 
-    this.output = this.randomService.generateTilePrompt(this.config, this.option1, this.option2);
+    try {
+      this.output = await this.randomService.generateTilePrompt(this.config, this.option1, this.option2);
+    } catch (error) {
+      console.error('Error generating tile prompt:', error);
+      this.output = 'An error occurred while generating the prompt.';
+    }
   }
 
   disableGenerate() {

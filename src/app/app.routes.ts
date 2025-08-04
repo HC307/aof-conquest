@@ -9,6 +9,7 @@ import { TileCompendiumComponent } from './features/compendium/tile-compendium/t
 import { RandomEncounterCompendiumComponent } from './features/compendium/random-encounter-compendium/random-encounter-compendium.component';
 import { TileFeatureCompendiumComponent } from './features/compendium/tile-features-compendium/tile-features-compendium.component';
 import { ChroniclerComponent } from './features/chronicler/chronicler.component';
+import { ConfigurationComponent } from './features/configuration/configuration.component';
 
 export const routes: Routes = [
   {
@@ -62,6 +63,11 @@ export const routes: Routes = [
     title: 'Generators',
     path: 'generators',
     component: GeneratorsComponent,
+  },
+  {
+    title: 'Configuration',
+    path: 'configuration',
+    component: ConfigurationComponent,
   },
   {
     path: '',

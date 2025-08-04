@@ -21,5 +21,10 @@ export const constructionEntitiesReducer = createReducer(
   ),
   on(constructionActions.remove, (state, { id }) => 
     constructionAdapter.removeOne(id, state)
-  )
+  ),
+  on(constructionActions.removeAllCustom, (state) => {
+    const defaultIds = ConstructionCollection.ids;
+    const idsToRemove = state.ids.filter(id => !defaultIds.includes(id as string)) as string[];
+    return constructionAdapter.removeMany(idsToRemove, state);
+  })
 );

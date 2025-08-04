@@ -19,5 +19,10 @@ export const ruleEntitiesReducer = createReducer(
   ),
   on(ruleActions.remove, (state, { id }) => 
     ruleAdapter.removeOne(id, state)
-  )
+  ),
+  on(ruleActions.removeAllCustom, (state) => {
+    const defaultIds = RuleCollection.ids;
+    const idsToRemove = state.ids.filter(id => !defaultIds.includes(id as string)) as string[];
+    return ruleAdapter.removeMany(idsToRemove, state);
+  })
 );

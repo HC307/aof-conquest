@@ -21,5 +21,10 @@ export const tileFeatureEntitiesReducer = createReducer(
   ),
   on(tileFeatureActions.remove, (state, { id }) => 
     tileFeatureAdapter.removeOne(id, state)
-  )
+  ),
+  on(tileFeatureActions.removeAllCustom, (state) => {
+    const defaultIds = TileFeatureCollection.ids;
+    const idsToRemove = state.ids.filter(id => !defaultIds.includes(id as string)) as string[];
+    return tileFeatureAdapter.removeMany(idsToRemove, state);
+  })
 );

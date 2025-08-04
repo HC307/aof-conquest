@@ -19,5 +19,11 @@ export const tileEntitiesReducer = createReducer(
   ),
   on(tileActions.remove, (state, { id }) => 
     tileAdapter.removeOne(id, state)
-  )
+  ),
+  on(tileActions.removeAllCustom, (state) => {
+    // Keep only the default tiles from TileCollection
+    const defaultIds = TileCollection.ids;
+    const idsToRemove = state.ids.filter(id => !defaultIds.includes(id as string)) as string[];
+    return tileAdapter.removeMany(idsToRemove, state);
+  })
 );

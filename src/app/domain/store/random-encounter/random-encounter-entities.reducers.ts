@@ -21,5 +21,10 @@ export const randomEncounterEntitiesReducer = createReducer(
   ),
   on(randomEncounterActions.remove, (state, { id }) => 
     randomEncounterAdapter.removeOne(id, state)
-  )
+  ),
+  on(randomEncounterActions.removeAllCustom, (state) => {
+    const defaultIds = RandomEncountersCollection.ids;
+    const idsToRemove = state.ids.filter(id => !defaultIds.includes(id as string)) as string[];
+    return randomEncounterAdapter.removeMany(idsToRemove, state);
+  })
 );

@@ -20,5 +20,10 @@ export const trophyEntitiesReducer = createReducer(
   ),
   on(trophyActions.remove, (state, { id }) => 
     trophyAdapter.removeOne(id, state)
-  )
+  ),
+  on(trophyActions.removeAllCustom, (state) => {
+    const defaultIds = TrophyCollection.ids;
+    const idsToRemove = state.ids.filter(id => !defaultIds.includes(id as string)) as string[];
+    return trophyAdapter.removeMany(idsToRemove, state);
+  })
 );

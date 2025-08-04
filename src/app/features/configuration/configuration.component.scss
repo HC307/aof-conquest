@@ -1,0 +1,48 @@
+@use '../../styles' as *;
+
+:host {
+  display: block;
+  padding: $size-default;
+}
+
+.configuration-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-section {
+  padding: $size-default;
+
+  h3 {
+    margin-bottom: $size-default;
+  }
+
+  .warning {
+    color: #d9534f;
+    font-weight: bold;
+    margin-bottom: $size-default;
+    font-size: 1.1em;
+  }
+
+  .delete-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: $size-default;
+
+    app-card {
+      h4 {
+        margin-top: 0;
+        margin-bottom: $size-xxs;
+      }
+
+      p {
+        margin-bottom: $size-default;
+        color: #666;
+      }
+
+      app-button {
+        width: 100%;
+      }
+    }
+  }
+}

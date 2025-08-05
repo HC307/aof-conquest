@@ -1,7 +1,7 @@
 <app-panel>
   <ul>
     @for (route of routes; track route) {
-      @if (route.path?.length != 0) {
+      @if (route.path?.length != 0 && isRouteVisible(route)) {
         <li>
           <app-side-nav-button
             [route]="route.path"

@@ -1,0 +1,143 @@
+@use '../../../styles' as *;
+
+.chronicle-detail-container {
+  padding: $size-m;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $size-l;
+
+  .header-actions {
+    display: flex;
+    gap: $size-s;
+  }
+}
+
+.chronicle-info {
+  margin-bottom: $size-xl;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: $size-m;
+  margin-bottom: $size-m;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.description {
+  font-size: 1.1em;
+  margin-bottom: $size-m;
+  color: var(--text-secondary);
+}
+
+.flavour {
+  font-style: italic;
+  margin-bottom: $size-l;
+  padding: $size-m;
+  background-color: var(--background-secondary);
+  border-left: 4px solid var(--primary);
+}
+
+.campaign-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $size-m;
+  margin-bottom: $size-l;
+}
+
+.stat-card {
+  background-color: var(--background-secondary);
+  padding: $size-m;
+  border-radius: 8px;
+
+  h3 {
+    margin: 0 0 $size-s 0;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+}
+
+.status-control {
+  display: flex;
+  flex-direction: column;
+  gap: $size-s;
+
+  .status {
+    padding: $size-xs $size-s;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+
+    &.status-active {
+      background-color: var(--success-light);
+      color: var(--success-dark);
+    }
+
+    &.status-completed {
+      background-color: var(--info-light);
+      color: var(--info-dark);
+    }
+
+    &.status-paused {
+      background-color: var(--warning-light);
+      color: var(--warning-dark);
+    }
+  }
+
+  .status-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $size-xs;
+  }
+}
+
+.turn-control {
+  display: flex;
+  align-items: center;
+  gap: $size-m;
+
+  .turn-number {
+    font-size: 2em;
+    font-weight: bold;
+  }
+}
+
+.player-count {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.chronicle-metadata {
+  margin-top: $size-l;
+  padding-top: $size-m;
+  border-top: 1px solid var(--border-color);
+}
+
+.date-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.campaign-content {
+  margin-top: $size-xl;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+}

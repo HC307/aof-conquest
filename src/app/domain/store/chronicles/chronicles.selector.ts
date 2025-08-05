@@ -36,3 +36,7 @@ export class ChronicleEntitiesSelectors {
       })
     );
 }
+
+// Export convenient aliases
+export const selectAllChronicles = ChronicleEntitiesSelectors.all;
+export const selectChronicleById = (id: string) => ChronicleEntitiesSelectors.byId(id);

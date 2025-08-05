@@ -1,0 +1,102 @@
+<div class="chronicle-detail-container">
+  @if (chronicle$ | async; as chronicle) {
+    <app-panel>
+      <div class="detail-header">
+        <app-button (click)="onBack()">← Back to Campaigns</app-button>
+        <div class="header-actions">
+          @if (chronicle.userCreated) {
+            <app-button (click)="onEdit()">Edit</app-button>
+            <app-button variant="danger" (click)="onDelete()">Delete</app-button>
+          }
+        </div>
+      </div>
+
+      <div class="chronicle-info">
+        <div class="title-row">
+          <h1>{{ chronicle.name }}</h1>
+          @if (chronicle.userCreated) {
+            <app-user-created-indicator />
+          }
+        </div>
+
+        @if (chronicle.description) {
+          <p class="description">{{ chronicle.description }}</p>
+        }
+
+        @if (chronicle.flavour) {
+          <p class="flavour">{{ chronicle.flavour }}</p>
+        }
+
+        <div class="campaign-stats">
+          <div class="stat-card">
+            <h3>Status</h3>
+            <div class="status-control">
+              <span class="status" [ngClass]="getStatusClass(chronicle.status)">
+                {{ chronicle.status }}
+              </span>
+              @if (chronicle.userCreated) {
+                <div class="status-buttons">
+                  @if (chronicle.status !== ChronicleStatus.ACTIVE) {
+                    <app-button size="small" (click)="onChangeStatus(ChronicleStatus.ACTIVE)">
+                      Set Active
+                    </app-button>
+                  }
+                  @if (chronicle.status !== ChronicleStatus.PAUSED) {
+                    <app-button size="small" (click)="onChangeStatus(ChronicleStatus.PAUSED)">
+                      Pause
+                    </app-button>
+                  }
+                  @if (chronicle.status !== ChronicleStatus.COMPLETED) {
+                    <app-button size="small" (click)="onChangeStatus(ChronicleStatus.COMPLETED)">
+                      Complete
+                    </app-button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <h3>Current Turn</h3>
+            <div class="turn-control">
+              <span class="turn-number">{{ chronicle.currentTurn }}</span>
+              @if (chronicle.userCreated && chronicle.status === ChronicleStatus.ACTIVE) {
+                <app-button size="small" (click)="onIncrementTurn()">
+                  Next Turn
+                </app-button>
+              }
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <h3>Players</h3>
+            <span class="player-count">{{ chronicle.playerCount }}</span>
+          </div>
+        </div>
+
+        <div class="chronicle-metadata">
+          <div class="date-info">
+            <span>Created: {{ chronicle.createdDate | date:'medium' }}</span>
+            <span>Last Modified: {{ chronicle.lastModified | date:'medium' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="campaign-content">
+        <app-panel>
+          <h2>Campaign Details</h2>
+          <p class="placeholder">Campaign factions, warbands, and other details will be displayed here in future updates.</p>
+        </app-panel>
+      </div>
+    </app-panel>
+
+    @if (showEditDialog) {
+      <app-entity-form-dialog
+        title="Edit Campaign"
+        [entity]="chronicle"
+        (save)="onSaveEdit($event)"
+        (cancel)="onCancelEdit()"
+      />
+    }
+  }
+</div>

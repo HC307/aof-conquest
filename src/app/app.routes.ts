@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AppRoutes } from './app.routes.interface';
 import { HomeComponent } from './features/home/home.component';
 import { RulesComponent } from './features/rules/rules.component';
 import { GeneratorsComponent } from './features/generators/generators.component';
@@ -9,28 +10,39 @@ import { TileCompendiumComponent } from './features/compendium/tile-compendium/t
 import { RandomEncounterCompendiumComponent } from './features/compendium/random-encounter-compendium/random-encounter-compendium.component';
 import { TileFeatureCompendiumComponent } from './features/compendium/tile-features-compendium/tile-features-compendium.component';
 import { ChroniclerComponent } from './features/chronicler/chronicler.component';
+import { ChronicleDetailComponent } from './features/chronicler/chronicle-detail/chronicle-detail.component';
 import { ConfigurationComponent } from './features/configuration/configuration.component';
 
-export const routes: Routes = [
+export const routes: AppRoutes = [
   {
     title: 'Home',
     path: 'home',
     component: HomeComponent,
+    showInNav: true,
   },
   {
     title: 'Rules',
     path: 'rules',
     component: RulesComponent,
+    showInNav: true,
   },
   {
     title: 'Chronicler',
     path: 'chronicler',
     component: ChroniclerComponent,
+    showInNav: true,
+  },
+  {
+    title: 'Chronicle Detail',
+    path: 'chronicler/:id',
+    component: ChronicleDetailComponent,
+    showInNav: false,
   },
   {
     title: 'Compendium',
     path: 'compendium',
     component: CompendiumComponent,
+    showInNav: true,
     children: [
       {
         path: 'tiles',
@@ -63,11 +75,13 @@ export const routes: Routes = [
     title: 'Generators',
     path: 'generators',
     component: GeneratorsComponent,
+    showInNav: true,
   },
   {
     title: 'Configuration',
     path: 'configuration',
     component: ConfigurationComponent,
+    showInNav: true,
   },
   {
     path: '',

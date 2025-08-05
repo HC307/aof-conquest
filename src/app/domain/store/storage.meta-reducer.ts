@@ -52,7 +52,7 @@ export function storageMetaReducer(reducer: ActionReducer<AppState>): ActionRedu
             // Add saved entities, checking for user-created or missing entities
             Object.entries(savedStateSlice.entities).forEach(([id, entity]: [string, any]) => {
               // Add if it's user-created or if it doesn't exist in initial state
-              if (entity.isUserCreated || !initialStateSlice.entities[id]) {
+              if (entity.isUserCreated || entity.userCreated || !initialStateSlice.entities[id]) {
                 mergedEntities[id] = entity;
                 if (!mergedIds.includes(id)) {
                   mergedIds.push(id);

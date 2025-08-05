@@ -1,1 +1,55 @@
-<p>chronicler works!</p>
+<div class="chronicler-container">
+  <app-panel>
+    <div class="chronicler-header">
+      <h1>Campaign Chronicles</h1>
+      <app-button (click)="onCreateNewCampaign()">
+        Create New Campaign
+      </app-button>
+    </div>
+
+    <div class="chronicles-grid">
+      @for (chronicle of chronicles$ | async; track chronicle.id) {
+        <app-card class="chronicle-card" (click)="onSelectCampaign(chronicle)">
+          <div class="chronicle-content">
+            <div class="chronicle-header">
+              <h3>{{ chronicle.name }}</h3>
+              @if (chronicle.userCreated) {
+                <app-user-created-indicator />
+              }
+            </div>
+            
+            @if (chronicle.description) {
+              <p class="chronicle-description">{{ chronicle.description }}</p>
+            }
+            
+            <div class="chronicle-meta">
+              <span class="status" [ngClass]="getStatusClass(chronicle.status)">
+                {{ chronicle.status }}
+              </span>
+              <span class="turn">Turn {{ chronicle.currentTurn }}</span>
+              <span class="players">{{ chronicle.playerCount }} Players</span>
+            </div>
+            
+            <div class="chronicle-dates">
+              <small>Created: {{ chronicle.createdDate | date }}</small>
+              <small>Modified: {{ chronicle.lastModified | date }}</small>
+            </div>
+          </div>
+        </app-card>
+      } @empty {
+        <div class="no-chronicles">
+          <p>No campaigns yet. Create your first campaign to get started!</p>
+        </div>
+      }
+    </div>
+  </app-panel>
+
+  @if (showCreateDialog) {
+    <app-entity-form-dialog
+      title="Create New Campaign"
+      [entity]="{}"
+      (save)="onSaveNewCampaign($event)"
+      (cancel)="onCancelDialog()"
+    />
+  }
+</div>

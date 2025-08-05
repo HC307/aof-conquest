@@ -35,7 +35,43 @@ Landing page and application entry point.
 - Quick links to main features
 - Application overview
 
-### 3. Rules Feature
+### 3. Chronicler Feature
+
+Campaign management tool for tracking conquest campaigns.
+
+**Component:** `ChroniclerComponent` (main list)
+**Component:** `ChronicleDetailComponent` (detail view)
+
+**Routes:**
+```
+/chronicler           - Campaign list
+/chronicler/:id       - Campaign detail view
+```
+
+**Features:**
+- Create new campaigns with metadata
+- List all campaigns with status indicators
+- Navigate to detailed campaign views
+- Edit campaign properties (user-created only)
+- Delete campaigns (user-created only)
+- Manage campaign status (Active, Paused, Completed)
+- Track turn progression
+- Persistent storage in browser localStorage
+
+**Campaign Properties:**
+- `id`: Unique identifier
+- `name`: Campaign name
+- `description`: Optional description
+- `flavour`: Optional flavour text
+- `keywords`: Associated keywords
+- `createdDate`: Creation timestamp
+- `lastModified`: Last update timestamp
+- `playerCount`: Number of players
+- `currentTurn`: Current turn number
+- `status`: Campaign status
+- `userCreated`: Flag for user-created campaigns
+
+### 4. Rules Feature
 
 Displays game rules and mechanics.
 
@@ -136,6 +172,20 @@ interface GeneratorsState {
 - Save generated content
 - Export functionality
 
+### 6. Configuration Feature
+
+User content management and settings.
+
+**Component:** `ConfigurationComponent`
+
+**Route:** `/configuration`
+
+**Features:**
+- Bulk delete operations for all user-created content
+- Storage information display
+- Confirmation dialogs for destructive actions
+- Entity type management (tiles, constructions, trophies, etc.)
+
 ## Routing Configuration
 
 ### Route Structure
@@ -151,6 +201,16 @@ export const routes: Routes = [
     title: 'Rules',
     path: 'rules',
     component: RulesComponent,
+  },
+  {
+    title: 'Chronicler',
+    path: 'chronicler',
+    component: ChroniclerComponent,
+  },
+  {
+    title: 'Chronicle Detail',
+    path: 'chronicler/:id',
+    component: ChronicleDetailComponent,
   },
   {
     title: 'Compendium',
@@ -169,6 +229,11 @@ export const routes: Routes = [
     title: 'Generators',
     path: 'generators',
     component: GeneratorsComponent,
+  },
+  {
+    title: 'Configuration',
+    path: 'configuration',
+    component: ConfigurationComponent,
   },
   {
     path: '',
@@ -229,8 +294,10 @@ Dynamic menu generation based on routes:
 navigationItems = [
   { path: '/home', label: 'Home', icon: 'home' },
   { path: '/rules', label: 'Rules', icon: 'book' },
+  { path: '/chronicler', label: 'Chronicler', icon: 'journal' },
   { path: '/compendium', label: 'Compendium', icon: 'library' },
-  { path: '/generators', label: 'Generators', icon: 'casino' }
+  { path: '/generators', label: 'Generators', icon: 'casino' },
+  { path: '/configuration', label: 'Configuration', icon: 'settings' }
 ];
 ```
 

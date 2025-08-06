@@ -1,0 +1,26 @@
+<div class="faction-list-item" [class.selected]="selected" (click)="onSelect()">
+  <div class="faction-info">
+    <div class="faction-name">
+      {{ faction.name }}
+      @if (faction.isUserCreated) {
+        <app-user-created-indicator />
+      }
+    </div>
+    <div class="faction-meta">
+      {{ faction.warbands.length || 0 }} Warbands
+    </div>
+  </div>
+  
+  @if (showActions && faction.isUserCreated) {
+    <div class="faction-actions">
+      <app-button 
+        size="small" 
+        variant="danger" 
+        (click)="onRemove($event)"
+        title="Delete faction"
+      >
+        ×
+      </app-button>
+    </div>
+  }
+</div>

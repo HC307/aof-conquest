@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Chronicle, ChronicleStatus } from '../../domain/model/chronicle.interface';
+import { Campaign, CampaignStatus } from '../../domain/model/campaign.interface';
 import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { PanelComponent } from '../../components/panel/panel.component';
 import { EntityFormDialogComponent } from '../../components/entity-form-dialog/entity-form-dialog.component';
-import { selectAllChronicles } from '../../domain/store/chronicles/chronicles.selector';
-import { chronicleEntityActions } from '../../domain/store/chronicles/chronicle.actions';
+import { selectAllCampaigns } from '../../domain/store/campaigns/campaigns.selector';
+import { campaignEntityActions } from '../../domain/store/campaigns/campaign.actions';
 import { AppState } from '../../domain/store/app.state';
 import { UserCreatedIndicatorComponent } from '../../components/user-created-indicator/user-created-indicator.component';
 
@@ -27,15 +27,15 @@ import { UserCreatedIndicatorComponent } from '../../components/user-created-ind
   styleUrl: './chronicler.component.scss'
 })
 export class ChroniclerComponent implements OnInit {
-  chronicles$: Observable<Chronicle[]>;
+  chronicles$: Observable<Campaign[]>;
   showCreateDialog = false;
-  ChronicleStatus = ChronicleStatus;
+  CampaignStatus = CampaignStatus;
 
   constructor(
     private store: Store<AppState>,
     private router: Router
   ) {
-    this.chronicles$ = this.store.select(selectAllChronicles);
+    this.chronicles$ = this.store.select(selectAllCampaigns);
   }
 
   ngOnInit(): void {
@@ -46,12 +46,12 @@ export class ChroniclerComponent implements OnInit {
     this.showCreateDialog = true;
   }
 
-  onSelectCampaign(chronicle: Chronicle): void {
+  onSelectCampaign(chronicle: Campaign): void {
     this.router.navigate(['/chronicler', chronicle.id]);
   }
 
-  onSaveNewCampaign(formData: Partial<Chronicle>): void {
-    const newChronicle: Chronicle = {
+  onSaveNewCampaign(formData: Partial<Campaign>): void {
+    const newChronicle: Campaign = {
       id: crypto.randomUUID(),
       name: formData.name || 'New Campaign',
       description: formData.description,
@@ -61,11 +61,11 @@ export class ChroniclerComponent implements OnInit {
       lastModified: new Date(),
       playerCount: 1,
       currentTurn: 1,
-      status: ChronicleStatus.ACTIVE,
-      userCreated: true
+      status: CampaignStatus.ACTIVE,
+      isUserCreated: true
     };
 
-    this.store.dispatch(chronicleEntityActions.addChronicle({ chronicle: newChronicle }));
+    this.store.dispatch(campaignEntityActions.addCampaign({ campaign: newChronicle }));
     this.showCreateDialog = false;
   }
 
@@ -73,14 +73,12 @@ export class ChroniclerComponent implements OnInit {
     this.showCreateDialog = false;
   }
 
-  getStatusClass(status: ChronicleStatus): string {
+  getStatusClass(status: CampaignStatus): string {
     switch (status) {
-      case ChronicleStatus.ACTIVE:
+      case CampaignStatus.ACTIVE:
         return 'status-active';
-      case ChronicleStatus.COMPLETED:
+      case CampaignStatus.COMPLETED:
         return 'status-completed';
-      case ChronicleStatus.PAUSED:
-        return 'status-paused';
       default:
         return '';
     }

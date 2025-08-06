@@ -82,13 +82,44 @@ interface Rule extends BaseEntity {
 }
 ```
 
-### 7. Chronicle
+### 7. Campaign
 
-Historical records or story elements.
+Represents a campaign or game session.
 
 ```typescript
-interface Chronicle extends BaseEntity {
-  // Chronicle-specific properties
+interface Campaign extends BaseEntity {
+  createdDate: Date;
+  lastModified: Date;
+  playerCount: number;
+  currentTurn: number;
+  status: CampaignStatus;
+}
+
+enum CampaignStatus {
+  ACTIVE = 'active',
+  COMPLETED = 'completed'
+}
+```
+
+### 8. Faction
+
+Represents a faction with its warbands and units hierarchy.
+
+```typescript
+interface Faction extends BaseEntity {
+  warbands: Warband[];
+}
+
+interface Warband extends BaseEntity {
+  units: Unit[];
+}
+
+interface Unit extends BaseEntity {
+  abilities: UnitAbility[];
+}
+
+interface UnitAbility extends BaseEntity {
+  // Ability-specific properties
 }
 ```
 
@@ -205,6 +236,12 @@ export const ENTITY_COLLECTION: EntityState = {
 ### Tile ↔ TileFeature
 - Tiles can have special features
 - Features modify tile behavior
+
+### Faction Hierarchy
+- Factions contain multiple Warbands
+- Warbands contain multiple Units
+- Units have multiple UnitAbilities
+- All levels inherit BaseEntity properties (id, name, description, etc.)
 
 ### Entity ↔ Keywords
 - All entities can have keywords for categorization

@@ -1,0 +1,145 @@
+@use '../../styles/config' as config;
+
+.faction-detail-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.faction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: config.$size-l;
+  padding-bottom: config.$size-m;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.faction-title {
+  flex: 1;
+  
+  h2 {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: config.$size-s;
+  }
+
+  .name-field {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+.faction-actions {
+  display: flex;
+  gap: config.$size-s;
+}
+
+.faction-details {
+  margin-bottom: config.$size-xl;
+}
+
+.detail-section {
+  margin-bottom: config.$size-l;
+
+  h3 {
+    margin-bottom: config.$size-s;
+    font-size: 1.1em;
+    color: var(--text-secondary);
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.flavour-text {
+  font-style: italic;
+  color: var(--text-tertiary);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: config.$size-m;
+  max-width: 600px;
+}
+
+.form-field {
+  label {
+    display: block;
+    margin-bottom: config.$size-xs;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+}
+
+.warbands-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: config.$size-m;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.warbands-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: config.$size-m;
+}
+
+.warband-item {
+  padding: config.$size-m;
+}
+
+.warband-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: config.$size-s;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.warband-description {
+  margin-bottom: config.$size-s;
+  color: var(--text-secondary);
+}
+
+.warband-units {
+  font-size: 0.9em;
+  color: var(--text-tertiary);
+}
+
+.no-warbands {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding: config.$size-l 0;
+}
+
+.no-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  p {
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+}

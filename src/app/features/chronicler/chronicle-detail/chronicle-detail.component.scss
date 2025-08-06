@@ -1,136 +1,104 @@
 @use '../../../styles' as *;
 
 .chronicle-detail-container {
-  padding: $size-m;
+  padding-bottom: $size-xl;
 }
 
-.detail-header {
+.toolbar-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: $size-l;
-
-  .header-actions {
-    display: flex;
-    gap: $size-s;
-  }
+  justify-content: space-between;
+  gap: $size-l;
+  padding: $size-xs 0;
 }
 
-.chronicle-info {
-  margin-bottom: $size-xl;
-}
-
-.title-row {
+.toolbar-left {
   display: flex;
   align-items: center;
   gap: $size-m;
-  margin-bottom: $size-m;
+  flex: 0 0 auto;
+}
 
-  h1 {
+.campaign-title {
+  display: flex;
+  align-items: center;
+  gap: $size-s;
+
+  h2 {
     margin: 0;
+    font-size: 1.2em;
   }
 }
 
-.description {
-  font-size: 1.1em;
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  gap: $size-l;
+  flex: 1;
+  justify-content: center;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: $size-s;
+  flex: 0 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: $size-xs;
+
+  .stat-label {
+    font-size: 0.9em;
+    color: var(--text-muted);
+  }
+
+  .stat-value {
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+}
+
+.status-badge {
+  padding: 2px $size-s;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9em;
+
+  &.status-active {
+    background-color: var(--success-light);
+    color: var(--success-dark);
+  }
+
+  &.status-completed {
+    background-color: var(--info-light);
+    color: var(--info-dark);
+  }
+}
+
+.chronicle-description-panel {
   margin-bottom: $size-m;
+  padding: $size-s;
+}
+
+.description {
+  font-size: 0.95em;
+  margin: 0 0 $size-s 0;
   color: var(--text-secondary);
 }
 
 .flavour {
   font-style: italic;
-  margin-bottom: $size-l;
-  padding: $size-m;
-  background-color: var(--background-secondary);
-  border-left: 4px solid var(--primary);
-}
-
-.campaign-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: $size-m;
-  margin-bottom: $size-l;
-}
-
-.stat-card {
-  background-color: var(--background-secondary);
-  padding: $size-m;
-  border-radius: 8px;
-
-  h3 {
-    margin: 0 0 $size-s 0;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-  }
-}
-
-.status-control {
-  display: flex;
-  flex-direction: column;
-  gap: $size-s;
-
-  .status {
-    padding: $size-xs $size-s;
-    border-radius: 4px;
-    font-weight: 500;
-    text-align: center;
-
-    &.status-active {
-      background-color: var(--success-light);
-      color: var(--success-dark);
-    }
-
-    &.status-completed {
-      background-color: var(--info-light);
-      color: var(--info-dark);
-    }
-
-    &.status-paused {
-      background-color: var(--warning-light);
-      color: var(--warning-dark);
-    }
-  }
-
-  .status-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: $size-xs;
-  }
-}
-
-.turn-control {
-  display: flex;
-  align-items: center;
-  gap: $size-m;
-
-  .turn-number {
-    font-size: 2em;
-    font-weight: bold;
-  }
-}
-
-.player-count {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.chronicle-metadata {
-  margin-top: $size-l;
-  padding-top: $size-m;
-  border-top: 1px solid var(--border-color);
-}
-
-.date-info {
-  display: flex;
-  justify-content: space-between;
+  margin: 0;
+  padding: $size-xs 0;
   font-size: 0.9em;
-  color: var(--text-muted);
+  color: var(--text-tertiary);
 }
 
 .campaign-content {
-  margin-top: $size-xl;
+  margin-top: $size-m;
 
   h2 {
     margin-top: 0;
@@ -139,5 +107,98 @@
   .placeholder {
     color: var(--text-muted);
     font-style: italic;
+  }
+}
+
+.factions-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.factions-header {
+  margin-bottom: $size-s;
+
+  h2 {
+    margin: 0;
+    font-size: 1.3em;
+  }
+}
+
+.factions-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: $size-l;
+  height: 500px;
+}
+
+.chronicle-content-wrapper {
+  padding: $size-m;
+}
+
+.chronicle-header-panel {
+  margin-bottom: $size-s;
+  padding: $size-s;
+}
+
+.factions-list-panel,
+.faction-detail-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $size-m;
+  border-bottom: 1px solid var(--border-color);
+
+  h3 {
+    margin: 0;
+    font-size: 1.1em;
+  }
+}
+
+.faction-list-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.faction-list {
+  padding: $size-s;
+}
+
+.no-factions {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding: $size-l;
+}
+
+.faction-detail-panel {
+  padding: $size-m;
+}
+
+// Responsive layout
+@media (max-width: 768px) {
+  .toolbar-header {
+    flex-wrap: wrap;
+    gap: $size-s;
+  }
+
+  .toolbar-center {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: $size-s;
+  }
+
+  .factions-layout {
+    grid-template-columns: 1fr;
+
+    .factions-list-panel {
+      max-height: 300px;
+    }
   }
 }

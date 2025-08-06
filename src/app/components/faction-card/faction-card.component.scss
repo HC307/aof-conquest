@@ -1,0 +1,41 @@
+@use '../../styles/config' as config;
+
+.faction-card-content {
+  padding: config.$size-m;
+}
+
+.faction-header {
+  display: flex;
+  align-items: center;
+  gap: config.$size-s;
+  margin-bottom: config.$size-s;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.faction-description {
+  margin-bottom: config.$size-s;
+  color: var(--text-secondary);
+}
+
+.faction-flavour {
+  font-style: italic;
+  margin-bottom: config.$size-s;
+  color: var(--text-tertiary);
+}
+
+.faction-stats {
+  display: flex;
+  gap: config.$size-m;
+  margin-bottom: config.$size-m;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+.faction-actions {
+  display: flex;
+  gap: config.$size-xs;
+  flex-wrap: wrap;
+}

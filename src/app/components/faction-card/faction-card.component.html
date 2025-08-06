@@ -1,0 +1,40 @@
+<app-card>
+  <div class="faction-card-content">
+    <div class="faction-header">
+      <h3>{{ faction.name }}</h3>
+      @if (faction.isUserCreated) {
+        <app-user-created-indicator />
+      }
+    </div>
+    
+    @if (faction.description) {
+      <p class="faction-description">{{ faction.description }}</p>
+    }
+    
+    @if (faction.flavour) {
+      <p class="faction-flavour">{{ faction.flavour }}</p>
+    }
+    
+    <div class="faction-stats">
+      <span class="warband-count">
+        {{ faction.warbands.length || 0 }} Warbands
+      </span>
+    </div>
+    
+    @if (showActions) {
+      <div class="faction-actions">
+        <app-button size="small" (click)="onViewDetails()">
+          View Details
+        </app-button>
+        @if (faction.isUserCreated) {
+          <app-button size="small" (click)="onEdit()">
+            Edit
+          </app-button>
+          <app-button size="small" variant="danger" (click)="onRemove()">
+            Delete
+          </app-button>
+        }
+      </div>
+    }
+  </div>
+</app-card>

@@ -15,7 +15,7 @@ import { TileFeature } from '../../domain/model/tile-feature.interface';
 })
 export class RandomGeneratorService {
   private readonly store = inject(Store<AppState>);
-  
+
   constructor() {}
 
   //#region Tile Prompts
@@ -27,7 +27,7 @@ export class RandomGeneratorService {
    * - 3-4: Location/feature is found
    * - 5: Loot is found
    * - 6: Random encounter
-   * 
+   *
    * @param option1 - First tile type option
    * @param option2 - Second tile type option
    * @returns A generated prompt string
@@ -37,29 +37,28 @@ export class RandomGeneratorService {
     option2?: string
   ): Promise<string> {
     const d6Roll = this.rollD6();
-    
+
     switch (d6Roll) {
       case 1:
       case 2:
+      case 3:
         // Nothing happens
         return TilePrompts.empty;
-      
-      case 3:
       case 4:
         // Location/feature
         const locationPrompt = await this.generateTileLocationPrompt(option1, option2);
         return locationPrompt || TilePrompts.empty;
-      
+
       case 5:
         // Loot
         const lootPrompt = await this.generateTileLootPrompt(option1, option2);
         return lootPrompt || TilePrompts.empty;
-      
+
       case 6:
         // Random encounter
         const encounterPrompt = await this.generateTileEncounterPrompt(option1, option2);
         return encounterPrompt || TilePrompts.empty;
-      
+
       default:
         // Should never happen, but just in case
         return TilePrompts.empty;
@@ -76,7 +75,7 @@ export class RandomGeneratorService {
     // Get the tiles and their features
     const tile1 = await this.getTileByName(option1);
     const tile2 = await this.getTileByName(option2);
-    
+
     // Collect all available features from both tiles
     const availableFeatureIds = new Set<string>();
     if (tile1?.features) {
@@ -85,12 +84,12 @@ export class RandomGeneratorService {
     if (tile2?.features) {
       tile2.features.forEach(f => availableFeatureIds.add(f));
     }
-    
+
     // If no features available, use old system
     if (availableFeatureIds.size === 0) {
       const name1 = tile1?.name;
       const name2 = tile2?.name;
-      
+
       const filteredPrompts = TileLocationPrompts.filter(
         (prompt) => {
           if (!prompt.tiles || prompt.tiles.length === 0) return true;
@@ -99,20 +98,20 @@ export class RandomGeneratorService {
                  prompt.tiles.includes('Any');
         }
       );
-      
+
       return this.randomSelect(filteredPrompts)?.prompt || '';
     }
-    
+
     // Get the actual feature objects
     const features = await firstValueFrom(this.store.select(TileFeatureEntitiesSelectors.all));
     const availableFeatures = features.filter(f => availableFeatureIds.has(f.id));
-    
+
     // Randomly select a feature
     const selectedFeature = this.randomSelect(availableFeatures);
     if (!selectedFeature) {
       return TilePrompts.empty;
     }
-    
+
     // Generate a prompt about finding this feature
     return `You discovered a ${selectedFeature.name}! ${selectedFeature.description || ''}`;
   }
@@ -131,7 +130,7 @@ export class RandomGeneratorService {
       (prompt) => {
         // If no specific tiles specified, prompt is for all tiles
         if (!prompt.tiles || prompt.tiles.length === 0) return true;
-        
+
         // Check if either tile name matches
         return (name1 && prompt.tiles.includes(name1)) ||
                (name2 && prompt.tiles.includes(name2)) ||
@@ -156,7 +155,7 @@ export class RandomGeneratorService {
       (prompt) => {
         // If no specific tiles specified, prompt is for all tiles
         if (!prompt.tiles || prompt.tiles.length === 0) return true;
-        
+
         // Check if either tile name matches
         return (name1 && prompt.tiles.includes(name1)) ||
                (name2 && prompt.tiles.includes(name2)) ||
@@ -195,7 +194,7 @@ export class RandomGeneratorService {
    */
   private async validateTileType(value: string | undefined): Promise<string | undefined> {
     if (!value) return undefined;
-    
+
     try {
       const tiles = await firstValueFrom(this.store.select(TileEntitiesSelectors.all));
       const tile = tiles.find(t => t.name === value);
@@ -213,7 +212,7 @@ export class RandomGeneratorService {
    */
   private async getTileByName(name: string | undefined): Promise<Tile | undefined> {
     if (!name) return undefined;
-    
+
     try {
       const tiles = await firstValueFrom(this.store.select(TileEntitiesSelectors.all));
       return tiles.find(t => t.name === name);

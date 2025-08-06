@@ -3,14 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, filter } from 'rxjs';
-import { Chronicle, ChronicleStatus } from '../../../domain/model/chronicle.interface';
+import { Campaign, CampaignStatus } from '../../../domain/model/campaign.interface';
+import { Faction, Warband } from '../../../domain/model/faction.interface';
 import { AppState } from '../../../domain/store/app.state';
-import { selectChronicleById } from '../../../domain/store/chronicles/chronicles.selector';
-import { chronicleEntityActions } from '../../../domain/store/chronicles/chronicle.actions';
+import { selectCampaignById } from '../../../domain/store/campaigns/campaigns.selector';
+import { campaignEntityActions } from '../../../domain/store/campaigns/campaign.actions';
+import { selectFactionsByCampaignId } from '../../../domain/store/factions/faction.selectors';
+import { factionEntityActions } from '../../../domain/store/factions/faction.actions';
 import { PanelComponent } from '../../../components/panel/panel.component';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { UserCreatedIndicatorComponent } from '../../../components/user-created-indicator/user-created-indicator.component';
 import { EntityFormDialogComponent } from '../../../components/entity-form-dialog/entity-form-dialog.component';
+import { FactionListItemComponent } from '../../../components/faction-list-item/faction-list-item.component';
+import { FactionDetailViewComponent } from '../../../components/faction-detail-view/faction-detail-view.component';
 
 @Component({
   selector: 'app-chronicle-detail',
@@ -20,16 +25,20 @@ import { EntityFormDialogComponent } from '../../../components/entity-form-dialo
     PanelComponent,
     ButtonComponent,
     UserCreatedIndicatorComponent,
-    EntityFormDialogComponent
+    EntityFormDialogComponent,
+    FactionListItemComponent,
+    FactionDetailViewComponent
   ],
   templateUrl: './chronicle-detail.component.html',
   styleUrls: ['./chronicle-detail.component.scss']
 })
 export class ChronicleDetailComponent implements OnInit {
-  chronicle$: Observable<Chronicle | undefined>;
+  chronicle$: Observable<Campaign | undefined>;
+  factions$: Observable<Faction[]>;
   showEditDialog = false;
-  currentChronicle: Chronicle | undefined;
-  ChronicleStatus = ChronicleStatus;
+  selectedFaction: Faction | null = null;
+  currentChronicle: Campaign | undefined;
+  CampaignStatus = CampaignStatus;
 
   constructor(
     private store: Store<AppState>,
@@ -37,7 +46,8 @@ export class ChronicleDetailComponent implements OnInit {
     private router: Router
   ) {
     const id = this.route.snapshot.paramMap.get('id');
-    this.chronicle$ = this.store.select(selectChronicleById(id || ''));
+    this.chronicle$ = this.store.select(selectCampaignById(id || ''));
+    this.factions$ = this.store.select(selectFactionsByCampaignId(id || ''));
   }
 
   ngOnInit(): void {
@@ -61,14 +71,14 @@ export class ChronicleDetailComponent implements OnInit {
     this.showEditDialog = true;
   }
 
-  onSaveEdit(formData: Partial<Chronicle>): void {
+  onSaveEdit(formData: Partial<Campaign>): void {
     if (this.currentChronicle) {
-      const updatedChronicle: Chronicle = {
+      const updatedChronicle: Campaign = {
         ...this.currentChronicle,
         ...formData,
         lastModified: new Date()
       };
-      this.store.dispatch(chronicleEntityActions.updateChronicle({
+      this.store.dispatch(campaignEntityActions.updateCampaign({
         update: { id: updatedChronicle.id, changes: updatedChronicle }
       }));
       this.showEditDialog = false;
@@ -81,19 +91,19 @@ export class ChronicleDetailComponent implements OnInit {
 
   onDelete(): void {
     if (this.currentChronicle && confirm(`Are you sure you want to delete "${this.currentChronicle.name}"?`)) {
-      this.store.dispatch(chronicleEntityActions.removeChronicle({ id: this.currentChronicle.id }));
+      this.store.dispatch(campaignEntityActions.removeCampaign({ id: this.currentChronicle.id }));
       this.router.navigate(['/chronicler']);
     }
   }
 
-  onChangeStatus(newStatus: ChronicleStatus): void {
+  onChangeStatus(newStatus: CampaignStatus): void {
     if (this.currentChronicle) {
-      const updatedChronicle: Chronicle = {
+      const updatedChronicle: Campaign = {
         ...this.currentChronicle,
         status: newStatus,
         lastModified: new Date()
       };
-      this.store.dispatch(chronicleEntityActions.updateChronicle({
+      this.store.dispatch(campaignEntityActions.updateCampaign({
         update: { id: updatedChronicle.id, changes: updatedChronicle }
       }));
     }
@@ -101,12 +111,12 @@ export class ChronicleDetailComponent implements OnInit {
 
   onIncrementTurn(): void {
     if (this.currentChronicle) {
-      const updatedChronicle: Chronicle = {
+      const updatedChronicle: Campaign = {
         ...this.currentChronicle,
         currentTurn: this.currentChronicle.currentTurn + 1,
         lastModified: new Date()
       };
-      this.store.dispatch(chronicleEntityActions.updateChronicle({
+      this.store.dispatch(campaignEntityActions.updateCampaign({
         update: { id: updatedChronicle.id, changes: updatedChronicle }
       }));
     }
@@ -116,16 +126,61 @@ export class ChronicleDetailComponent implements OnInit {
     this.router.navigate(['/chronicler']);
   }
 
-  getStatusClass(status: ChronicleStatus): string {
+  getStatusClass(status: CampaignStatus): string {
     switch (status) {
-      case ChronicleStatus.ACTIVE:
+      case CampaignStatus.ACTIVE:
         return 'status-active';
-      case ChronicleStatus.COMPLETED:
+      case CampaignStatus.COMPLETED:
         return 'status-completed';
-      case ChronicleStatus.PAUSED:
-        return 'status-paused';
       default:
         return '';
     }
+  }
+
+  // Faction Management Methods
+  onSelectFaction(faction: Faction): void {
+    this.selectedFaction = faction;
+  }
+
+  onAddFaction(): void {
+    if (this.currentChronicle) {
+      const newFaction: Faction = {
+        id: crypto.randomUUID(),
+        campaignId: this.currentChronicle.id,
+        name: 'New Faction',
+        description: '',
+        flavour: '',
+        keywords: [],
+        warbands: [],
+        isUserCreated: true
+      };
+      this.store.dispatch(factionEntityActions.addFaction({ faction: newFaction }));
+      this.selectedFaction = newFaction;
+    }
+  }
+
+  onUpdateFaction(faction: Faction): void {
+    this.store.dispatch(factionEntityActions.updateFaction({
+      update: { id: faction.id, changes: faction }
+    }));
+  }
+
+  onRemoveFaction(faction: Faction): void {
+    if (confirm(`Are you sure you want to delete the faction "${faction.name}"?`)) {
+      this.store.dispatch(factionEntityActions.removeFaction({ id: faction.id }));
+      if (this.selectedFaction?.id === faction.id) {
+        this.selectedFaction = null;
+      }
+    }
+  }
+
+  onAddWarband(): void {
+    // TODO: Implement warband management
+    console.log('Add warband');
+  }
+
+  onRemoveWarband(warband: Warband): void {
+    // TODO: Implement warband management
+    console.log('Remove warband:', warband);
   }
 }

@@ -1,13 +1,12 @@
-import {chronicleAdapter} from './chronicleAdapter';
+import {factionAdapter} from './factionAdapter';
 import {AppState} from '../app.state';
 import {createSelector} from '@ngrx/store';
 
-
-export class ChronicleEntitiesSelectors {
-  private static adapterSelectors = chronicleAdapter.getSelectors();
+export class FactionEntitiesSelectors {
+  private static adapterSelectors = factionAdapter.getSelectors();
 
   private static select = {
-    entities: (state: AppState) => state.chronicles,
+    entities: (state: AppState) => state.factions,
   };
 
   public static all = createSelector(
@@ -38,5 +37,9 @@ export class ChronicleEntitiesSelectors {
 }
 
 // Export convenient aliases
-export const selectAllChronicles = ChronicleEntitiesSelectors.all;
-export const selectChronicleById = (id: string) => ChronicleEntitiesSelectors.byId(id);
+export const selectAllFactions = FactionEntitiesSelectors.all;
+export const selectFactionById = (id: string) => FactionEntitiesSelectors.byId(id);
+export const selectFactionsByCampaignId = (campaignId: string) => 
+  createSelector(selectAllFactions, (factions) => 
+    factions.filter(faction => faction.campaignId === campaignId)
+  );

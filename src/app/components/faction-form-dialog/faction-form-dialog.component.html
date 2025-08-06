@@ -1,0 +1,40 @@
+<div class="dialog-backdrop" (click)="onBackdropClick($event)">
+  <app-panel class="dialog-content">
+    <h2>{{ title }}</h2>
+    
+    <form (ngSubmit)="onSubmit()" #factionForm="ngForm">
+      <div class="form-fields">
+        <app-text-field
+          label="Name"
+          [(ngModel)]="formData.name"
+          name="name"
+          [required]="true"
+          placeholder="Enter faction name"
+        />
+        
+        <app-text-field
+          label="Description"
+          [(ngModel)]="formData.description"
+          name="description"
+          placeholder="Enter faction description"
+        />
+        
+        <app-text-field
+          label="Flavour Text"
+          [(ngModel)]="formData.flavour"
+          name="flavour"
+          placeholder="Enter flavour text"
+        />
+      </div>
+      
+      <div class="dialog-actions">
+        <app-button type="button" variant="secondary" (click)="onCancel()">
+          Cancel
+        </app-button>
+        <app-button type="submit" [disabled]="!formData.name?.trim()">
+          Save
+        </app-button>
+      </div>
+    </form>
+  </app-panel>
+</div>

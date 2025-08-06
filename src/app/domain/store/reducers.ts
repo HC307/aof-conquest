@@ -10,7 +10,8 @@ import {
   initialRandomEncounterState,
   randomEncounterEntitiesReducer
 } from './random-encounter/random-encounter-entities.reducers';
-import {chronicleEntitiesReducer, initialChronicleState} from './chronicles/chronicle-entities.reducers';
+import {campaignEntitiesReducer, initialCampaignState} from './campaigns/campaign-entities.reducers';
+import {factionEntitiesReducer, initialFactionState} from './factions/faction-entities.reducers';
 
 export const initialAppState: AppState = {
   generators: initialGeneratorsState,
@@ -20,7 +21,8 @@ export const initialAppState: AppState = {
   rules: initialRuleState,
   tileFeatures: initialTileFeatureState,
   randomEncounters: initialRandomEncounterState,
-  chronicles: initialChronicleState,
+  campaigns: initialCampaignState,
+  factions: initialFactionState,
 };
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -31,5 +33,6 @@ export const reducers: ActionReducerMap<AppState> = {
   rules: ruleEntitiesReducer,
   tileFeatures: tileFeatureEntitiesReducer,
   randomEncounters: randomEncounterEntitiesReducer,
-  chronicles: chronicleEntitiesReducer,
+  campaigns: campaignEntitiesReducer,
+  factions: factionEntitiesReducer,
 };

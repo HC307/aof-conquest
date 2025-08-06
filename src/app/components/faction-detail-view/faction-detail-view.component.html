@@ -1,0 +1,124 @@
+<div class="faction-detail-container">
+  @if (faction) {
+    <div class="faction-header">
+      <div class="faction-title">
+        @if (!isEditing) {
+          <h2>{{ faction.name }}</h2>
+          @if (faction.isUserCreated) {
+            <app-user-created-indicator />
+          }
+        } @else {
+          <app-text-field
+            [(ngModel)]="editForm.name"
+            name="name"
+            [required]="true"
+            placeholder="Faction name"
+            class="name-field"
+          />
+        }
+      </div>
+      
+      @if (canEdit && faction.isUserCreated) {
+        <div class="faction-actions">
+          @if (!isEditing) {
+            <app-button size="small" (click)="startEdit()">
+              Edit
+            </app-button>
+          } @else {
+            <app-button size="small" (click)="cancelEdit()">
+              Cancel
+            </app-button>
+            <app-button 
+              size="small" 
+              variant="primary" 
+              (click)="saveEdit()"
+              [disabled]="!editForm.name?.trim()"
+            >
+              Save
+            </app-button>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="faction-details">
+      @if (!isEditing) {
+        @if (faction.description) {
+          <div class="detail-section">
+            <h3>Description</h3>
+            <p>{{ faction.description }}</p>
+          </div>
+        }
+        
+        @if (faction.flavour) {
+          <div class="detail-section">
+            <h3>Flavour</h3>
+            <p class="flavour-text">{{ faction.flavour }}</p>
+          </div>
+        }
+      } @else {
+        <div class="edit-form">
+          <div class="form-field">
+            <label>Description</label>
+            <app-text-field
+              [(ngModel)]="editForm.description"
+              name="description"
+              placeholder="Enter faction description"
+            />
+          </div>
+          
+          <div class="form-field">
+            <label>Flavour Text</label>
+            <app-text-field
+              [(ngModel)]="editForm.flavour"
+              name="flavour"
+              placeholder="Enter flavour text"
+            />
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="warbands-section">
+      <div class="section-header">
+        <h3>Warbands</h3>
+        @if (canEdit && faction.isUserCreated && !isEditing) {
+          <app-button size="small" (click)="onAddWarband()">
+            Add Warband
+          </app-button>
+        }
+      </div>
+      
+      <div class="warbands-list">
+        @for (warband of faction.warbands; track warband.id) {
+          <app-panel class="warband-item">
+            <div class="warband-header">
+              <h4>{{ warband.name }}</h4>
+              @if (canEdit && faction.isUserCreated && !isEditing) {
+                <app-button 
+                  size="small" 
+                  variant="danger" 
+                  (click)="onRemoveWarband(warband)"
+                >
+                  Remove
+                </app-button>
+              }
+            </div>
+            @if (warband.description) {
+              <p class="warband-description">{{ warband.description }}</p>
+            }
+            <div class="warband-units">
+              {{ warband.units.length || 0 }} Units
+            </div>
+          </app-panel>
+        } @empty {
+          <p class="no-warbands">No warbands yet. Add warbands to organize your faction's units.</p>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="no-selection">
+      <p>Select a faction from the list to view details</p>
+    </div>
+  }
+</div>

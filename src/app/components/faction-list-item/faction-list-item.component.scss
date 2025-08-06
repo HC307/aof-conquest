@@ -1,0 +1,47 @@
+@use '../../styles/config' as config;
+
+.faction-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: config.$size-s config.$size-m;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: config.$size-xs;
+
+  &:hover {
+    background-color: var(--surface-hover);
+  }
+
+  &.selected {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+  }
+}
+
+.faction-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.faction-name {
+  display: flex;
+  align-items: center;
+  gap: config.$size-xs;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.faction-meta {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  margin-top: config.$size-xs;
+}
+
+.faction-actions {
+  display: flex;
+  gap: config.$size-xs;
+  margin-left: config.$size-s;
+}

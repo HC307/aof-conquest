@@ -19,6 +19,8 @@
   max-height: 80vh;
   overflow-y: auto;
   animation: slideIn 0.2s ease-out;
+  background-color: white;
+  border-radius: $size-xxs;
   
   h2 {
     margin: 0 0 $size-l 0;
@@ -39,16 +41,29 @@
   
   textarea {
     width: 100%;
-    padding: $size-xs;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: inherit;
+    box-sizing: border-box;
+    padding: $size-xs $size-s;
+    background-color: #ffffff;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    color: #000000;
     font-family: inherit;
+    font-size: inherit;
     resize: vertical;
+    transition: all 0.2s;
     
     &:focus {
       outline: none;
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.25);
+    }
+    
+    &:hover:not(:focus) {
+      border-color: #999999;
+    }
+    
+    &::placeholder {
+      color: #666666;
     }
   }
 }

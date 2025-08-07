@@ -11,6 +11,7 @@ export interface Warband extends BaseEntity {
 
 export interface Unit extends BaseEntity {
   abilities: UnitAbility[];
+  pointCost?: number;
 }
 
 export interface UnitAbility extends BaseEntity {

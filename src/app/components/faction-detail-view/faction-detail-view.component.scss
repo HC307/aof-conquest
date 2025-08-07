@@ -4,20 +4,21 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .faction-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: config.$size-l;
   padding-bottom: config.$size-m;
   border-bottom: 1px solid var(--border-color);
 }
 
 .faction-title {
   flex: 1;
-  
+
   h2 {
     margin: 0;
     display: inline-flex;
@@ -79,6 +80,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .section-header {
@@ -98,6 +101,8 @@
   display: flex;
   flex-direction: column;
   gap: config.$size-m;
+  min-height: 0;
+  padding-right: config.$size-xs; // Add some padding for scrollbar
 }
 
 .warband-item {
@@ -138,10 +143,10 @@
   border-radius: config.$size-xs;
   margin-bottom: config.$size-m;
   border: 1px solid var(--border-light, #e0e0e0);
-  
+
   .form-field {
     margin-bottom: config.$size-s;
-    
+
     label {
       display: block;
       font-size: 0.9em;
@@ -150,7 +155,7 @@
       color: var(--text-secondary, #666);
     }
   }
-  
+
   .form-actions {
     display: flex;
     gap: config.$size-xs;
@@ -164,9 +169,12 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  
+  flex: 1;
+
   p {
     color: var(--text-secondary);
     font-style: italic;
+    text-align: center;
+    padding: config.$size-l;
   }
 }

@@ -40,7 +40,8 @@ export class UnitItemComponent {
     this.editForm = {
       name: this.unit.name,
       description: this.unit.description || '',
-      flavour: this.unit.flavour || ''
+      flavour: this.unit.flavour || '',
+      pointCost: this.unit.pointCost || 0
     };
   }
 
@@ -55,7 +56,8 @@ export class UnitItemComponent {
         ...this.unit,
         name: this.editForm.name.trim(),
         description: this.editForm.description?.trim(),
-        flavour: this.editForm.flavour?.trim()
+        flavour: this.editForm.flavour?.trim(),
+        pointCost: Number(this.editForm.pointCost) || 0
       };
       this.update.emit(updatedUnit);
       this.isEditing = false;

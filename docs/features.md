@@ -94,12 +94,33 @@ Faction
 - Track selected faction in NgRx state
 - Visual selection indicator in faction list
 - Manage warbands within factions
-- Manage units within warbands
+- Manage units within warbands (with point costs)
 - Manage abilities within units
 - Expandable/collapsible hierarchy view
 - Inline editing at all levels
 - Count badges for child elements
+- Point cost tracking for units and warbands
 - All operations on single page
+
+#### Campaign Detail View
+
+The campaign detail view now features a tabbed interface for better content organization:
+
+**Tabs:**
+1. **Factions Tab**: 
+   - Full faction management system
+   - Split view with faction list and detail panel
+   - Complete warband/unit/ability hierarchy
+
+2. **Timeline Tab**: 
+   - Placeholder for future timeline functionality
+   - Will track campaign events and history
+
+**Features:**
+- Full-height tabbed interface
+- Responsive layout that uses all available space
+- Clean tab navigation with icons
+- Smooth transitions between tabs
 
 ### 4. Rules Feature
 

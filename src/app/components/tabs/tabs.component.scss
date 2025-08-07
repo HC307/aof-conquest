@@ -1,0 +1,75 @@
+@use '../../styles/config' as config;
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tabs-header {
+  background: var(--surface, #fff);
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+  flex-shrink: 0;
+}
+
+.tabs-list {
+  display: flex;
+  gap: config.$size-xs;
+  padding: 0 config.$size-m;
+  align-items: stretch;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: config.$size-xs;
+  padding: config.$size-m config.$size-l;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text-secondary, #666);
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  top: 2px;
+  
+  &:hover:not(:disabled):not(.active) {
+    color: var(--text-primary, #333);
+    background: var(--surface-hover, rgba(0, 0, 0, 0.02));
+  }
+  
+  &.active {
+    color: var(--primary, #4a90e2);
+    border-bottom-color: var(--primary, #4a90e2);
+    background: var(--surface-active, rgba(74, 144, 226, 0.05));
+  }
+  
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary, #4a90e2);
+    outline-offset: -2px;
+  }
+}
+
+.tab-icon {
+  font-size: 1.1em;
+}
+
+.tab-label {
+  white-space: nowrap;
+}
+
+.tabs-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+}

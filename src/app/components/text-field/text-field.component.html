@@ -9,7 +9,7 @@
   }
   <input
     class="input-field"
-    type="text"
+    [type]="type"
     [(ngModel)]="textValue"
     (ngModelChange)="onTextChange($event)"
     [placeholder]="placeholder"

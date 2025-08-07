@@ -8,6 +8,9 @@
       @if (!isEditing) {
         <div class="unit-title">
           <span class="unit-name">{{ unit.name }}</span>
+          @if (unit.pointCost !== undefined && unit.pointCost > 0) {
+            <span class="point-cost">[{{ unit.pointCost }} pts]</span>
+          }
           <span class="ability-count">({{ unit.abilities.length }} abilities)</span>
         </div>
         @if (unit.description && !isExpanded) {
@@ -50,6 +53,16 @@
     <div class="unit-content">
       @if (isEditing) {
         <div class="edit-fields">
+          <div class="form-field">
+            <label>Point Cost</label>
+            <app-text-field
+              [(ngModel)]="editForm.pointCost"
+              name="pointCost"
+              type="number"
+              placeholder="Enter point cost"
+            />
+          </div>
+          
           <div class="form-field">
             <label>Description</label>
             <app-text-field

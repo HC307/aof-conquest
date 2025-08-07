@@ -55,6 +55,12 @@
     font-size: 0.85em;
     color: var(--text-secondary, #666);
   }
+  
+  .total-cost {
+    font-size: 0.9em;
+    color: var(--primary, #4a90e2);
+    font-weight: 600;
+  }
 }
 
 .warband-preview {

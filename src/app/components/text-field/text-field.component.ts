@@ -21,6 +21,7 @@ export class TextFieldComponent implements ControlValueAccessor {
   @Input() label?: string;
   @Input() placeholder?: string;
   @Input() required = false;
+  @Input() type: string = 'text';
   @Output() textChanged = new EventEmitter<string>();
 
   textValue: string = '';

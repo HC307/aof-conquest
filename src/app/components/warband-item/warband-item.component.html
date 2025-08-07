@@ -9,6 +9,9 @@
         <div class="warband-title">
           <h4>{{ warband.name }}</h4>
           <span class="unit-count">({{ warband.units.length }} units)</span>
+          @if (totalPointCost > 0) {
+            <span class="total-cost">[{{ totalPointCost }} pts total]</span>
+          }
         </div>
         @if (warband.description && !isExpanded) {
           <p class="warband-preview">{{ warband.description }}</p>
@@ -101,6 +104,14 @@
                 placeholder="Unit name"
                 [required]="true"
               />
+              <app-text-field
+                [(ngModel)]="newUnitForm.pointCost"
+                name="unitPointCost"
+                type="number"
+                placeholder="Point cost"
+              />
+            </div>
+            <div class="form-row">
               <app-text-field
                 [(ngModel)]="newUnitForm.description"
                 name="unitDescription"

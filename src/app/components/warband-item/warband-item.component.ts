@@ -29,7 +29,11 @@ export class WarbandItemComponent {
   isEditing = false;
   isAddingUnit = false;
   editForm: Partial<Warband> = {};
-  newUnitForm = { name: '', description: '', flavour: '' };
+  newUnitForm = { name: '', description: '', flavour: '', pointCost: 0 };
+
+  get totalPointCost(): number {
+    return this.warband.units.reduce((total, unit) => total + (unit.pointCost || 0), 0);
+  }
 
   toggleExpand() {
     this.isExpanded = !this.isExpanded;
@@ -70,12 +74,12 @@ export class WarbandItemComponent {
 
   startAddUnit() {
     this.isAddingUnit = true;
-    this.newUnitForm = { name: '', description: '', flavour: '' };
+    this.newUnitForm = { name: '', description: '', flavour: '', pointCost: 0 };
   }
 
   cancelAddUnit() {
     this.isAddingUnit = false;
-    this.newUnitForm = { name: '', description: '', flavour: '' };
+    this.newUnitForm = { name: '', description: '', flavour: '', pointCost: 0 };
   }
 
   addUnit() {
@@ -85,6 +89,7 @@ export class WarbandItemComponent {
         name: this.newUnitForm.name.trim(),
         description: this.newUnitForm.description?.trim(),
         flavour: this.newUnitForm.flavour?.trim(),
+        pointCost: Number(this.newUnitForm.pointCost) || 0,
         abilities: [],
         isUserCreated: true
       };
@@ -96,7 +101,7 @@ export class WarbandItemComponent {
       
       this.update.emit(updatedWarband);
       this.isAddingUnit = false;
-      this.newUnitForm = { name: '', description: '', flavour: '' };
+      this.newUnitForm = { name: '', description: '', flavour: '', pointCost: 0 };
     }
   }
 

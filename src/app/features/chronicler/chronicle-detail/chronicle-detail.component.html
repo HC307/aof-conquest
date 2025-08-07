@@ -1,6 +1,6 @@
 <div class="chronicle-detail-container">
   @if (chronicle$ | async; as chronicle) {
-    <div class="chronicle-content-wrapper">
+    <div class="chronicle-header-section">
       <app-panel class="chronicle-header-panel">
         <div class="toolbar-header">
           <div class="toolbar-left">
@@ -64,51 +64,65 @@
           }
         </app-panel>
       }
+    </div>
 
-      <div class="campaign-content">
-        <div class="factions-container">
-          <div class="factions-header">
-            <h2>Factions</h2>
-          </div>
-          
-          <div class="factions-layout">
-            <app-panel class="factions-list-panel">
-              <div class="list-header">
-                <h3>Faction List</h3>
-                @if (chronicle.isUserCreated && chronicle.status === CampaignStatus.ACTIVE) {
-                  <app-button size="small" (click)="onAddFaction()">
-                    Add
-                  </app-button>
-                }
-              </div>
-              
-              <div class="faction-list-scroll">
-                <div class="faction-list">
-                  @for (faction of factions$ | async; track faction.id) {
-                    <app-faction-list-item
-                      [faction]="faction"
-                      [selected]="(selectedFactionId$ | async) === faction.id"
-                      [showActions]="!!chronicle.isUserCreated"
-                      (select)="onSelectFaction($event)"
-                      (remove)="onRemoveFaction($event)"
-                    />
-                  } @empty {
-                    <p class="no-factions">No factions yet</p>
+    <div class="campaign-content">
+      <app-tabs 
+        [tabs]="tabs" 
+        [activeTabId]="activeTabId"
+        (tabChange)="onTabChange($event)"
+      >
+        <app-tab-panel tabId="factions" [active]="activeTabId === 'factions'">
+          <div class="factions-container">            
+            <div class="factions-layout">
+              <app-panel class="factions-list-panel">
+                <div class="list-header">
+                  <h3>Faction List</h3>
+                  @if (chronicle.isUserCreated && chronicle.status === CampaignStatus.ACTIVE) {
+                    <app-button size="small" (click)="onAddFaction()">
+                      Add Faction
+                    </app-button>
                   }
                 </div>
-              </div>
-            </app-panel>
-            
-            <app-panel class="faction-detail-panel">
-              <app-faction-detail-view
-                [faction]="selectedFaction$ | async"
-                [canEdit]="!!chronicle.isUserCreated && chronicle.status === CampaignStatus.ACTIVE"
-                (update)="onUpdateFaction($event)"
-              />
-            </app-panel>
+                
+                <div class="faction-list-scroll">
+                  <div class="faction-list">
+                    @for (faction of factions$ | async; track faction.id) {
+                      <app-faction-list-item
+                        [faction]="faction"
+                        [selected]="(selectedFactionId$ | async) === faction.id"
+                        [showActions]="!!chronicle.isUserCreated"
+                        (select)="onSelectFaction($event)"
+                        (remove)="onRemoveFaction($event)"
+                      />
+                    } @empty {
+                      <p class="no-factions">No factions yet</p>
+                    }
+                  </div>
+                </div>
+              </app-panel>
+              
+              <app-panel class="faction-detail-panel">
+                <app-faction-detail-view
+                  [faction]="selectedFaction$ | async"
+                  [canEdit]="!!chronicle.isUserCreated && chronicle.status === CampaignStatus.ACTIVE"
+                  (update)="onUpdateFaction($event)"
+                />
+              </app-panel>
+            </div>
           </div>
-        </div>
-      </div>
+        </app-tab-panel>
+        
+        <app-tab-panel tabId="timeline" [active]="activeTabId === 'timeline'">
+          <div class="timeline-container">
+            <div class="timeline-placeholder">
+              <h2>Timeline</h2>
+              <p>Campaign timeline will be displayed here.</p>
+              <p class="coming-soon">Coming Soon</p>
+            </div>
+          </div>
+        </app-tab-panel>
+      </app-tabs>
     </div>
 
     @if (showEditDialog) {

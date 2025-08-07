@@ -16,6 +16,8 @@ import { UserCreatedIndicatorComponent } from '../../../components/user-created-
 import { EntityFormDialogComponent } from '../../../components/entity-form-dialog/entity-form-dialog.component';
 import { FactionListItemComponent } from '../../../components/faction-list-item/faction-list-item.component';
 import { FactionDetailViewComponent } from '../../../components/faction-detail-view/faction-detail-view.component';
+import { TabsComponent, Tab } from '../../../components/tabs/tabs.component';
+import { TabPanelComponent } from '../../../components/tab-panel/tab-panel.component';
 
 @Component({
   selector: 'app-chronicle-detail',
@@ -27,7 +29,9 @@ import { FactionDetailViewComponent } from '../../../components/faction-detail-v
     UserCreatedIndicatorComponent,
     EntityFormDialogComponent,
     FactionListItemComponent,
-    FactionDetailViewComponent
+    FactionDetailViewComponent,
+    TabsComponent,
+    TabPanelComponent
   ],
   templateUrl: './chronicle-detail.component.html',
   styleUrls: ['./chronicle-detail.component.scss']
@@ -40,6 +44,12 @@ export class ChronicleDetailComponent implements OnInit {
   showEditDialog = false;
   currentChronicle: Campaign | undefined;
   CampaignStatus = CampaignStatus;
+  
+  tabs: Tab[] = [
+    { id: 'factions', label: 'Factions', icon: '⚔️' },
+    { id: 'timeline', label: 'Timeline', icon: '📅' }
+  ];
+  activeTabId = 'factions';
 
   constructor(
     private store: Store<AppState>,
@@ -179,5 +189,9 @@ export class ChronicleDetailComponent implements OnInit {
     if (confirm(`Are you sure you want to delete the faction "${faction.name}"?`)) {
       this.store.dispatch(factionEntityActions.removeFaction({ id: faction.id }));
     }
+  }
+
+  onTabChange(tabId: string): void {
+    this.activeTabId = tabId;
   }
 }

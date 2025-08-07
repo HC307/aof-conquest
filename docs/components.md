@@ -151,13 +151,77 @@ Component for displaying and managing individual abilities.
 - Visual indicator (bullet point)
 
 #### FactionListItem
-Component for displaying faction in a list view.
+Component for displaying faction in a list view with selection support.
 
 ```typescript
 @Component({
-  selector: 'app-random-encounter-display',
+  selector: 'app-faction-list-item',
   standalone: true
 })
+```
+
+### Navigation Components
+
+Components for navigation and content organization.
+
+#### TabsComponent
+Reusable tabbed interface component for organizing content.
+
+```typescript
+@Component({
+  selector: 'app-tabs',
+  standalone: true
+})
+```
+
+**Inputs:**
+- `tabs: Tab[]` - Array of tab configurations
+- `activeTabId: string` - Currently active tab ID
+
+**Outputs:**
+- `tabChange: EventEmitter<string>` - Emits when tab selection changes
+
+**Tab Interface:**
+```typescript
+interface Tab {
+  id: string;
+  label: string;
+  icon?: string;
+  disabled?: boolean;
+}
+```
+
+**Features:**
+- Clean tab header with active state highlighting
+- Support for icons in tab labels
+- Disabled state for tabs
+- Smooth transitions
+- Full height content area
+
+#### TabPanelComponent
+Container component for tab content.
+
+```typescript
+@Component({
+  selector: 'app-tab-panel',
+  standalone: true
+})
+```
+
+**Inputs:**
+- `tabId: string` - ID of the tab this panel belongs to
+- `active: boolean` - Whether this panel is currently visible
+
+**Usage Example:**
+```html
+<app-tabs [tabs]="tabs" [activeTabId]="activeTabId" (tabChange)="onTabChange($event)">
+  <app-tab-panel tabId="tab1" [active]="activeTabId === 'tab1'">
+    <!-- Tab 1 content -->
+  </app-tab-panel>
+  <app-tab-panel tabId="tab2" [active]="activeTabId === 'tab2'">
+    <!-- Tab 2 content -->
+  </app-tab-panel>
+</app-tabs>
 ```
 
 #### TileFeatureDisplay

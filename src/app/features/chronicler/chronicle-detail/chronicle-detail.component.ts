@@ -58,6 +58,8 @@ export class ChronicleDetailComponent implements OnInit {
       filter(chronicle => !!chronicle)
     ).subscribe(chronicle => {
       this.currentChronicle = chronicle;
+      // Clear faction selection when switching campaigns
+      this.store.dispatch(factionActions.selectFaction({ id: null }));
     });
 
     // Redirect if chronicle not found
@@ -163,8 +165,13 @@ export class ChronicleDetailComponent implements OnInit {
   }
 
   onUpdateFaction(faction: Faction): void {
+    // Ensure campaignId is preserved
+    const updatedFaction = {
+      ...faction,
+      campaignId: this.currentChronicle?.id || faction.campaignId
+    };
     this.store.dispatch(factionEntityActions.updateFaction({
-      update: { id: faction.id, changes: faction }
+      update: { id: faction.id, changes: updatedFaction }
     }));
   }
 

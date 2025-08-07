@@ -38,5 +38,15 @@ export const factionEntitiesReducer = createReducer(
       ...newState,
       selectedFactionId: state.selectedFactionId === id ? null : state.selectedFactionId
     };
+  }),
+  on(factionActions.removeAllCustom, (state) => {
+    const customFactionIds = Object.values(state.entities)
+      .filter(faction => faction?.isUserCreated)
+      .map(faction => faction!.id);
+    const newState = factionAdapter.removeMany(customFactionIds, state);
+    return {
+      ...newState,
+      selectedFactionId: customFactionIds.includes(state.selectedFactionId || '') ? null : state.selectedFactionId
+    };
   })
 );

@@ -10,6 +10,7 @@ import { trophyActions } from '../../domain/store/trophies/trophy.actions';
 import { randomEncounterActions } from '../../domain/store/random-encounter/random-encounter.actions';
 import { tileFeatureActions } from '../../domain/store/tile-features/tile-feature.actions';
 import { ruleActions } from '../../domain/store/rules/rules.actions';
+import { factionActions } from '../../domain/store/factions/faction.actions';
 
 @Component({
   selector: 'app-configuration',
@@ -83,6 +84,16 @@ import { ruleActions } from '../../domain/store/rules/rules.actions';
                 Delete All Custom Rules
               </app-button>
             </app-card>
+
+            <app-card>
+              <h4>Factions</h4>
+              <p>Delete all user-created factions</p>
+              <app-button 
+                (click)="deleteAllCustomFactions()"
+                [disabled]="false">
+                Delete All Custom Factions
+              </app-button>
+            </app-card>
           </div>
         </div>
       </app-panel>
@@ -126,6 +137,12 @@ export class ConfigurationComponent {
   deleteAllCustomRules(): void {
     if (confirm('Are you sure you want to delete all custom rules? This action cannot be undone.')) {
       this.store.dispatch(ruleActions.removeAllCustom());
+    }
+  }
+
+  deleteAllCustomFactions(): void {
+    if (confirm('Are you sure you want to delete all custom factions? This will remove all factions from all campaigns. This action cannot be undone.')) {
+      this.store.dispatch(factionActions.removeAllCustom());
     }
   }
 }

@@ -7,6 +7,7 @@ export const factionActions = {
   update: createAction('[Faction] Update Faction', props<{ faction: Partial<Faction> & { id: string } }>()),
   remove: createAction('[Faction] Remove Faction', props<{ id: string }>()),
   removeAllCustom: createAction('[Faction] Remove All Custom Factions'),
+  selectFaction: createAction('[Faction] Select Faction', props<{ id: string | null }>()),
 };
 
 // Entity-style actions for compatibility

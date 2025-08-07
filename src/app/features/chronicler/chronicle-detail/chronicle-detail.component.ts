@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, filter } from 'rxjs';
 import { Campaign, CampaignStatus } from '../../../domain/model/campaign.interface';
-import { Faction, Warband } from '../../../domain/model/faction.interface';
+import { Faction } from '../../../domain/model/faction.interface';
 import { AppState } from '../../../domain/store/app.state';
 import { selectCampaignById } from '../../../domain/store/campaigns/campaigns.selector';
 import { campaignEntityActions } from '../../../domain/store/campaigns/campaign.actions';
-import { selectFactionsByCampaignId } from '../../../domain/store/factions/faction.selectors';
-import { factionEntityActions } from '../../../domain/store/factions/faction.actions';
+import { selectFactionsByCampaignId, selectSelectedFaction, selectSelectedFactionId } from '../../../domain/store/factions/faction.selectors';
+import { factionEntityActions, factionActions } from '../../../domain/store/factions/faction.actions';
 import { PanelComponent } from '../../../components/panel/panel.component';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { UserCreatedIndicatorComponent } from '../../../components/user-created-indicator/user-created-indicator.component';
@@ -35,8 +35,9 @@ import { FactionDetailViewComponent } from '../../../components/faction-detail-v
 export class ChronicleDetailComponent implements OnInit {
   chronicle$: Observable<Campaign | undefined>;
   factions$: Observable<Faction[]>;
+  selectedFaction$: Observable<Faction | null>;
+  selectedFactionId$: Observable<string | null>;
   showEditDialog = false;
-  selectedFaction: Faction | null = null;
   currentChronicle: Campaign | undefined;
   CampaignStatus = CampaignStatus;
 
@@ -48,6 +49,8 @@ export class ChronicleDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.chronicle$ = this.store.select(selectCampaignById(id || ''));
     this.factions$ = this.store.select(selectFactionsByCampaignId(id || ''));
+    this.selectedFaction$ = this.store.select(selectSelectedFaction);
+    this.selectedFactionId$ = this.store.select(selectSelectedFactionId);
   }
 
   ngOnInit(): void {
@@ -139,7 +142,7 @@ export class ChronicleDetailComponent implements OnInit {
 
   // Faction Management Methods
   onSelectFaction(faction: Faction): void {
-    this.selectedFaction = faction;
+    this.store.dispatch(factionActions.selectFaction({ id: faction.id }));
   }
 
   onAddFaction(): void {
@@ -155,7 +158,7 @@ export class ChronicleDetailComponent implements OnInit {
         isUserCreated: true
       };
       this.store.dispatch(factionEntityActions.addFaction({ faction: newFaction }));
-      this.selectedFaction = newFaction;
+      this.store.dispatch(factionActions.selectFaction({ id: newFaction.id }));
     }
   }
 
@@ -168,19 +171,6 @@ export class ChronicleDetailComponent implements OnInit {
   onRemoveFaction(faction: Faction): void {
     if (confirm(`Are you sure you want to delete the faction "${faction.name}"?`)) {
       this.store.dispatch(factionEntityActions.removeFaction({ id: faction.id }));
-      if (this.selectedFaction?.id === faction.id) {
-        this.selectedFaction = null;
-      }
     }
-  }
-
-  onAddWarband(): void {
-    // TODO: Implement warband management
-    console.log('Add warband');
-  }
-
-  onRemoveWarband(warband: Warband): void {
-    // TODO: Implement warband management
-    console.log('Remove warband:', warband);
   }
 }

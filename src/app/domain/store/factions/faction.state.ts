@@ -6,4 +6,5 @@ export type FactionEntityState = EntityState<Faction> & {
 };
 
 export interface FactionState extends EntityState<Faction> {
+  selectedFactionId: string | null;
 }

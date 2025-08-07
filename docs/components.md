@@ -53,6 +53,113 @@ Displays random encounter details.
 })
 ```
 
+### Faction Management Components
+
+Components for managing factions, warbands, units, and abilities.
+
+#### FactionDetailView
+Main component for displaying and editing faction details.
+
+```typescript
+@Component({
+  selector: 'app-faction-detail-view',
+  standalone: true
+})
+```
+
+**Inputs:**
+- `faction: Faction | null` - The faction to display
+- `canEdit: boolean` - Whether editing is allowed
+
+**Outputs:**
+- `update: EventEmitter<Faction>` - Emits when faction is updated
+
+**Features:**
+- Edit faction name, description, and flavour text
+- Manage warbands within the faction
+- Hierarchical display of warbands → units → abilities
+
+#### WarbandItem
+Component for displaying and managing individual warbands.
+
+```typescript
+@Component({
+  selector: 'app-warband-item',
+  standalone: true
+})
+```
+
+**Inputs:**
+- `warband: Warband` - The warband to display
+- `canEdit: boolean` - Whether editing is allowed
+
+**Outputs:**
+- `update: EventEmitter<Warband>` - Emits when warband is updated
+- `remove: EventEmitter<void>` - Emits when warband should be removed
+
+**Features:**
+- Expandable/collapsible UI
+- Inline editing of warband properties
+- Add/remove units within the warband
+- Visual unit count indicator
+
+#### UnitItem
+Component for displaying and managing individual units.
+
+```typescript
+@Component({
+  selector: 'app-unit-item',
+  standalone: true
+})
+```
+
+**Inputs:**
+- `unit: Unit` - The unit to display
+- `canEdit: boolean` - Whether editing is allowed
+
+**Outputs:**
+- `update: EventEmitter<Unit>` - Emits when unit is updated
+- `remove: EventEmitter<void>` - Emits when unit should be removed
+
+**Features:**
+- Expandable/collapsible UI
+- Inline editing of unit properties
+- Add/remove abilities for the unit
+- Visual ability count indicator
+
+#### AbilityItem
+Component for displaying and managing individual abilities.
+
+```typescript
+@Component({
+  selector: 'app-ability-item',
+  standalone: true
+})
+```
+
+**Inputs:**
+- `ability: UnitAbility` - The ability to display
+- `canEdit: boolean` - Whether editing is allowed
+
+**Outputs:**
+- `update: EventEmitter<UnitAbility>` - Emits when ability is updated
+- `remove: EventEmitter<void>` - Emits when ability should be removed
+
+**Features:**
+- Inline editing of ability properties
+- Compact display with name, description, and flavour text
+- Visual indicator (bullet point)
+
+#### FactionListItem
+Component for displaying faction in a list view.
+
+```typescript
+@Component({
+  selector: 'app-random-encounter-display',
+  standalone: true
+})
+```
+
 #### TileFeatureDisplay
 Shows special tile features and their effects.
 

@@ -1,21 +1,47 @@
 @use '../../styles/config' as config;
 
 .faction-list-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: config.$size-s config.$size-m;
+  padding-left: calc(config.$size-m + config.$size-s);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   border-radius: config.$size-xs;
+  border: 2px solid transparent;
 
-  &:hover {
+  &:hover:not(.selected) {
     background-color: var(--surface-hover);
   }
 
   &.selected {
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
+    background-color: var(--primary-light, rgba(74, 144, 226, 0.15));
+    border: 2px solid var(--primary, #4a90e2);
+    padding: calc(config.$size-s - 2px) calc(config.$size-m - 2px);
+    padding-left: calc(config.$size-m + config.$size-s - 2px);
+    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+    
+    .faction-name {
+      color: var(--primary-dark, #2c5aa0);
+      font-weight: 600;
+    }
+    
+    .faction-meta {
+      color: var(--primary, #4a90e2);
+    }
+    
+    &::after {
+      content: '●';
+      position: absolute;
+      left: config.$size-m;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary, #4a90e2);
+      font-size: 0.6em;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
   }
 }
 
@@ -44,4 +70,13 @@
   display: flex;
   gap: config.$size-xs;
   margin-left: config.$size-s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

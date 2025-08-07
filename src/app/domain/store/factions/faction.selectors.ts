@@ -43,3 +43,14 @@ export const selectFactionsByCampaignId = (campaignId: string) =>
   createSelector(selectAllFactions, (factions) => 
     factions.filter(faction => faction.campaignId === campaignId)
   );
+
+export const selectSelectedFactionId = createSelector(
+  (state: AppState) => state.factions,
+  (state) => state.selectedFactionId
+);
+
+export const selectSelectedFaction = createSelector(
+  selectAllFactions,
+  selectSelectedFactionId,
+  (factions, selectedId) => selectedId ? factions.find(f => f.id === selectedId) || null : null
+);

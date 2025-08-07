@@ -71,6 +71,36 @@ Campaign management tool for tracking conquest campaigns.
 - `status`: Campaign status
 - `userCreated`: Flag for user-created campaigns
 
+#### Faction Management
+
+Within campaign detail view, users can manage factions with full hierarchical support:
+
+**Faction Structure:**
+```
+Faction
+├── Warband
+│   ├── Unit
+│   │   ├── Ability
+│   │   ├── Ability
+│   │   └── ...
+│   ├── Unit
+│   └── ...
+├── Warband
+└── ...
+```
+
+**Features:**
+- Create, edit, and delete factions
+- Track selected faction in NgRx state
+- Visual selection indicator in faction list
+- Manage warbands within factions
+- Manage units within warbands
+- Manage abilities within units
+- Expandable/collapsible hierarchy view
+- Inline editing at all levels
+- Count badges for child elements
+- All operations on single page
+
 ### 4. Rules Feature
 
 Displays game rules and mechanics.

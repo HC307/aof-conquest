@@ -16,6 +16,8 @@ interface AppState {
   rules: RuleState;
   randomEncounters: RandomEncounterState;
   chronicles: ChronicleState;
+  campaigns: CampaignState;
+  factions: FactionState;
 }
 ```
 
@@ -34,6 +36,13 @@ Example for Tiles:
 ```typescript
 interface TileState extends EntityState<Tile> {
   selectedTileId: string | null;
+}
+```
+
+Example for Factions:
+```typescript
+interface FactionState extends EntityState<Faction> {
+  selectedFactionId: string | null;
 }
 ```
 
@@ -219,6 +228,26 @@ export const initialTileState: TileState = {
 ```typescript
 // In component
 tiles$ = this.store.select(TileSelectors.selectAllTiles);
+```
+
+### Managing Selection State
+```typescript
+// Faction selection example
+// Action to select a faction
+this.store.dispatch(factionActions.selectFaction({ id: faction.id }));
+
+// Selector to get selected faction
+selectedFaction$ = this.store.select(selectSelectedFaction);
+selectedFactionId$ = this.store.select(selectSelectedFactionId);
+
+// Auto-clear selection when entity is removed
+on(factionActions.remove, (state, { id }) => {
+  const newState = factionAdapter.removeOne(id, state);
+  return {
+    ...newState,
+    selectedFactionId: state.selectedFactionId === id ? null : state.selectedFactionId
+  };
+})
 ```
 
 ### Filtering Entities

@@ -1,0 +1,60 @@
+<div class="ability-item">
+  @if (!isEditing) {
+    <div class="ability-content">
+      <div class="ability-icon">●</div>
+      <div class="ability-info">
+        <div class="ability-name">{{ ability.name }}</div>
+        @if (ability.description) {
+          <div class="ability-description">{{ ability.description }}</div>
+        }
+        @if (ability.flavour) {
+          <div class="ability-flavour">{{ ability.flavour }}</div>
+        }
+      </div>
+      @if (canEdit) {
+        <div class="ability-actions">
+          <app-button size="small" (click)="startEdit()">Edit</app-button>
+          <app-button size="small" variant="danger" (click)="onRemove()">×</app-button>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="ability-edit">
+      <div class="edit-form">
+        <div class="form-field">
+          <app-text-field
+            [(ngModel)]="editForm.name"
+            name="name"
+            [required]="true"
+            placeholder="Ability name"
+          />
+        </div>
+        <div class="form-field">
+          <app-text-field
+            [(ngModel)]="editForm.description"
+            name="description"
+            placeholder="Ability description"
+          />
+        </div>
+        <div class="form-field">
+          <app-text-field
+            [(ngModel)]="editForm.flavour"
+            name="flavour"
+            placeholder="Flavour text"
+          />
+        </div>
+        <div class="form-actions">
+          <app-button size="small" (click)="cancelEdit()">Cancel</app-button>
+          <app-button 
+            size="small" 
+            variant="primary" 
+            (click)="saveEdit()"
+            [disabled]="!editForm.name?.trim()"
+          >
+            Save
+          </app-button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

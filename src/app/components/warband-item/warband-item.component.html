@@ -1,0 +1,139 @@
+<div class="warband-item">
+  <div class="warband-header" (click)="toggleExpand()">
+    <div class="warband-toggle">
+      <span class="toggle-icon">{{ isExpanded ? '▼' : '▶' }}</span>
+    </div>
+    
+    <div class="warband-info">
+      @if (!isEditing) {
+        <div class="warband-title">
+          <h4>{{ warband.name }}</h4>
+          <span class="unit-count">({{ warband.units.length }} units)</span>
+        </div>
+        @if (warband.description && !isExpanded) {
+          <p class="warband-preview">{{ warband.description }}</p>
+        }
+      } @else {
+        <div class="edit-inline" (click)="$event.stopPropagation()">
+          <app-text-field
+            [(ngModel)]="editForm.name"
+            name="name"
+            [required]="true"
+            placeholder="Warband name"
+            class="inline-field"
+          />
+        </div>
+      }
+    </div>
+    
+    @if (canEdit) {
+      <div class="warband-actions" (click)="$event.stopPropagation()">
+        @if (!isEditing) {
+          <app-button size="small" (click)="startEdit()">Edit</app-button>
+          <app-button size="small" variant="danger" (click)="onRemove()">×</app-button>
+        } @else {
+          <app-button size="small" (click)="cancelEdit()">Cancel</app-button>
+          <app-button 
+            size="small" 
+            variant="primary" 
+            (click)="saveEdit()"
+            [disabled]="!editForm.name?.trim()"
+          >
+            Save
+          </app-button>
+        }
+      </div>
+    }
+  </div>
+  
+  @if (isExpanded) {
+    <div class="warband-content">
+      @if (isEditing) {
+        <div class="edit-fields">
+          <div class="form-field">
+            <label>Description</label>
+            <app-text-field
+              [(ngModel)]="editForm.description"
+              name="description"
+              placeholder="Enter warband description"
+            />
+          </div>
+          
+          <div class="form-field">
+            <label>Flavour Text</label>
+            <app-text-field
+              [(ngModel)]="editForm.flavour"
+              name="flavour"
+              placeholder="Enter flavour text"
+            />
+          </div>
+        </div>
+      } @else {
+        @if (warband.description) {
+          <div class="warband-description">
+            <p>{{ warband.description }}</p>
+          </div>
+        }
+        
+        @if (warband.flavour) {
+          <div class="warband-flavour">
+            <p class="flavour-text">{{ warband.flavour }}</p>
+          </div>
+        }
+      }
+      
+      <div class="units-section">
+        <div class="units-header">
+          <h5>Units</h5>
+          @if (canEdit && !isEditing) {
+            @if (!isAddingUnit) {
+              <app-button size="small" (click)="startAddUnit()">Add Unit</app-button>
+            }
+          }
+        </div>
+        
+        @if (isAddingUnit) {
+          <div class="add-unit-form">
+            <div class="form-row">
+              <app-text-field
+                [(ngModel)]="newUnitForm.name"
+                name="unitName"
+                placeholder="Unit name"
+                [required]="true"
+              />
+              <app-text-field
+                [(ngModel)]="newUnitForm.description"
+                name="unitDescription"
+                placeholder="Unit description"
+              />
+            </div>
+            <div class="form-actions">
+              <app-button size="small" (click)="cancelAddUnit()">Cancel</app-button>
+              <app-button 
+                size="small" 
+                variant="primary" 
+                (click)="addUnit()"
+                [disabled]="!newUnitForm.name.trim()"
+              >
+                Add Unit
+              </app-button>
+            </div>
+          </div>
+        }
+        
+        <div class="units-list">
+          @for (unit of warband.units; track unit.id; let i = $index) {
+            <app-unit-item
+              [unit]="unit"
+              [canEdit]="canEdit && !isEditing"
+              (update)="updateUnit(i, $event)"
+              (remove)="removeUnit(i)"
+            />
+          } @empty {
+            <p class="no-units">No units in this warband yet.</p>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

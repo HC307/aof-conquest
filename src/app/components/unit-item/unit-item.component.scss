@@ -1,0 +1,184 @@
+@use '../../styles/config' as config;
+
+.unit-item {
+  background: var(--surface-light, #f8f8f8);
+  border-radius: config.$size-xs;
+  margin-bottom: config.$size-xs;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--surface-hover, #f0f0f0);
+  }
+}
+
+.unit-header {
+  display: flex;
+  align-items: center;
+  padding: config.$size-s config.$size-m;
+  cursor: pointer;
+  user-select: none;
+}
+
+.unit-toggle {
+  margin-right: config.$size-s;
+  
+  .toggle-icon {
+    display: inline-block;
+    font-size: 0.7em;
+    color: var(--text-secondary, #666);
+    transition: transform 0.2s ease;
+  }
+}
+
+.unit-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.unit-title {
+  display: flex;
+  align-items: center;
+  gap: config.$size-s;
+  
+  .unit-name {
+    font-weight: 500;
+  }
+  
+  .ability-count {
+    font-size: 0.85em;
+    color: var(--text-secondary, #666);
+  }
+}
+
+.unit-preview {
+  margin: config.$size-xs 0 0;
+  font-size: 0.85em;
+  color: var(--text-secondary, #666);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unit-actions {
+  display: flex;
+  gap: config.$size-xs;
+  margin-left: config.$size-s;
+}
+
+.unit-content {
+  padding: 0 config.$size-m config.$size-s calc(config.$size-m + config.$size-m);
+  animation: slideDown 0.2s ease;
+}
+
+.unit-description,
+.unit-flavour {
+  margin-bottom: config.$size-s;
+  
+  p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+}
+
+.unit-flavour {
+  .flavour-text {
+    font-style: italic;
+    color: var(--text-secondary, #666);
+  }
+}
+
+.edit-fields {
+  margin-bottom: config.$size-s;
+  
+  .form-field {
+    margin-bottom: config.$size-xs;
+    
+    label {
+      display: block;
+      font-size: 0.85em;
+      font-weight: 500;
+      margin-bottom: 2px;
+      color: var(--text-secondary, #666);
+    }
+  }
+}
+
+.edit-inline {
+  flex: 1;
+  
+  .inline-field {
+    width: 100%;
+  }
+}
+
+.abilities-section {
+  margin-top: config.$size-s;
+  padding-top: config.$size-s;
+  border-top: 1px solid var(--border-light, #e8e8e8);
+}
+
+.abilities-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: config.$size-xs;
+  
+  h6 {
+    margin: 0;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--text-secondary, #666);
+  }
+}
+
+.add-ability-form {
+  background: white;
+  padding: config.$size-s;
+  border-radius: config.$size-xs;
+  margin-bottom: config.$size-s;
+  border: 1px solid var(--border-light, #e0e0e0);
+  
+  .form-row {
+    margin-bottom: config.$size-xs;
+    
+    app-text-field {
+      width: 100%;
+    }
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: config.$size-xs;
+    justify-content: flex-end;
+    margin-top: config.$size-s;
+  }
+}
+
+.abilities-list {
+  display: flex;
+  flex-direction: column;
+  gap: config.$size-xs;
+}
+
+.no-abilities {
+  text-align: center;
+  color: var(--text-secondary, #666);
+  font-style: italic;
+  font-size: 0.85em;
+  padding: config.$size-s;
+  background: white;
+  border-radius: config.$size-xs;
+  margin: 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}

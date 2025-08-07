@@ -142,6 +142,7 @@
 
 .factions-list-panel,
 .faction-detail-panel {
+  overflow: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -174,10 +175,6 @@
   color: var(--text-secondary);
   font-style: italic;
   padding: $size-l;
-}
-
-.faction-detail-panel {
-  padding: $size-m;
 }
 
 // Responsive layout

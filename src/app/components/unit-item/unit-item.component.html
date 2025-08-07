@@ -1,0 +1,141 @@
+<div class="unit-item">
+  <div class="unit-header" (click)="toggleExpand()">
+    <div class="unit-toggle">
+      <span class="toggle-icon">{{ isExpanded ? '▼' : '▶' }}</span>
+    </div>
+    
+    <div class="unit-info">
+      @if (!isEditing) {
+        <div class="unit-title">
+          <span class="unit-name">{{ unit.name }}</span>
+          <span class="ability-count">({{ unit.abilities.length }} abilities)</span>
+        </div>
+        @if (unit.description && !isExpanded) {
+          <p class="unit-preview">{{ unit.description }}</p>
+        }
+      } @else {
+        <div class="edit-inline" (click)="$event.stopPropagation()">
+          <app-text-field
+            [(ngModel)]="editForm.name"
+            name="name"
+            [required]="true"
+            placeholder="Unit name"
+            class="inline-field"
+          />
+        </div>
+      }
+    </div>
+    
+    @if (canEdit) {
+      <div class="unit-actions" (click)="$event.stopPropagation()">
+        @if (!isEditing) {
+          <app-button size="small" (click)="startEdit()">Edit</app-button>
+          <app-button size="small" variant="danger" (click)="onRemove()">×</app-button>
+        } @else {
+          <app-button size="small" (click)="cancelEdit()">Cancel</app-button>
+          <app-button 
+            size="small" 
+            variant="primary" 
+            (click)="saveEdit()"
+            [disabled]="!editForm.name?.trim()"
+          >
+            Save
+          </app-button>
+        }
+      </div>
+    }
+  </div>
+  
+  @if (isExpanded) {
+    <div class="unit-content">
+      @if (isEditing) {
+        <div class="edit-fields">
+          <div class="form-field">
+            <label>Description</label>
+            <app-text-field
+              [(ngModel)]="editForm.description"
+              name="description"
+              placeholder="Enter unit description"
+            />
+          </div>
+          
+          <div class="form-field">
+            <label>Flavour Text</label>
+            <app-text-field
+              [(ngModel)]="editForm.flavour"
+              name="flavour"
+              placeholder="Enter flavour text"
+            />
+          </div>
+        </div>
+      } @else {
+        @if (unit.description) {
+          <div class="unit-description">
+            <p>{{ unit.description }}</p>
+          </div>
+        }
+        
+        @if (unit.flavour) {
+          <div class="unit-flavour">
+            <p class="flavour-text">{{ unit.flavour }}</p>
+          </div>
+        }
+      }
+      
+      <div class="abilities-section">
+        <div class="abilities-header">
+          <h6>Abilities</h6>
+          @if (canEdit && !isEditing) {
+            @if (!isAddingAbility) {
+              <app-button size="small" (click)="startAddAbility()">Add Ability</app-button>
+            }
+          }
+        </div>
+        
+        @if (isAddingAbility) {
+          <div class="add-ability-form">
+            <div class="form-row">
+              <app-text-field
+                [(ngModel)]="newAbilityForm.name"
+                name="abilityName"
+                placeholder="Ability name"
+                [required]="true"
+              />
+            </div>
+            <div class="form-row">
+              <app-text-field
+                [(ngModel)]="newAbilityForm.description"
+                name="abilityDescription"
+                placeholder="Ability description"
+              />
+            </div>
+            <div class="form-actions">
+              <app-button size="small" (click)="cancelAddAbility()">Cancel</app-button>
+              <app-button 
+                size="small" 
+                variant="primary" 
+                (click)="addAbility()"
+                [disabled]="!newAbilityForm.name.trim()"
+              >
+                Add Ability
+              </app-button>
+            </div>
+          </div>
+        }
+        
+        <div class="abilities-list">
+          @for (ability of unit.abilities; track ability.id; let i = $index) {
+            <app-ability-item
+              [ability]="ability"
+              [canEdit]="canEdit && !isEditing"
+              (update)="updateAbility(i, $event)"
+              (remove)="removeAbility(i)"
+            />
+          } @empty {
+            <p class="no-abilities">No abilities for this unit yet.</p>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

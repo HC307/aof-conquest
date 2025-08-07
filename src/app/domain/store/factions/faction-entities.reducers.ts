@@ -1,10 +1,12 @@
 import {createReducer, on} from '@ngrx/store';
 import {factionAdapter} from './factionAdapter';
 import {FactionState} from './faction.state';
-import {factionEntityActions} from './faction.actions';
+import {factionEntityActions, factionActions} from './faction.actions';
 
 export const initialFactionState: FactionState =
-  factionAdapter.getInitialState();
+  factionAdapter.getInitialState({
+    selectedFactionId: null
+  });
 
 export const factionEntitiesReducer = createReducer(
   initialFactionState,
@@ -25,5 +27,16 @@ export const factionEntitiesReducer = createReducer(
   ),
   on(factionEntityActions.setFactions, (state, { factions }) =>
     factionAdapter.setAll(factions, state)
-  )
+  ),
+  on(factionActions.selectFaction, (state, { id }) => ({
+    ...state,
+    selectedFactionId: id
+  })),
+  on(factionActions.remove, (state, { id }) => {
+    const newState = factionAdapter.removeOne(id, state);
+    return {
+      ...newState,
+      selectedFactionId: state.selectedFactionId === id ? null : state.selectedFactionId
+    };
+  })
 );

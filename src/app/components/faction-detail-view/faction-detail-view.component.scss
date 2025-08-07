@@ -132,6 +132,33 @@
   padding: config.$size-l 0;
 }
 
+.add-warband-form {
+  background: var(--surface-light, #f8f8f8);
+  padding: config.$size-m;
+  border-radius: config.$size-xs;
+  margin-bottom: config.$size-m;
+  border: 1px solid var(--border-light, #e0e0e0);
+  
+  .form-field {
+    margin-bottom: config.$size-s;
+    
+    label {
+      display: block;
+      font-size: 0.9em;
+      font-weight: 500;
+      margin-bottom: config.$size-xs;
+      color: var(--text-secondary, #666);
+    }
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: config.$size-xs;
+    justify-content: flex-end;
+    margin-top: config.$size-m;
+  }
+}
+
 .no-selection {
   display: flex;
   align-items: center;

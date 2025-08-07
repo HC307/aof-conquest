@@ -83,34 +83,63 @@
       <div class="section-header">
         <h3>Warbands</h3>
         @if (canEdit && faction.isUserCreated && !isEditing) {
-          <app-button size="small" (click)="onAddWarband()">
-            Add Warband
-          </app-button>
+          @if (!isAddingWarband) {
+            <app-button size="small" (click)="startAddWarband()">
+              Add Warband
+            </app-button>
+          }
         }
       </div>
       
+      @if (isAddingWarband) {
+        <div class="add-warband-form">
+          <div class="form-field">
+            <label>Warband Name</label>
+            <app-text-field
+              [(ngModel)]="newWarbandForm.name"
+              name="warbandName"
+              placeholder="Enter warband name"
+              [required]="true"
+            />
+          </div>
+          <div class="form-field">
+            <label>Description</label>
+            <app-text-field
+              [(ngModel)]="newWarbandForm.description"
+              name="warbandDescription"
+              placeholder="Enter warband description"
+            />
+          </div>
+          <div class="form-field">
+            <label>Flavour Text</label>
+            <app-text-field
+              [(ngModel)]="newWarbandForm.flavour"
+              name="warbandFlavour"
+              placeholder="Enter flavour text"
+            />
+          </div>
+          <div class="form-actions">
+            <app-button size="small" (click)="cancelAddWarband()">Cancel</app-button>
+            <app-button 
+              size="small" 
+              variant="primary" 
+              (click)="addWarband()"
+              [disabled]="!newWarbandForm.name.trim()"
+            >
+              Create Warband
+            </app-button>
+          </div>
+        </div>
+      }
+      
       <div class="warbands-list">
-        @for (warband of faction.warbands; track warband.id) {
-          <app-panel class="warband-item">
-            <div class="warband-header">
-              <h4>{{ warband.name }}</h4>
-              @if (canEdit && faction.isUserCreated && !isEditing) {
-                <app-button 
-                  size="small" 
-                  variant="danger" 
-                  (click)="onRemoveWarband(warband)"
-                >
-                  Remove
-                </app-button>
-              }
-            </div>
-            @if (warband.description) {
-              <p class="warband-description">{{ warband.description }}</p>
-            }
-            <div class="warband-units">
-              {{ warband.units.length || 0 }} Units
-            </div>
-          </app-panel>
+        @for (warband of faction.warbands; track warband.id; let i = $index) {
+          <app-warband-item
+            [warband]="warband"
+            [canEdit]="canEdit && !!faction.isUserCreated && !isEditing"
+            (update)="updateWarband(i, $event)"
+            (remove)="removeWarband(i)"
+          />
         } @empty {
           <p class="no-warbands">No warbands yet. Add warbands to organize your faction's units.</p>
         }

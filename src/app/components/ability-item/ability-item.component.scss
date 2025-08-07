@@ -1,0 +1,75 @@
+@use '../../styles/config' as config;
+
+.ability-item {
+  background: white;
+  border: 1px solid var(--border-light, #e8e8e8);
+  border-radius: config.$size-xs;
+  padding: config.$size-s;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.ability-content {
+  display: flex;
+  align-items: flex-start;
+  gap: config.$size-s;
+}
+
+.ability-icon {
+  color: var(--primary, #4a90e2);
+  font-size: 0.6em;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.ability-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ability-name {
+  font-weight: 500;
+  margin-bottom: config.$size-xs;
+}
+
+.ability-description {
+  font-size: 0.9em;
+  color: var(--text-secondary, #666);
+  line-height: 1.4;
+  margin-bottom: config.$size-xs;
+}
+
+.ability-flavour {
+  font-size: 0.85em;
+  font-style: italic;
+  color: var(--text-secondary, #888);
+  line-height: 1.3;
+}
+
+.ability-actions {
+  display: flex;
+  gap: config.$size-xs;
+  flex-shrink: 0;
+}
+
+.ability-edit {
+  .edit-form {
+    .form-field {
+      margin-bottom: config.$size-xs;
+      
+      app-text-field {
+        width: 100%;
+      }
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: config.$size-xs;
+      justify-content: flex-end;
+      margin-top: config.$size-s;
+    }
+  }
+}

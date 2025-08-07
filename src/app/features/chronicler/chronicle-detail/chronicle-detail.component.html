@@ -87,7 +87,7 @@
                   @for (faction of factions$ | async; track faction.id) {
                     <app-faction-list-item
                       [faction]="faction"
-                      [selected]="selectedFaction?.id === faction.id"
+                      [selected]="(selectedFactionId$ | async) === faction.id"
                       [showActions]="!!chronicle.isUserCreated"
                       (select)="onSelectFaction($event)"
                       (remove)="onRemoveFaction($event)"
@@ -101,11 +101,9 @@
             
             <app-panel class="faction-detail-panel">
               <app-faction-detail-view
-                [faction]="selectedFaction"
+                [faction]="selectedFaction$ | async"
                 [canEdit]="!!chronicle.isUserCreated && chronicle.status === CampaignStatus.ACTIVE"
                 (update)="onUpdateFaction($event)"
-                (addWarband)="onAddWarband()"
-                (removeWarband)="onRemoveWarband($event)"
               />
             </app-panel>
           </div>
